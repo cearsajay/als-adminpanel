@@ -1,0 +1,1 @@
+var handleInitBsFileInput=function(){bsCustomFileInput.init();};$(function(){handleInitBsFileInput();});

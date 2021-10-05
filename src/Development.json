@@ -1,0 +1,43 @@
+{
+    "base_url": "http://localhost:4000/",
+    "login": "admin/login",
+    "logout": "admin/logout",
+    "image_upload": "image-upload",
+    "profile_get": "admin/profile-get",
+    "profile_update": "admin/profile-update",
+    "change_password": "admin/change-password",
+
+
+    "get_country": "admin/country",
+
+    
+    "get_setting": "admin/get-setting",
+    "store_setting": "admin/store-setting",
+
+
+    "get_fee_setting": "admin/get-fee-setting",
+    "store_fee_setting": "admin/store-fee-setting",
+
+
+
+    "transaction_get": "admin/transaction",
+
+    "bank_store": "admin/bank/store",
+    "bank_get": "admin/bank/get",
+    "bank_delete": "admin/bank/delete",
+    "bank_edit": "admin/bank/edit",
+    "bank_change_status": "admin/bank/change-status",
+
+    "user_store": "admin/user/store",
+    "user_get": "admin/user/get",
+    "user_delete": "admin/user/delete",
+    "user_edit": "admin/user/edit",
+    "user_change_status": "admin/user/change-status",
+    "user_kyc": "admin/user/change-kyc",
+
+
+    "logoutaaa": "admin-logout_custome"
+
+
+
+}
