@@ -25,7 +25,7 @@ const AuthRoute = (props) => {
 };
 const Routes = () => (
     <Router basename={`${process.env.REACT_APP_BASE_NAME}/`}>
-        <Switch>
+        {/* <Switch> */}
             {routes.map((route, i) => {
                 if (route.auth) {
                     return <AuthRoute key={route.path} {...route} />;
@@ -33,7 +33,7 @@ const Routes = () => (
                     return <Route key={route.path} {...route} />;
                 }
             })}
-        </Switch>
+        {/* </Switch> */}
     </Router>
 );
 
