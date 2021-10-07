@@ -6,7 +6,8 @@ import {
     Redirect,
 } from "react-router-dom";
 
-import routes from "./routes";
+import routes from "./routes.jsx";
+require('dotenv').config()
 
 const AuthRoute = (props) => {
     const isLogin = localStorage.getItem("access_token") || false;
@@ -23,7 +24,7 @@ const AuthRoute = (props) => {
     return render;
 };
 const Routes = () => (
-    <Router>
+    <Router basename={`${process.env.REACT_APP_BASE_NAME}/`}>
         <Switch>
             {routes.map((route, i) => {
                 if (route.auth) {
