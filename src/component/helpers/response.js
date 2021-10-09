@@ -80,6 +80,9 @@ function isError(error) {
 function configHeaderAxios() {
     const config = {
         headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Referrer-Policy': '*',
+            'Referrer': '*',
             'content-type': 'application/json',
             'authorization': localStorage.getItem('access_token')
         }
