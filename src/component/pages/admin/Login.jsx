@@ -24,7 +24,8 @@ const Login = () => {
     const onSubmit = (data) => {
         const config = {
             headers: {
-                "content-type": "application/json",
+                "Content-Type": "application/json",
+                "Accept": 'application/json'
             },
         };
         axios
