@@ -2,7 +2,6 @@ import React from "react";
 import {
     BrowserRouter as Router,
     Route,
-    Switch,
     Redirect,
 } from "react-router-dom";
 
@@ -25,15 +24,13 @@ const AuthRoute = (props) => {
 };
 const Routes = () => (
     <Router basename={`${process.env.REACT_APP_BASE_NAME}/`}>
-        {/* <Switch> */}
-            {routes.map((route, i) => {
-                if (route.auth) {
-                    return <AuthRoute key={route.path} {...route} />;
-                } else {
-                    return <Route key={route.path} {...route} />;
-                }
-            })}
-        {/* </Switch> */}
+        {routes.map((route, i) => {
+            if (route.auth) {
+                return <AuthRoute key={route.path} {...route} />;
+            } else {
+                return <Route key={route.path} {...route} />;
+            }
+        })}
     </Router>
 );
 

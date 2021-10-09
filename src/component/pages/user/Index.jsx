@@ -1,45 +1,35 @@
 import DataTable from 'react-data-table-component';
 import React, { useMemo, useState, useEffect } from 'react';
-// import tableDataItems from '../constants/sampleDesserts';
 import axios from "axios";
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faPencilAlt, faTrashAlt, faToggleOn, faToggleOff, faKey, faStreetView } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
-import { Modal, Button } from 'react-bootstrap';
-
+import { Modal } from 'react-bootstrap';
 import '../../../custome.css';
 import url from "../../../Development.json";
 import { errorResponse, successResponse, configHeaderAxios } from "../../helpers/response";
 import { useHistory } from 'react-router';
-
-
-
+import KycDummy from '../../../assets/img/kyc.png';
 
 const Index = () => {
-    const [selectedRows, setSelectedRows] = useState([]);
     const [dataTableData, setDataTableData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
     const [totalRows, setTotalRows] = useState(0);
     const [perPage, setPerPage] = useState(10);
     const [filterText, setFilterText] = useState('');
-    const [id,setId] = useState('');
-    const [back,setBack] = useState('');
-    const [front,setFront] = useState('');
+    const [back, setBack] = useState(KycDummy);
+    const [front, setFront] = useState(KycDummy);
     const history = useHistory();
     let currentFilterText = '';
-
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'ASC') => {
         const config = configHeaderAxios();
         let reqDD = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}`;
         axios
-            .get(url.base_url + url.user_get + reqDD, config)
+            .get(process.env.REACT_APP_BASE_URL + url.user_get + reqDD, config)
             .then((response) => {
                 setDataTableData(response.data.data.rows);
                 setTotalRows(response.data.data.count);
@@ -54,7 +44,7 @@ const Index = () => {
 
     useEffect(() => {
         getData();
-    }, [selectedRows]);
+    }, []);
 
     const editButtonClick = (id) => {
         history.push({
@@ -69,7 +59,7 @@ const Index = () => {
         };
         const config = configHeaderAxios();
         axios
-            .post(url.base_url + url.user_change_status, obj, config)
+            .post(process.env.REACT_APP_BASE_URL + url.user_change_status, obj, config)
             .then((response) => {
                 getData();
                 successResponse(response);
@@ -123,7 +113,7 @@ const Index = () => {
                 })
             }
             axios
-                .post(url.base_url + url.user_kyc, JSON.stringify(data), config)
+                .post(process.env.REACT_APP_BASE_URL + url.user_kyc, JSON.stringify(data), config)
                 .then((response) => {
                 })
                 .catch((error) => {
@@ -135,38 +125,10 @@ const Index = () => {
     };
 
 
-
-
-
-
-    
     const KycDisplayButtonClick = (id, front, back) => {
-        console.log(id);
-        console.log(front);
-        console.log(back);
         setBack(back);
         setFront(front);
         setShow(true);
-
-        // return (
-        //     <Modal>
-        //         <Modal.Header closeButton>
-        //             <Modal.Title>Modal heading</Modal.Title>
-        //         </Modal.Header>
-        //         <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-            
-        //         <Modal.Footer>
-        //             <Button variant="secondary" onClick={handleClose}>
-        //                 Close
-        //             </Button>
-        //             <Button variant="primary" onClick={handleClose}>
-        //                 Save Changes
-        //             </Button>
-        //         </Modal.Footer>
-        //     </Modal>
-            
-        // )
-
     };
     const deleteButtonClick = (id) => {
         Swal.fire({
@@ -183,7 +145,7 @@ const Index = () => {
                 let obj = `?id=${id}`;
                 const config = configHeaderAxios();
                 axios
-                    .delete(url.base_url + url.user_delete + obj, config)
+                    .delete(process.env.REACT_APP_BASE_URL + url.user_delete + obj, config)
                     .then((response) => {
                         getData();
                         successResponse(response);
@@ -262,7 +224,7 @@ const Index = () => {
 
                         <button className="btn btn-warning ml-2" onClick={(id) => { changeStatusButtonClick(row.id) }} >
                             {
-                                row.status == 1 ? <FontAwesomeIcon icon={faToggleOff} /> : <FontAwesomeIcon icon={faToggleOn} />
+                                row.status === 1 ? <FontAwesomeIcon icon={faToggleOff} /> : <FontAwesomeIcon icon={faToggleOn} />
                             }
                         </button>
                     </>,
@@ -300,24 +262,28 @@ const Index = () => {
 
     return (
         <>
-        {show ? <Modal show={show} onHide={handleClose}>
+            {show ? <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>Kyc Details</Modal.Title>
                 </Modal.Header>
-                <Modal.Body><img src={back}/><img src={front}/></Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
+                <Modal.Body>
+                    <div className='kyc_img_row d-flex'>
+                        <div className='kyc_img mr-3'>
+                            <label>Kyc Front Image</label>
+                            <img src={front} className='img-fluid' alt='Kyc front' />
+                        </div>
+                        <div className='kyc_img'>
+                            <label>Kyc Back Image</label>
+                            <img src={back} className='img-fluid' alt='Kyc back'/>
+                        </div>
+                    </div>
+                    </Modal.Body>
+
             </Modal>
-            :null}
-          
-            
-           <DataTable
+                : null}
+
+
+            <DataTable
                 actions={actions}
                 subHeader
                 subHeaderComponent={FilterComponent}

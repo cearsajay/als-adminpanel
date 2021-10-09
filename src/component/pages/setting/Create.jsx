@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import url from "../../../Development.json";
@@ -7,20 +6,13 @@ import { errorResponse, successResponse, isError, configHeaderAxios } from "../.
 import { Breadcrumb } from 'react-bootstrap';
 import dummy from '../../../assets/img/dummy.jpg';
 
-
-
 const Create = () => {
-    let history = useHistory();
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [db_backup_email_id, setDbBackupEmail] = useState('');
-
     const [fileName, setFileName] = useState('');
     const [icon, setIcon] = useState(dummy);
-    const [id, setId] = useState('');
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors }
     } = useForm();
 
@@ -31,13 +23,13 @@ const Create = () => {
     const fetchData = () => {
         const config = configHeaderAxios();
         axios
-            .get(url.base_url + url.get_setting, config)
+            .get(process.env.REACT_APP_BASE_URL + url.get_setting, config)
             .then((response) => {
                 let data = response.data.data;
-                setName(data[0].value);
-                setEmail(data[1].value);
-                setIcon(url.base_url + 'uploads/logo/' + data[3].value);
-                setDbBackupEmail(data[2].value);
+                setValue('name', data[0].value);
+                setValue('email', data[1].value);
+                setValue('db_backup_email_id', data[2].value);
+                setValue('icon',process.env.REACT_APP_BASE_URL + 'uploads/logo/' + data[3].value);
             })
             .catch((error) => {
                 if (error.response) {
@@ -56,7 +48,7 @@ const Create = () => {
         const config = configHeaderAxios();
         formData.append("type",2);//admin Logo
         formData.append("avatar", image);
-        let urlcall = url.base_url + url.image_upload;
+        let urlcall = process.env.REACT_APP_BASE_URL + url.image_upload;
         axios
             .post(urlcall, formData, config)
             .then((res) => {
@@ -74,7 +66,7 @@ const Create = () => {
         data['image'] = fileName;
         const config = configHeaderAxios();
         axios
-            .post(url.base_url + url.store_setting, JSON.stringify(data), config)
+            .post(process.env.REACT_APP_BASE_URL + url.store_setting, JSON.stringify(data), config)
             .then((response) => {
                 successResponse(response);
             })
@@ -107,7 +99,6 @@ const Create = () => {
                                         className="form-control"
                                         id="name"
                                         placeholder="Admin Name"
-                                        defaultValue={name}
                                         {...register('name', { required: true })}
                                     />
                                 </div>
@@ -118,7 +109,6 @@ const Create = () => {
                                         className="form-control"
                                         id="email"
                                         placeholder="Admin Email"
-                                        defaultValue={email}
                                         {...register('email', { required: true })}
                                     />
                                 </div>
@@ -128,7 +118,6 @@ const Create = () => {
                                         className="form-control"
                                         id="db_backup_email_id"
                                         placeholder="Admin Backup Email"
-                                        defaultValue={db_backup_email_id}
                                         {...register('db_backup_email_id', { required: true })}
                                     />
                                 </div>

@@ -12,8 +12,6 @@ import dummy from '../../../assets/img/dummy.jpg';
 
 const Create = () => {
     let history = useHistory();
-
-    // const [name, setName] = useState('');
     const [icon, setIcon] = useState(dummy);
     const [fileName, setFileName] = useState("");
     const [id, setId] = useState('');
@@ -35,15 +33,12 @@ const Create = () => {
         let idpass = `?id=${id}`;
         const config = configHeaderAxios();
         axios
-            .get(url.base_url + url.bank_edit + idpass, config)
+            .get(process.env.REACT_APP_BASE_URL + url.bank_edit + idpass, config)
             .then((response) => {
                 let data = response.data.data;
                 setValue('name',data.name);
                 setId(data.id);
                 setValue('icon',data.icon);
-                // setId(data.id);
-                // setName(data.name);
-                // setIcon(data.icon);
             })
             .catch((error) => {
                 if (error.response) {
@@ -63,7 +58,7 @@ const Create = () => {
         const config = configHeaderAxios();
         formData.append("type", 3);//bank
         formData.append("avatar", image);
-        let urlcall = url.base_url + url.image_upload;
+        let urlcall = process.env.REACT_APP_BASE_URL + url.image_upload;
         axios
             .post(urlcall, formData, config)
             .then((res) => {
@@ -82,7 +77,7 @@ const Create = () => {
         data['id'] = id;
         const config = configHeaderAxios();
         axios
-            .post(url.base_url + url.bank_store, JSON.stringify(data), config)
+            .post(process.env.REACT_APP_BASE_URL + url.bank_store, JSON.stringify(data), config)
             .then((response) => {
                 successResponse(response);
                 history.push('/bank/list');

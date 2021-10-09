@@ -1,5 +1,4 @@
 import React from 'react';
-// import Routes from '../../routes/Index';
 import { Route } from 'react-router';
 import Main from './Main';
 const MainContent = ({ component: Component, ...rest }) => {

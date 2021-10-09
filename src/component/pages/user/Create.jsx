@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
-
 import axios from "axios";
 import { useForm } from "react-hook-form";
 //  start custome url define
 import url from "../../../Development.json";
 import { errorResponse, successResponse, isError, configHeaderAxios } from "../../helpers/response";
 import { Breadcrumb } from 'react-bootstrap';
-import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
-import Moment from 'moment';
-
-
 const Create = () => {
     let history = useHistory();
     const [fileName, setFileName] = useState('');
@@ -39,7 +33,7 @@ const Create = () => {
         let idpass = `?id=${id}`;
         const config = configHeaderAxios();
         axios
-            .get(url.base_url + url.user_edit + idpass, config)
+            .get(process.env.REACT_APP_BASE_URL + url.user_edit + idpass, config)
             .then((response) => {
                 let data = response.data.data;
                 setId(data.id);
@@ -73,7 +67,7 @@ const Create = () => {
         const config = configHeaderAxios();
         formData.append("type", 3);//bank
         formData.append("avatar", image);
-        let urlcall = url.base_url + url.image_upload;
+        let urlcall = process.env.REACT_APP_BASE_URL + url.image_upload;
         axios
             .post(urlcall, formData, config)
             .then((res) => {
@@ -101,7 +95,7 @@ const Create = () => {
         data['id'] = id;
         const config = configHeaderAxios();
         axios
-            .post(url.base_url + url.user_store, JSON.stringify(data), config)
+            .post(process.env.REACT_APP_BASE_URL + url.user_store, JSON.stringify(data), config)
             .then((response) => {
                 successResponse(response);
                 history.push('/user/list');
@@ -165,7 +159,7 @@ const Create = () => {
                                     <label className="form-label" htmlFor="country_code">Country Code</label>
 
 
-                                    {phoneNo && phoneNo != '' ?
+                                    {phoneNo && phoneNo !=='' ?
                                         <>
                                             <PhoneInput
                                                 id="phone_no"
@@ -230,7 +224,7 @@ const Create = () => {
                                         {...register('email', { required: true })}
                                     />
                                 </div>
-                                {/* <div className="form-group">
+                                <div className="form-group">
                                     <label className="form-label" htmlFor="profile_pic">Profile Pic</label>
                                     <input
                                         {...register('profile_pic',  { required: true } ) }
@@ -245,11 +239,11 @@ const Create = () => {
 
                                 <div className="form-group">
                                     <img
-                                        src={profile_pic}
-                                        alt={profile_pic} width="100" height="100"
+                                        src={icon}
+                                        alt={icon} width="100" height="100"
                                         className="imgBox"
                                     />
-                                </div> */}
+                                </div>
                                 <div className="form-group">
                                     <div className="form-action-btn">
                                         <button type="submit" className="btn btn-primary">Submit</button>

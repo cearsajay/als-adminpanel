@@ -65,3 +65,7 @@ button:focus{
 .react-tel-input .form-control{
     width: 100% !important;
 }
+
+.kyc_img {
+    max-width: 130px;
+}

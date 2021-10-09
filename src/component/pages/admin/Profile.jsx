@@ -28,7 +28,7 @@ const Profile = () => {
         const config = configHeaderAxios();
         formData.append("type", 1);
         formData.append("avatar", image);
-        let urlcall = url.base_url + url.image_upload;
+        let urlcall = process.env.REACT_APP_BASE_URL + url.image_upload;
         axios
             .post(urlcall, formData, config)
             .then((res) => {
@@ -45,7 +45,7 @@ const Profile = () => {
     const fetchData = () => {
         const config = configHeaderAxios();
         axios
-            .post(url.base_url + url.profile_get, [], config)
+            .post(process.env.REACT_APP_BASE_URL + url.profile_get, [], config)
             .then((response) => {
                 var data = response.data.data;
                 setName(data.name);
@@ -63,7 +63,7 @@ const Profile = () => {
         const config = configHeaderAxios();
         data['profile_pic'] = fileName;
         axios
-            .post(url.base_url + url.profile_update, JSON.stringify(data), config)
+            .post(process.env.REACT_APP_BASE_URL + url.profile_update, JSON.stringify(data), config)
             .then((response) => {
                 console.log(response);
                 successResponse(response);

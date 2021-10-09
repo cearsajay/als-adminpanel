@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import React, { useEffect } from 'react';
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import url from "../../../Development.json";
@@ -20,7 +19,7 @@ const Create = () => {
     const fetchData = () => {
         const config = configHeaderAxios();
         axios
-            .get(url.base_url + url.get_fee_setting, config)
+            .get(process.env.REACT_APP_BASE_URL + url.get_fee_setting, config)
             .then((response) => {
                 let data = response.data.data;
                 setValue('service_charge', data[0].value);
@@ -44,7 +43,7 @@ const Create = () => {
     const onSubmit = (data) => {
         const config = configHeaderAxios();
         axios
-            .post(url.base_url + url.store_fee_setting, JSON.stringify(data), config)
+            .post(process.env.REACT_APP_BASE_URL + url.store_fee_setting, JSON.stringify(data), config)
             .then((response) => {
                 successResponse(response);
             })

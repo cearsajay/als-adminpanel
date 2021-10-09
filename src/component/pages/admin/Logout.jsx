@@ -15,7 +15,7 @@ const Logout = () => {
             access_token: localStorage.getItem('access_token')
         };
         axios
-            .post(url.base_url + url.logout, obj, config)
+            .post(process.env.REACT_APP_BASE_URL + url.logout, obj, config)
             .then((response) => {
                 if (response.status === 200) {
                     localStorage.removeItem('access_token');

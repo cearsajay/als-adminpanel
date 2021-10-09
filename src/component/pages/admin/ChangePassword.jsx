@@ -19,7 +19,7 @@ const Profile = () => {
     const onSubmit = (data) => {
         const config = configHeaderAxios();
         axios
-            .post(url.base_url + url.change_password, JSON.stringify(data), config)
+            .post(process.env.REACT_APP_BASE_URL + url.change_password, JSON.stringify(data), config)
             .then((response) => {
                 successResponse(response);
             })

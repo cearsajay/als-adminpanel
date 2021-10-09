@@ -12,7 +12,6 @@ import url from "../../../Development.json";
 import { errorResponse, successResponse, configHeaderAxios } from "../../helpers/response";
 import { useHistory } from 'react-router';
 const Index = () => {
-    const [selectedRows, setSelectedRows] = useState([]);
     const [dataTableData, setDataTableData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
@@ -28,7 +27,7 @@ const Index = () => {
         const config = configHeaderAxios();
         let reqDD = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}`;
         axios
-            .get(url.base_url + url.bank_get + reqDD, config)
+            .get(process.env.REACT_APP_BASE_URL + url.bank_get + reqDD, config)
             .then((response) => {
                 setDataTableData(response.data.data.rows);
                 setTotalRows(response.data.data.count);
@@ -43,7 +42,7 @@ const Index = () => {
 
     useEffect(() => {
         getData();
-    }, [selectedRows]);
+    }, []);
 
     const editButtonClick = (id) => {
         history.push({
@@ -58,7 +57,7 @@ const Index = () => {
         };
         const config = configHeaderAxios();
         axios
-            .post(url.base_url + url.bank_change_status, obj, config)
+            .post(process.env.REACT_APP_BASE_URL + url.bank_change_status, obj, config)
             .then((response) => {
                 getData();
                 successResponse(response);
@@ -84,7 +83,7 @@ const Index = () => {
                 let obj = `?id=${id}`;
                 const config = configHeaderAxios();
                 axios
-                    .delete(url.base_url + url.bank_delete + obj, config)
+                    .delete(process.env.REACT_APP_BASE_URL + url.bank_delete + obj, config)
                     .then((response) => {
                         getData();
 
@@ -147,7 +146,7 @@ const Index = () => {
                         </button>
                         <button className="btn btn-warning ml-2" onClick={(id) => { changeStatusButtonClick(row.id) }} >
                             {
-                                row.status == 1 ? <FontAwesomeIcon icon={faToggleOff} /> : <FontAwesomeIcon icon={faToggleOn} />
+                                row.status === 1 ? <FontAwesomeIcon icon={faToggleOff} /> : <FontAwesomeIcon icon={faToggleOn} />
                             }
                         </button>
                     </>,

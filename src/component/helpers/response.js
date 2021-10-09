@@ -17,42 +17,7 @@ function isLoginResponse(history) {
 function insertAfter(referenceNode, newNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
-function isErrorNew(error) {
-    var errors_entries = Object.entries(error);
-    console.log(errors_entries);
-    for (let i = 1; i <= 5; i++) {
-        console.log(i);
 
-        if (errors_entries) {
-            var allDivsCollections = document.getElementsByClassName('errorMsg');
-            var arr = Array.from(allDivsCollections);
-            arr.forEach((singleElement) => {
-                singleElement.previousSibling.classList.remove("is-invalid");
-                singleElement.remove();
-            })
-
-            errors_entries.forEach((errorAll) => {
-                let name = errorAll[1].ref.name;
-                let value = errorAll[1].ref.value;
-                if (!value) {
-                    var el = document.createElement("span");
-                    el.classList.add("errorMsg");
-                    el.innerHTML = name + " is required.";
-                    var div = document.getElementById(name);
-                    if (div.nextSibling) {
-                        div.nextSibling.remove()
-                    }
-                    div.classList.add("is-invalid");
-                    insertAfter(div, el);
-                }
-
-
-            });
-        }
-
-    }
-
-}
 function isError(error) {
     var errors = Object.keys(error);
     if (errors) {

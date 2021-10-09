@@ -29,7 +29,7 @@ const Login = () => {
             },
         };
         axios
-            .post(url.base_url + url.login, JSON.stringify(data), config)
+            .post(process.env.REACT_APP_BASE_URL + url.login, JSON.stringify(data), config)
             .then((response) => {
                 successResponse(response);
                 let data = response.data.data; 

@@ -1,18 +1,10 @@
 import DataTable from 'react-data-table-component';
 import React, { useMemo, useState,  useEffect } from 'react';
-// import tableDataItems from '../constants/sampleDesserts';
 import axios from "axios";
-// import Swal from 'sweetalert2';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faPlus, faPencilAlt, faTrashAlt, faToggleOn, faToggleOff, faSearch } from '@fortawesome/free-solid-svg-icons'
-// import { Link } from 'react-router-dom';
-
 import '../../../custome.css';
 import url from "../../../Development.json";
-import { errorResponse, successResponse, configHeaderAxios } from "../../helpers/response";
-import { useHistory } from 'react-router';
+import { errorResponse, configHeaderAxios } from "../../helpers/response";
 const Index = () => {
-    const [selectedRows, setSelectedRows] = useState([]);
     const [dataTableData, setDataTableData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
@@ -20,15 +12,13 @@ const Index = () => {
     const [totalRows, setTotalRows] = useState(0);
     const [perPage, setPerPage] = useState(10);
     const [filterText, setFilterText] = useState('');
-    const history = useHistory();
     let currentFilterText = '';
-
 
     const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'ASC') => {
         const config = configHeaderAxios();
         let dataSend = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}`;
         axios
-            .get(url.base_url + url.transaction_get + dataSend, config)
+            .get(process.env.REACT_APP_BASE_URL + url.transaction_get + dataSend, config)
             .then((response) => {
                 setDataTableData(response.data.data.rows);
                 setTotalRows(response.data.data.count);
@@ -43,7 +33,7 @@ const Index = () => {
 
     useEffect(() => {
         getData();
-    }, [selectedRows]);
+    }, []);
 
 
 
