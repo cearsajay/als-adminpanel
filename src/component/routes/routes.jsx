@@ -26,13 +26,14 @@ const routes = [
         path: '/admin/app-setting',
         exact: true,
         auth: false,
+        title:"App Setting",
         component: () => <Main title="App Setting"><AppSetting /></Main>,
     },
     {
         path: '/transaction',
         exact: true,
         auth: false,
-        component: () => <Main title="App Setting"><Transaction /></Main>,
+        component: () => <Main title="Transaction"><Transaction /></Main>,
     },
     {
         path: '/admin/setting',
@@ -44,23 +45,23 @@ const routes = [
         path: '/user/list',
         exact: true,
         auth: false,
-        component: () => <Main title="Home"><UserIndex /></Main>,
+        component: () => <Main title="User List"><UserIndex /></Main>,
     },
     {
         path: '/user/create',
         auth: false,
-        component: () => <Main title="Home"><UserCreate /></Main>,
+        component: () => <Main title="User Create"><UserCreate /></Main>,
     },
     {
         path: '/bank/list',
         exact: true,
         auth: false,
-        component: () => <Main title="Home"><BankIndex /></Main>,
+        component: () => <Main title="Banl List"><BankIndex /></Main>,
     },
     {
         path: '/bank/create',
         auth: false,
-        component: () => <Main title="Home"><BankCreate /></Main>,
+        component: () => <Main title="Banl Create"><BankCreate /></Main>,
     },
     {
         path: '/logout',
@@ -78,25 +79,25 @@ const routes = [
         path: '/profile',
         exact: true,
         auth: false,
-        component: () => <Main title="Home"><Profile /></Main>,
+        component: () => <Main title="Profile"><Profile /></Main>,
     },
     {
         path: '/change-password',
         exact: true,
         auth: false,
-        component: () => <Main title="Home"><ChangePassword /></Main>,
+        component: () => <Main title="Change Password"><ChangePassword /></Main>,
+    },
+    {
+        path: '/users',
+        exact: true,
+        auth: false,
+        component: () => <Main title="Users"><Users /></Main>,
     },
     {
         path: '/',
         exact: true,
         auth: true,
         component: () => <Main title="Home"><DashBoard /></Main>,
-    },
-    {
-        path: '/users',
-        exact: true,
-        auth: false,
-        component: () => <Main title="Home"><Users /></Main>,
     }
   ];
 

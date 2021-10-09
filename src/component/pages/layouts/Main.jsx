@@ -6,10 +6,11 @@ import { Route } from 'react-router';
 import { isLoginResponse } from "../../helpers/response";
 
 
-const Main = ({ component: Component, ...rest }) => {
+const Main = ({ component: Component,title, ...rest }) => {
     const [sideActive, setSideActive] = useState(false);
     const [width, setWidth] = useState(window.innerWidth);
     let history = useHistory();
+
 
     useEffect(() => {
         function handleResize() {
@@ -32,6 +33,8 @@ const Main = ({ component: Component, ...rest }) => {
 
     useEffect(() => {
         isLoginResponse(history);
+        document.title = 'ALS ' + title;
+        // document.title = process.env.REACT_APP_APP_NAME + title;
     }, []);
 
     const sidebarToggle = () => {

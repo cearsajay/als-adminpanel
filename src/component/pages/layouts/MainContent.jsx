@@ -4,19 +4,7 @@ import { Route } from 'react-router';
 import Main from './Main';
 const MainContent = ({ component: Component, ...rest }) => {
 	
-    useEffect(() => {
-		console.log("hi");
-    }, []);
 
-
-	useEffect(() => {
-		console.log("hi");
-
-		const timeoutID = window.setTimeout(() => {
-			console.log("hi");
-		}, 10);
-	
-	}, []);
 	return (
 		<>
 			<div id="content" class="app-content">
