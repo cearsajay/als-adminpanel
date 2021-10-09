@@ -17,15 +17,10 @@ import Moment from 'moment';
 
 const Create = () => {
     let history = useHistory();
-
     const [fileName, setFileName] = useState('');
     const [icon, setIcon] = useState('');
     const [id, setId] = useState('');
-    // const [countryCode, setCountryCode] = useState('');
-    // const [phoneNo, setPhoneNo] = useState('');
     const [phoneNo, setMobilePhoneNo] = useState('');
-    // const [date, setDate] = useState();
-
     const {
         register,
         setValue,
@@ -59,7 +54,6 @@ const Create = () => {
                 setValue('date_of_birth', data.date_of_birth);
                 setValue('refer_to', data.refer_to);
                 setValue('refer_code', data.refer_code);
-                // setDate(data.date_of_birth);
                 setMobilePhoneNo(data.country_code + data.phone_no);
             })
             .catch((error) => {
@@ -69,7 +63,6 @@ const Create = () => {
             });
     }
     useEffect(() => {
-        console.log(errors);
         isError(errors);
     });
     const onFileChange = (e) => {

@@ -68,7 +68,6 @@ function isError(error) {
             el.classList.add("errorMsg");
             el.innerHTML = err + " is required.";
             var div = document.getElementById(err);
-            console.log(div);
             if(div.nextSibling){
                 div.nextSibling.remove()
             }

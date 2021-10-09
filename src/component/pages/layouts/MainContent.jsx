@@ -3,7 +3,7 @@ import React from 'react';
 import { Route } from 'react-router';
 import Main from './Main';
 const MainContent = ({ component: Component, ...rest }) => {
-	
+
 
 	return (
 		<>
