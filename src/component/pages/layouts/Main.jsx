@@ -4,10 +4,14 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import { Route } from 'react-router';
 import { isLoginResponse } from "../../helpers/response";
+import FaviconImg from '../../../assets/img/favicon.png';
+
+
 const Main = ({ component: Component, title, ...rest }) => {
     const [sideActive, setSideActive] = useState(false);
     const [width, setWidth] = useState(window.innerWidth);
     let history = useHistory();
+
     useEffect(() => {
         function handleResize() {
             setWidth(window.innerWidth);
@@ -24,10 +28,16 @@ const Main = ({ component: Component, title, ...rest }) => {
 
         return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
     }, [])
+    const  getFaviconEl = () => {
+        return document.getElementById("favicon");
+    }
 
     useEffect(() => {
         isLoginResponse(history);
-        document.title = process.env.REACT_APP_APP_NAME + ' ' +  title;
+        document.title = process.env.REACT_APP_APP_NAME + ' ' + title;
+        const favicon = getFaviconEl(); // Accessing favicon element
+        favicon.href = FaviconImg;
+
     }, [title]);
 
     const sidebarToggle = () => {

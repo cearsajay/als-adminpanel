@@ -12,9 +12,6 @@ const Create = () => {
         formState: { errors }
     } = useForm();
 
-    useEffect(() => {
-        fetchData();
-    }, [])
 
     const fetchData = () => {
         const config = configHeaderAxios();
@@ -40,6 +37,9 @@ const Create = () => {
         isError(errors);
     });
 
+    useEffect(() => {
+        fetchData();
+    }, [fetchData])
     const onSubmit = (data) => {
         const config = configHeaderAxios();
         axios

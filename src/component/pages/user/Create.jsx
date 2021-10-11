@@ -112,9 +112,9 @@ const Create = () => {
                 <div className="page-heading-left">
                     <Breadcrumb>
                         <Breadcrumb.Item href="/">Admin</Breadcrumb.Item>
-                        <Breadcrumb.Item active>User {(id) ? "Edit" : "Add"}</Breadcrumb.Item>
+                        <Breadcrumb.Item active>User {(id) ? "Edit" : "Create"}</Breadcrumb.Item>
                     </Breadcrumb>
-                    <h1 className="page-header">User {(id) ? "Edit" : "Add"} </h1>
+                    <h1 className="page-header">User {(id) ? "Edit" : "Create"} </h1>
                 </div>
             </div>
             <div className="card">
@@ -197,6 +197,7 @@ const Create = () => {
                                         {...register('wallet_amount', { required: true })}
                                     />
                                 </div>
+                               
                                 {/* <div className="form-group">
                                     <label className="form-label" htmlFor="refer_code">Refer Code</label>
                                     <input type="text"
@@ -222,6 +223,15 @@ const Create = () => {
                                         id="email"
                                         placeholder="User email"
                                         {...register('email', { required: true })}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className="form-label" htmlFor="password">Password</label>
+                                    <input type="password"
+                                        className="form-control"
+                                        id="password"
+                                        placeholder="User Password"
+                                        {...register('password', { required: true })}
                                     />
                                 </div>
                                 <div className="form-group">
