@@ -18,28 +18,81 @@ function insertAfter(referenceNode, newNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
+function isErrorMessage(name, message) {
+    var el = document.createElement("span");
+    el.classList.add("errorMsg");
+    el.innerHTML = humanize(name) + ' ' + message;
+    var div = document.getElementById(name);
+    if (div.nextSibling) {
+        div.nextSibling.remove()
+    }
+    div.classList.add("is-invalid");
+    insertAfter(div, el);
+}
+function humanize(str) {
+    var i, frags = str.split('_');
+    for (i = 0; i < frags.length; i++) {
+        frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
+    }
+    return frags.join(' ');
+}
 function isError(error) {
-    var errors = Object.keys(error);
-    if (errors) {
-         var allDivsCollections = document.getElementsByClassName('errorMsg');
-         var arr = Array.from(allDivsCollections);
-         arr.forEach((singleElement)=>{
+    var errors_entries = Object.entries(error);
+    if (errors_entries) {
+        var allDivsCollections = document.getElementsByClassName('errorMsg');
+        var arr = Array.from(allDivsCollections);
+        arr.forEach((singleElement) => {
             singleElement.previousSibling.classList.remove("is-invalid");
             singleElement.remove();
-         })          
-        
-        errors.forEach((err) => {
-            var el = document.createElement("span");
-            el.classList.add("errorMsg");
-            el.innerHTML = err + " is required.";
-            var div = document.getElementById(err);
-            if(div.nextSibling){
-                div.nextSibling.remove()
+        })
+        errors_entries.forEach((errorAll) => {
+            let type = errorAll[1].type;
+            let name = errorAll[1].ref.name;
+            let message = '';
+ 
+            if (type === 'required') {
+                message = 'is required.';
+                isErrorMessage(name, message);
+            } else if (type === 'minLength') {
+                message = 'min length is 6.';
+                isErrorMessage(name, message);
+            } else if (type === 'maxLength') {
+                message = 'Max length exceeded';
+                isErrorMessage(name, message);
+            } else if (type === 'validate') {
+                message = errorAll[1].message;
+                isErrorMessage(name, message);
             }
-            div.classList.add("is-invalid");
-            insertAfter(div, el);
+            else {
+                message = 'required.';
+                isErrorMessage(name, message);
+            }
         });
     }
+
+
+
+    // var errors = Object.keys(error);
+    // if (errors) {
+    //     var allDivsCollections = document.getElementsByClassName('errorMsg');
+    //     var arr = Array.from(allDivsCollections);
+    //     arr.forEach((singleElement) => {
+    //         singleElement.previousSibling.classList.remove("is-invalid");
+    //         singleElement.remove();
+    //     })
+
+    //     errors.forEach((err, val) => {
+    //         var el = document.createElement("span");
+    //         el.classList.add("errorMsg");
+    //         el.innerHTML = err + " is required.";
+    //         var div = document.getElementById(err);
+    //         if (div.nextSibling) {
+    //             div.nextSibling.remove()
+    //         }
+    //         div.classList.add("is-invalid");
+    //         insertAfter(div, el);
+    //     });
+    // }
 
 }
 function configHeaderAxios() {

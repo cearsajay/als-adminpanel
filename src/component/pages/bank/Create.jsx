@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import url from "../../../Development.json";
 import { errorResponse, successResponse,  isError, configHeaderAxios } from "../../helpers/response";
 import { Breadcrumb } from 'react-bootstrap';
-import dummy from '../../../assets/img/dummy.jpg';
+import dummy from '../../../assets/img/dummyImg.png';
 
 
 const Create = () => {
@@ -38,6 +38,7 @@ const Create = () => {
                 let data = response.data.data;
                 setValue('name',data.name);
                 setId(data.id);
+                setIcon(data.icon);
                 setValue('icon',data.icon);
             })
             .catch((error) => {

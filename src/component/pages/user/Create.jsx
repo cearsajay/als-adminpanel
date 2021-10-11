@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -9,18 +9,27 @@ import { Breadcrumb } from 'react-bootstrap';
 import "react-datepicker/dist/react-datepicker.css";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import dummy from '../../../assets/img/dummy.jpg';
+
 const Create = () => {
     let history = useHistory();
     const [fileName, setFileName] = useState('');
-    const [icon, setIcon] = useState('');
+    const [icon, setIcon] = useState(dummy);
     const [id, setId] = useState('');
     const [phoneNo, setMobilePhoneNo] = useState('');
+    const current = new Date();
+    const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
+
     const {
         register,
         setValue,
         handleSubmit,
+        watch,
         formState: { errors }
     } = useForm();
+    const password = useRef({});
+    password.current = watch("password", "");
+
     useEffect(() => {
         let query = new URLSearchParams(history.location.search);
         let id = query.get('id')
@@ -86,12 +95,12 @@ const Create = () => {
     const handleChangeMobileNo = (phone_no, code) => {
         const string = phone_no;
         let StringPhone = string.replace(code.dialCode, '');
-        setValue('country_code' , code.dialCode)
-        setValue('phone_no' , StringPhone)
+        setValue('country_code', code.dialCode)
+        setValue('phone_no', StringPhone)
     }
 
     const onSubmit = (data) => {
-        data['icon'] = fileName;
+        data['profile_pic'] = fileName;
         data['id'] = id;
         const config = configHeaderAxios();
         axios
@@ -150,6 +159,7 @@ const Create = () => {
                                     <input type="date"
                                         className="form-control"
                                         id="date_of_birth"
+                                        max={date}
                                         placeholder="User date_of_birth"
                                         {...register('date_of_birth', { required: true })}
                                     />
@@ -159,7 +169,7 @@ const Create = () => {
                                     <label className="form-label" htmlFor="country_code">Country Code</label>
 
 
-                                    {phoneNo && phoneNo !=='' ?
+                                    {phoneNo && phoneNo !== '' ?
                                         <>
                                             <PhoneInput
                                                 id="phone_no"
@@ -197,7 +207,7 @@ const Create = () => {
                                         {...register('wallet_amount', { required: true })}
                                     />
                                 </div>
-                               
+
                                 {/* <div className="form-group">
                                     <label className="form-label" htmlFor="refer_code">Refer Code</label>
                                     <input type="text"
@@ -231,13 +241,41 @@ const Create = () => {
                                         className="form-control"
                                         id="password"
                                         placeholder="User Password"
-                                        {...register('password', { required: true })}
+                                        {...register('password', {
+                                            required: true,
+                                            minLength: {
+                                                value: 6,
+                                            },
+                                            maxLength: {
+                                                value: 15,
+                                            }
+                                        }
+                                        )}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className="form-label" htmlFor="password_repeat">Repeat Password</label>
+                                    <input type="password"
+                                        className="form-control"
+                                        id="password_repeat"
+                                        placeholder="User Password"
+                                        {...register('password_repeat', {
+                                            validate: value =>
+                                                value === password.current || "Passwords do NOT match! ",
+                                            minLength: {
+                                                value: 6,
+                                            },
+                                            maxLength: {
+                                                value: 15,
+                                            }
+                                        }
+                                        )}
                                     />
                                 </div>
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="profile_pic">Profile Pic</label>
                                     <input
-                                        {...register('profile_pic',  { required: true } ) }
+                                        {...register('profile_pic', { required: true })}
                                         type="file"
                                         className="form-control"
                                         id="profile_pic"
