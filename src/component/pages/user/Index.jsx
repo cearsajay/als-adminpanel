@@ -177,6 +177,16 @@ const Index = () => {
         getData(page);
     };
 
+    const customStyles = {
+        headCells: {
+            style: {
+                '&:last-child': {
+                    justifyContent:"center"
+                },
+            },
+        },
+    }
+
     const columns = useMemo(
         () => [
             {
@@ -206,7 +216,8 @@ const Index = () => {
             },
             {
                 name: 'Action',
-                minWidth: 200,
+                minWidth: '300px',
+                className:'justify-content-center',
                 selector: row =>
                     <>
                         <button className="btn btn-primary ml-2" onClick={(id) => { editButtonClick(row.id) }}>
@@ -289,6 +300,7 @@ const Index = () => {
                 subHeaderComponent={FilterComponent}
                 title="User List"
                 columns={columns}
+                customStyles={customStyles}
                 keyField="id"
                 data={dataTableData}
                 progressPending={loading}

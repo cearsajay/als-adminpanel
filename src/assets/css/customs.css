@@ -24,11 +24,21 @@ button:focus{
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
     background-color: transparent;
 }
-.ant-menu-item-selected {
+/* .ant-menu-item-selected {
     color: #1f6bff;
     font-weight: 600;
     background: 0 0;
+} */
+
+.ant-menu-item a svg{
+    margin-right: 5px;
 }
+.ant-menu-item a.active {
+    color: #1890ff;
+    font-weight: 600;
+    background: 0 0;
+}
+
 .ant-menu-inline .ant-menu-item,
 .ant-menu-inline .ant-menu-item:not(:last-child),
 .ant-menu-inline .ant-menu-submenu-title{

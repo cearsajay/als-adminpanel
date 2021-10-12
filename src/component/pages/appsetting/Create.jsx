@@ -85,7 +85,10 @@ const Create = () => {
                                         className="form-control"
                                         id="admin_fee"
                                         placeholder="Admin Fee"
-                                        {...register('admin_fee', { required: true })}
+                                        {...register('admin_fee', {
+                                            required: true,
+
+                                        })}
                                     />
                                 </div>
 
