@@ -31,7 +31,6 @@ const Login = () => {
         axios
             .post(process.env.REACT_APP_BASE_URL + url.login, JSON.stringify(data), config)
             .then((response) => {
-                successResponse(response);
                 let data = response.data.data; 
                 localStorage.setItem(
                     "access_token",
@@ -45,7 +44,7 @@ const Login = () => {
                     "site_setting",
                     JSON.stringify(data.site_setting)
                 );
-
+                successResponse(response);
                 history.push("/");
             })
             .catch((error) => {
