@@ -44,8 +44,8 @@ const Login = () => {
                     "site_setting",
                     JSON.stringify(data.site_setting)
                 );
-                successResponse(response);
                 history.push("/dashBoard");
+                successResponse(response);
             })
             .catch((error) => {
                 if (error.response) {
