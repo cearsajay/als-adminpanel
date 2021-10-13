@@ -94,6 +94,12 @@ const routes = [
         component: () => <Main title="Users"><Users /></Main>,
     },
     {
+        path: '/dashBoard',
+        exact: true,
+        auth: true,
+        component: () => <Main title="Home"><DashBoard /></Main>,
+    },
+    {
         path: '/',
         exact: true,
         auth: true,
