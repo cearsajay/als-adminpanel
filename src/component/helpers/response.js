@@ -120,11 +120,10 @@ function errorResponse(error) {
         }
     }
     if (error.response.status === 401) {
-
         let errorData = error.response.data.Unauthorized;
-        toast.error(errorData);
         localStorage.removeItem('access_token');
         localStorage.removeItem('admin_profile');
+        toast.error(errorData);
     }
     if (error.response.data.message) {
         toast.error(error.response.data.message);
