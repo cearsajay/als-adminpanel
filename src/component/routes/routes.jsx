@@ -119,11 +119,11 @@ const routes = [
         auth: true,
         component: () => <Main title="Home"><DashBoard /></Main>,
     },
-    {
-        path: '*',
-        exact: true,
-        component: () => <PageNotFound />,
-    }
+    // {
+    //     path: '*',
+    //     exact: true,
+    //     component: () => <PageNotFound />,
+    // }
   ];
 
   export default routes;
