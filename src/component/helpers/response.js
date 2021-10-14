@@ -62,6 +62,15 @@ function isError(error) {
             } else if (type === 'validate') {
                 message = errorAll[1].message;
                 isErrorMessage(name, message);
+            } else if (type === 'min') {
+                message = 'min number is 0';
+                isErrorMessage(name, message);
+            } else if (type === 'max') {
+                message = 'max number is 100';
+                isErrorMessage(name, message);
+            } else if (type === 'validate') {
+                message = errorAll[1].message;
+                isErrorMessage(name, message);
             }
             else {
                 message = 'required.';

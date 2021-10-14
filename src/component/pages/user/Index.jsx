@@ -123,8 +123,6 @@ const Index = () => {
                 });
         }
     };
-
-
     const KycDisplayButtonClick = (id, front, back) => {
         setBack(back);
         setFront(front);
@@ -186,6 +184,20 @@ const Index = () => {
             },
         },
     }
+
+    const FilterComponent = (
+        <>
+            <div className="d-flex">
+                <input type="text"
+                    className="form-control"
+                    id="search"
+                    placeholder="Filter By Name"
+                    value={filterText}
+                    onChange={(event) => handleChange2(event)}
+                />
+            </div>
+        </>
+    );
 
     const columns = useMemo(
         () => [
@@ -257,19 +269,7 @@ const Index = () => {
         setFilterText(currentFilterText);
         getData(page);
     }
-    const FilterComponent = (
-        <>
-            <div className="d-flex">
-                <input type="text"
-                    className="form-control"
-                    id="search"
-                    placeholder="Filter By Name"
-                    value={filterText}
-                    onChange={(event) => handleChange2(event)}
-                />
-            </div>
-        </>
-    );
+
 
     return (
         <>

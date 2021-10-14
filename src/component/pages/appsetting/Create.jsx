@@ -39,7 +39,7 @@ const Create = () => {
 
     useEffect(() => {
         fetchData();
-    }, [fetchData])
+    }, [])
     const onSubmit = (data) => {
         const config = configHeaderAxios();
         axios
@@ -76,7 +76,14 @@ const Create = () => {
                                         className="form-control"
                                         id="service_charge"
                                         placeholder="Admin Service Charge"
-                                        {...register('service_charge', { required: true })}
+                                        {...register('service_charge', { required: true,
+                                            min: {
+                                                value: 0,
+                                            },
+                                            max: {
+                                                value: 100,
+                                            }
+                                         })}
                                     />
                                 </div>
                                 <div className="form-group">
@@ -84,9 +91,16 @@ const Create = () => {
                                     <input type="number"
                                         className="form-control"
                                         id="admin_fee"
+                                         
                                         placeholder="Admin Fee"
                                         {...register('admin_fee', {
                                             required: true,
+                                            min: {
+                                                value: 0,
+                                            },
+                                            max: {
+                                                value: 100,
+                                            }
 
                                         })}
                                     />
@@ -97,8 +111,15 @@ const Create = () => {
                                     <input type="number"
                                         className="form-control"
                                         id="payment_process_fee"
+                                         
                                         placeholder="Admin  Payment Process Fee "
-                                        {...register('payment_process_fee', { required: true })}
+                                        {...register('payment_process_fee', { required: true,
+                                            min: {
+                                                value: 0,
+                                            },
+                                            max: {
+                                                value: 100,
+                                            } })}
                                     />
                                 </div>
                                 <div className="form-group">
@@ -106,18 +127,31 @@ const Create = () => {
                                     <input type="number"
                                         className="form-control"
                                         id="admin_fee_min"
+                                         
                                         placeholder="Admin  Admin Fee Minimum "
-                                        {...register('admin_fee_min', { required: true })}
+                                        {...register('admin_fee_min', { required: true,
+                                            min: {
+                                                value: 0,
+                                            },
+                                            max: {
+                                                value: 100,
+                                            } })}
                                     />
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="form-label" htmlFor="admin_fee_max"> Admin Fee Mamimum </label>
+                                    <label className="form-label" htmlFor="admin_fee_max"> Admin Fee Maximum </label>
                                     <input type="number"
                                         className="form-control"
                                         id="admin_fee_max"
-                                        placeholder="Admin  Admin Fee Mamimum "
-                                        {...register('admin_fee_max', { required: true })}
+                                         
+                                        placeholder="Admin  Admin Fee Maximum "
+                                        {...register('admin_fee_max', { required: true,  min: {
+                                            value: 0,
+                                        },
+                                        max: {
+                                            value: 100,
+                                        }})}
                                     />
                                 </div>
 
@@ -126,8 +160,15 @@ const Create = () => {
                                     <input type="number"
                                         className="form-control"
                                         id="admin_fee_amount"
+                                         
                                         placeholder="Admin  Admin Fee Amount "
-                                        {...register('admin_fee_amount', { required: true })}
+                                        {...register('admin_fee_amount', { required: true,
+                                            min: {
+                                                value: 0,
+                                            },
+                                            max: {
+                                                value: 100,
+                                            } })}
                                     />
                                 </div>
 
@@ -136,8 +177,14 @@ const Create = () => {
                                     <input type="number"
                                         className="form-control"
                                         id="admin_fee_discount"
+                                         
                                         placeholder="Admin  Admin Fee Discount "
-                                        {...register('admin_fee_discount', { required: true })}
+                                        {...register('admin_fee_discount', { required: true, min: {
+                                            value: 0,
+                                        },
+                                        max: {
+                                            value: 100,
+                                        } })}
                                     />
                                 </div>
 
