@@ -29,5 +29,11 @@
     "user_change_status": "admin/user/change-status",
     "user_kyc": "admin/user/change-kyc",
 
+    "subadmin_store": "admin/subadmin/store",
+    "subadmin_get": "admin/subadmin/get",
+    "subadmin_delete": "admin/subadmin/delete",
+    "subadmin_edit": "admin/subadmin/edit",
+    "subadmin_change_status": "admin/subadmin/change-status",
+
     "logoutaaa": "admin-logout_custome"
 }

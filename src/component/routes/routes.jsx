@@ -17,6 +17,8 @@ import BankIndex from "../pages/bank/Index";
 import BankCreate from "../pages/bank/Create";
 import UserIndex from "../pages/user/Index";
 import UserCreate from "../pages/user/Create";
+import SubAdminIndex from "../pages/subadmin/Index";
+import SubAdminCreate from "../pages/subadmin/Create";
 import AdminSetting from "../pages/setting/Create";
 import AppSetting from "../pages/appsetting/Create";
 import Transaction from "../pages/transaction/Index";
@@ -51,6 +53,17 @@ const routes = [
         path: '/user/create',
         auth: false,
         component: () => <Main title="User Create"><UserCreate /></Main>,
+    },
+    {
+        path: '/subadmin/list',
+        exact: true,
+        auth: false,
+        component: () => <Main title="Sub Admin List"><SubAdminIndex /></Main>,
+    },
+    {
+        path: '/subadmin/create',
+        auth: false,
+        component: () => <Main title="Sub Admin Create"><SubAdminCreate /></Main>,
     },
     {
         path: '/bank/list',
