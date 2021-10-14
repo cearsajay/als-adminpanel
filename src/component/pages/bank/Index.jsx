@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faPencilAlt, faTrashAlt, faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
+import {  OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 import '../../../custome.css';
 import url from "../../../Development.json";
@@ -138,17 +139,52 @@ const Index = () => {
                 minWidth: 200,
                 selector: row =>
                     <>
-                        <button className="btn btn-primary ml-2" onClick={(id) => { editButtonClick(row.id) }}>
-                            <FontAwesomeIcon icon={faPencilAlt} />
-                        </button>
-                        <button className="btn btn-danger ml-2" onClick={(id) => { deleteButtonClick(row.id) }} >
-                            <FontAwesomeIcon icon={faTrashAlt} />
-                        </button>
-                        <button className="btn btn-warning ml-2" onClick={(id) => { changeStatusButtonClick(row.id) }} >
-                            {
-                                row.status === 1 ? <FontAwesomeIcon icon={faToggleOff} /> : <FontAwesomeIcon icon={faToggleOn} />
+                        <OverlayTrigger
+
+                            placement="top"
+                            overlay={
+                                <Tooltip id={`tooltip-inner`}>
+                                    Edit
+                                </Tooltip>
                             }
-                        </button>
+                        >
+
+                            <button className="btn btn-primary ml-2" onClick={(id) => { editButtonClick(row.id) }}>
+                                <FontAwesomeIcon icon={faPencilAlt} />
+                            </button>
+
+                        </OverlayTrigger>
+                        <OverlayTrigger
+
+                            placement="top"
+                            overlay={
+                                <Tooltip id={`tooltip-inner`}>
+                                    Delete
+                                </Tooltip>
+                            }
+                        >
+
+                            <button className="btn btn-danger ml-2" onClick={(id) => { deleteButtonClick(row.id) }} >
+                                <FontAwesomeIcon icon={faTrashAlt} />
+                            </button>
+                        </OverlayTrigger>
+                        <OverlayTrigger
+
+                            placement="top"
+                            overlay={
+                                <Tooltip id={`tooltip-inner`}>
+                                    Change Status
+                                </Tooltip>
+                            }
+                        >
+                            <button className="btn btn-warning ml-2" onClick={(id) => { changeStatusButtonClick(row.id) }} >
+                                {
+                                    row.status === 1 ? <FontAwesomeIcon icon={faToggleOff} /> : <FontAwesomeIcon icon={faToggleOn} />
+                                }
+                            </button>
+                        </OverlayTrigger>
+
+
                     </>,
             },
         ],

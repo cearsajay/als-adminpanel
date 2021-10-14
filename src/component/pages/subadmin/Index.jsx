@@ -5,12 +5,11 @@ import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faPencilAlt, faTrashAlt, faToggleOn, faToggleOff, faKey, faStreetView } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
-import { Modal, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import {  OverlayTrigger, Tooltip } from 'react-bootstrap';
 import '../../../custome.css';
 import url from "../../../Development.json";
 import { errorResponse, successResponse, configHeaderAxios } from "../../helpers/response";
 import { useHistory } from 'react-router';
-import KycDummy from '../../../assets/img/kyc.png';
 
 const Index = () => {
     const [dataTableData, setDataTableData] = useState([]);

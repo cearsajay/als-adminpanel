@@ -11,6 +11,7 @@ import url from "../../../Development.json";
 import { errorResponse, successResponse, configHeaderAxios } from "../../helpers/response";
 import { useHistory } from 'react-router';
 import KycDummy from '../../../assets/img/kyc.png';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const Index = () => {
     const [dataTableData, setDataTableData] = useState([]);
@@ -179,7 +180,7 @@ const Index = () => {
         headCells: {
             style: {
                 '&:last-child': {
-                    justifyContent:"center"
+                    justifyContent: "center"
                 },
             },
         },
@@ -229,27 +230,78 @@ const Index = () => {
             {
                 name: 'Action',
                 minWidth: '300px',
-                className:'justify-content-center',
+                className: 'justify-content-center',
                 selector: row =>
                     <>
-                        <button className="btn btn-primary ml-2" onClick={(id) => { editButtonClick(row.id) }}>
-                            <FontAwesomeIcon icon={faPencilAlt} />
-                        </button>
-                        <button className="btn btn-danger ml-2" onClick={(id) => { deleteButtonClick(row.id) }} >
-                            <FontAwesomeIcon icon={faTrashAlt} />
-                        </button>
-                        <button className="btn btn-primary ml-2" onClick={(id) => { KycButtonClick(row.id) }} >
-                            <FontAwesomeIcon icon={faKey} />
-                        </button>
-                        <button className="btn btn-primary ml-2" onClick={(id) => { KycDisplayButtonClick(row.id, row.kyc_front, row.kyc_back) }} >
-                            <FontAwesomeIcon icon={faStreetView} />
-                        </button>
+                        <OverlayTrigger
 
-                        <button className="btn btn-warning ml-2" onClick={(id) => { changeStatusButtonClick(row.id) }} >
-                            {
-                                row.status === 1 ? <FontAwesomeIcon icon={faToggleOff} /> : <FontAwesomeIcon icon={faToggleOn} />
+                            placement="top"
+                            overlay={
+                                <Tooltip id={`tooltip-inner`}>
+                                    Edit
+                                </Tooltip>
                             }
-                        </button>
+                        >
+                            <button className="btn btn-primary ml-2" onClick={(id) => { editButtonClick(row.id) }}>
+                                <FontAwesomeIcon icon={faPencilAlt} />
+                            </button>
+
+                        </OverlayTrigger>
+                        <OverlayTrigger
+
+                            placement="top"
+                            overlay={
+                                <Tooltip id={`tooltip-inner`}>
+                                    Delete
+                                </Tooltip>
+                            }
+                        >
+                            <button className="btn btn-danger ml-2" onClick={(id) => { deleteButtonClick(row.id) }} >
+                                <FontAwesomeIcon icon={faTrashAlt} />
+                            </button>
+                        </OverlayTrigger>
+                        <OverlayTrigger
+                            placement="top"
+                            overlay={
+                                <Tooltip id={`tooltip-inner`}>
+                                    Kyc Status
+                                </Tooltip>
+                            }
+                        >
+
+                            <button className="btn btn-primary ml-2" onClick={(id) => { KycButtonClick(row.id) }} >
+                                <FontAwesomeIcon icon={faKey} />
+                            </button>
+                        </OverlayTrigger>
+                        <OverlayTrigger
+                            placement="top"
+                            overlay={
+                                <Tooltip id={`tooltip-inner`}>
+                                    Kyc Display
+                                </Tooltip>
+                            }
+                        >
+
+
+                            <button className="btn btn-primary ml-2" onClick={(id) => { KycDisplayButtonClick(row.id, row.kyc_front, row.kyc_back) }} >
+                                <FontAwesomeIcon icon={faStreetView} />
+                            </button>
+                        </OverlayTrigger>
+                        <OverlayTrigger
+                            placement="top"
+                            overlay={
+                                <Tooltip id={`tooltip-inner`}>
+                                    Change Status
+                                </Tooltip>
+                            }
+                        >
+
+                            <button className="btn btn-warning ml-2" onClick={(id) => { changeStatusButtonClick(row.id) }} >
+                                {
+                                    row.status === 1 ? <FontAwesomeIcon icon={faToggleOff} /> : <FontAwesomeIcon icon={faToggleOn} />
+                                }
+                            </button>
+                        </OverlayTrigger>
                     </>,
             },
         ],
@@ -285,10 +337,10 @@ const Index = () => {
                         </div>
                         <div className='kyc_img'>
                             <label>Kyc Back Image</label>
-                            <img src={back} className='img-fluid' alt='Kyc back'/>
+                            <img src={back} className='img-fluid' alt='Kyc back' />
                         </div>
                     </div>
-                    </Modal.Body>
+                </Modal.Body>
 
             </Modal>
                 : null}
