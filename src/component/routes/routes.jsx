@@ -22,6 +22,7 @@ import SubAdminCreate from "../pages/subadmin/Create";
 import AdminSetting from "../pages/setting/Create";
 import AppSetting from "../pages/appsetting/Create";
 import Transaction from "../pages/transaction/Index";
+import PageNotFound from "../pages/NotFound";
 
 const routes = [
     {
@@ -117,6 +118,11 @@ const routes = [
         exact: true,
         auth: true,
         component: () => <Main title="Home"><DashBoard /></Main>,
+    },
+    {
+        path: '*',
+        exact: true,
+        component: () => <PageNotFound />,
     }
   ];
 
