@@ -80,8 +80,8 @@ const Index = () => {
                 <label>kyc Status</label>
                 <select name="status" id="status" class="form-control">
                     <option disabled Selected>Select</option>
-                    <option value="3">Reject</option>
                     <option value="1">Approve</option>
+                    <option value="3">Reject</option>
                 </select>
                 <label>Reason</label>
                 <input id="reason" type="text" class="form-control"></ br>`,
@@ -90,11 +90,8 @@ const Index = () => {
         if (formValues) {
             const config = configHeaderAxios();
             const data = {};
-
-
             var reason = document.getElementById('reason').value;
             var status = document.getElementById('status').selectedIndex;
-            // console.log(document.getElementById('status').selectedIndex);
             data['id'] = id;
             data['reason'] = reason;
             data['status'] = status;
