@@ -55,7 +55,7 @@ const Create = () => {
                 if(data.profile_pic != ''){
                     setIcon(data.profile_pic);
                 }
-
+                console.log(data.country_code);
                 setValue('country_code', data.country_code);
                 setValue('phone_no', data.phone_no);
                 setValue('id', data.id);
