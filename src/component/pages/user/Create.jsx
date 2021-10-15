@@ -207,6 +207,13 @@ const Create = () => {
                                     />
                                 </div>
                                 <div className="form-group">
+
+                                    <input type="hidden"
+                                        id="country_code"
+                                        {...register('country_code', { required: true })}
+                                    />
+                                </div>
+                                <div className="form-group">
                                     <label className="form-label" htmlFor="wallet_amount">Wallet Amount</label>
                                     <input type="text"
                                         className="form-control"
