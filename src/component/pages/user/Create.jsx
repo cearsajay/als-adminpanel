@@ -79,7 +79,7 @@ const Create = () => {
     const onFileUpload = (image) => {
         const formData = new FormData();
         const config = configHeaderAxios();
-        formData.append("type", 3);//bank
+        formData.append("type", 4);//user Profile
         formData.append("avatar", image);
         let urlcall = process.env.REACT_APP_BASE_URL + url.image_upload;
         axios

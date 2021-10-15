@@ -133,9 +133,9 @@ const Index = () => {
             {
                 name: 'Icon',
                 selector: row => <>
-                    {row.icon ?
+                    {row.icon != '' ?
                         <img src={row.icon} alt={row.name} className="imageTable" />
-                        : <img src={dummy} className='img-fluid' alt='No Image Found' />}
+                        : <img src={dummy} className='img-list' alt='No Image Found' />}
                 </>,
                 sortable: false,
             },

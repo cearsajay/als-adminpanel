@@ -5,11 +5,12 @@ import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faPencilAlt, faTrashAlt, faToggleOn, faToggleOff, faKey, faStreetView } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
-import {  OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import '../../../custome.css';
 import url from "../../../Development.json";
 import { errorResponse, successResponse, configHeaderAxios } from "../../helpers/response";
 import { useHistory } from 'react-router';
+import dummy from '../../../assets/img/dummyImg.png';
 
 const Index = () => {
     const [dataTableData, setDataTableData] = useState([]);
@@ -21,7 +22,6 @@ const Index = () => {
 
     const history = useHistory();
     let currentFilterText = '';
-    const [show, setShow] = useState(false);
     const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'ASC') => {
         const config = configHeaderAxios();
         let reqDD = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}`;
@@ -144,7 +144,11 @@ const Index = () => {
             },
             {
                 name: 'Profile Pic',
-                selector: row => <img src={row.profile_pic} alt={row.name} className="imageTable" />,
+                selector: row => <>
+                    {row.icon != '' ?
+                        <img src={row.profile_pic} alt={row.name} className="imageTable" />
+                        : <img src={dummy} className='img-list' alt='No Image Found' />}
+                </>,
                 sortable: false,
             },
             {

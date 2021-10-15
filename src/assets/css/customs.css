@@ -79,3 +79,6 @@ button:focus{
 .kyc_img {
     max-width: 130px;
 }
+.img-list{
+    max-width: 20% !important;
+}
