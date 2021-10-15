@@ -6,12 +6,14 @@ import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faPencilAlt, faTrashAlt, faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
-import {  OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 import '../../../custome.css';
 import url from "../../../Development.json";
 import { errorResponse, successResponse, configHeaderAxios } from "../../helpers/response";
 import { useHistory } from 'react-router';
+import dummy from '../../../assets/img/dummyImg.png';
+
 const Index = () => {
     const [dataTableData, setDataTableData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -87,7 +89,6 @@ const Index = () => {
                     .delete(process.env.REACT_APP_BASE_URL + url.bank_delete + obj, config)
                     .then((response) => {
                         getData();
-
                         successResponse(response);
                     })
                     .catch((error) => {
@@ -131,7 +132,11 @@ const Index = () => {
             },
             {
                 name: 'Icon',
-                selector: row => <img src={row.icon} alt={row.name} className="imageTable" />,
+                selector: row => <>
+                    {row.icon ?
+                        <img src={row.icon} alt={row.name} className="imageTable" />
+                        : <img src={dummy} className='img-fluid' alt='No Image Found' />}
+                </>,
                 sortable: false,
             },
             {

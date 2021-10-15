@@ -41,7 +41,9 @@ const Create = () => {
                 let data = response.data.data;
                 setValue('name',data.name);
                 setId(data.id);
-                setIcon(data.icon);
+                if(data.icon != ''){
+                    setIcon(data.icon);
+                }
                 setValue('icon',data.icon);
             })
             .catch((error) => {

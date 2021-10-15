@@ -37,7 +37,9 @@ const Profile = () => {
             .post(urlcall, formData, config)
             .then((res) => {
                 let data = res.data.data;
-                setIcon(data.img);
+                if(data.img != ''){
+                    setIcon(data.img);
+                }
                 setFileName(data.filename);
             })
             .catch((error) => {

@@ -128,8 +128,12 @@ const Index = () => {
         }
     };
     const KycDisplayButtonClick = (id, front, back) => {
-        setBack(back);
-        setFront(front);
+        if(back != ''){
+            setBack(back);
+        }
+        if(front != ''){
+            setFront(front);
+        }
         setShow(true);
     };
     const deleteButtonClick = (id) => {
