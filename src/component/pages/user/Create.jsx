@@ -10,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import dummy from '../../../assets/img/dummy.jpg';
-
+import ButtonSubmitReset from '../layouts/ButtonSubmitReset';
 const Create = () => {
     let history = useHistory();
     const [fileName, setFileName] = useState('');
@@ -18,8 +18,9 @@ const Create = () => {
     const [id, setId] = useState('');
     const [phoneNo, setMobilePhoneNo] = useState('');
     const current = new Date();
-    const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
-    
+    const date = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`;
+    const [btnloader, setbtnloader] = useState(false);
+
     const {
         register,
         setValue,
@@ -51,6 +52,7 @@ const Create = () => {
                 setValue('address', data.address);
                 setValue('wallet_amount', data.wallet_amount);
                 setValue('fileName', data.fileName);
+                setIcon(data.profile_pic);
                 setValue('country_code', data.country_code);
                 setValue('phone_no', data.phone_no);
                 setValue('id', data.id);
@@ -100,16 +102,19 @@ const Create = () => {
     }
 
     const onSubmit = (data) => {
+        setbtnloader(true);
         data['profile_pic'] = fileName;
         data['id'] = id;
         const config = configHeaderAxios();
         axios
             .post(process.env.REACT_APP_BASE_URL + url.user_store, JSON.stringify(data), config)
             .then((response) => {
+                setbtnloader(false);
                 successResponse(response);
                 history.push('/user/list');
             })
             .catch((error) => {
+                setbtnloader(false);
                 if (error.response) {
                     errorResponse(error);
                 }
@@ -208,15 +213,6 @@ const Create = () => {
                                     />
                                 </div>
 
-                                {/* <div className="form-group">
-                                    <label className="form-label" htmlFor="refer_code">Refer Code</label>
-                                    <input type="text"
-                                        className="form-control"
-                                        id="refer_code"
-                                        placeholder="User Refer Code"
-                                        {...register('refer_code', { required: true })}
-                                    />
-                                </div> */}
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="refer_to">Refer To</label>
                                     <input type="text"
@@ -235,47 +231,56 @@ const Create = () => {
                                         {...register('email', { required: true })}
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <label className="form-label" htmlFor="password">Password</label>
-                                    <input type="password"
-                                        className="form-control"
-                                        id="password"
-                                        placeholder="User Password"
-                                        {...register('password', {
-                                            required: true,
-                                            minLength: {
-                                                value: 6,
-                                            },
-                                            maxLength: {
-                                                value: 15,
-                                            }
-                                        }
-                                        )}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label className="form-label" htmlFor="password_repeat">Repeat Password</label>
-                                    <input type="password"
-                                        className="form-control"
-                                        id="password_repeat"
-                                        placeholder="User Password"
-                                        {...register('password_repeat', {
-                                            validate: value =>
-                                                value === password.current || "Passwords do NOT match! ",
-                                            minLength: {
-                                                value: 6,
-                                            },
-                                            maxLength: {
-                                                value: 15,
-                                            }
-                                        }
-                                        )}
-                                    />
-                                </div>
+
+                                {
+                                    id ?
+                                        ''
+                                        :
+                                        <>
+                                            <div className="form-group">
+                                                <label className="form-label" htmlFor="password">Password</label>
+                                                <input type="password"
+                                                    className="form-control"
+                                                    id="password"
+                                                    placeholder="User Password"
+                                                    {...register('password', {
+                                                        required: true,
+                                                        minLength: {
+                                                            value: 6,
+                                                        },
+                                                        maxLength: {
+                                                            value: 15,
+                                                        }
+                                                    }
+                                                    )}
+                                                />
+                                            </div>
+                                            <div className="form-group">
+                                                <label className="form-label" htmlFor="password_repeat">Repeat Password</label>
+                                                <input type="password"
+                                                    className="form-control"
+                                                    id="password_repeat"
+                                                    placeholder="User Password"
+                                                    {...register('password_repeat', {
+                                                        validate: value =>
+                                                            value === password.current || "Passwords do NOT match! ",
+                                                        minLength: {
+                                                            value: 6,
+                                                        },
+                                                        maxLength: {
+                                                            value: 15,
+                                                        }
+                                                    }
+                                                    )}
+                                                />
+                                            </div>
+                                        </>
+
+                                }
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="profile_pic">Profile Pic</label>
                                     <input
-                                        {...register('profile_pic', { required: true })}
+                                        {...register('profile_pic', (!icon) ? { required: true } : '')}
                                         type="file"
                                         className="form-control"
                                         id="profile_pic"
@@ -292,12 +297,7 @@ const Create = () => {
                                         className="imgBox"
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <div className="form-action-btn">
-                                        <button type="submit" className="btn btn-primary">Submit</button>
-                                        <button type="reset" className="btn btn-secondary">Reset</button>
-                                    </div>
-                                </div>
+                                <ButtonSubmitReset btnloader={btnloader} />
                             </div>
                         </div>
                     </form>

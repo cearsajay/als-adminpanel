@@ -9,12 +9,15 @@ import { errorResponse, successResponse,  isError, configHeaderAxios } from "../
 import { Breadcrumb } from 'react-bootstrap';
 import dummy from '../../../assets/img/dummyImg.png';
 
+import ButtonSubmitReset from '../layouts/ButtonSubmitReset';
 
 const Create = () => {
     let history = useHistory();
     const [icon, setIcon] = useState(dummy);
     const [fileName, setFileName] = useState("");
     const [id, setId] = useState('');
+    const [btnloader, setbtnloader] = useState(false);
+
     const {
         register,
         setValue,
@@ -48,7 +51,6 @@ const Create = () => {
             });
     }
     useEffect(() => {
-        // console.log(errors);
         isError(errors);
     });
     const onFileChange = (e) => {
@@ -74,16 +76,20 @@ const Create = () => {
             });
     };
     const onSubmit = (data) => {
+        setbtnloader(true);
+
         data['icon'] = fileName;
         data['id'] = id;
         const config = configHeaderAxios();
         axios
             .post(process.env.REACT_APP_BASE_URL + url.bank_store, JSON.stringify(data), config)
             .then((response) => {
+                setbtnloader(false);
                 successResponse(response);
                 history.push('/bank/list');
             })
             .catch((error) => {
+                setbtnloader(false);
                 if (error.response) {
                     errorResponse(error);
                 }
@@ -136,12 +142,8 @@ const Create = () => {
                                         className="imgBox"
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <div className="form-action-btn">
-                                        <button type="submit" className="btn btn-primary">Submit</button>
-                                        <button type="reset" className="btn btn-secondary">Reset</button>
-                                    </div>
-                                </div>
+                                <ButtonSubmitReset btnloader={btnloader}/>
+
                             </div>
                         </div>
                     </form>

@@ -10,6 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import dummy from '../../../assets/img/dummy.jpg';
+import ButtonSubmitReset from '../layouts/ButtonSubmitReset';
 
 const Create = () => {
     let history = useHistory();
@@ -19,6 +20,7 @@ const Create = () => {
     const [phoneNo, setMobilePhoneNo] = useState('');
     const current = new Date();
     const date = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`;
+    const [btnloader, setbtnloader] = useState(false);
 
     const {
         register,
@@ -85,16 +87,19 @@ const Create = () => {
     };
 
     const onSubmit = (data) => {
+        setbtnloader(true);
         data['profile_pic'] = fileName;
         data['id'] = id;
         const config = configHeaderAxios();
         axios
             .post(process.env.REACT_APP_BASE_URL + url.subadmin_store, JSON.stringify(data), config)
             .then((response) => {
+                setbtnloader(false);
                 successResponse(response);
                 history.push('/subadmin/list');
             })
             .catch((error) => {
+                setbtnloader(false);
                 if (error.response) {
                     errorResponse(error);
                 }
@@ -137,8 +142,8 @@ const Create = () => {
                                 </div>
 
                                 {
-                                    id ?  // if has image
-                                        ''          // return My image tag 
+                                    id ? 
+                                        ''  
                                         :
                                         <>
                                             <div className="form-group">
@@ -205,12 +210,8 @@ const Create = () => {
                                         className="imgBox"
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <div className="form-action-btn">
-                                        <button type="submit" className="btn btn-primary">Submit</button>
-                                        <button type="reset" className="btn btn-secondary">Reset</button>
-                                    </div>
-                                </div>
+                                <ButtonSubmitReset btnloader={btnloader}/>
+
                             </div>
                         </div>
                     </form>

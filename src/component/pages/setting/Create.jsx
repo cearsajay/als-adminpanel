@@ -5,10 +5,13 @@ import url from "../../../Development.json";
 import { errorResponse, successResponse, isError, configHeaderAxios } from "../../helpers/response";
 import { Breadcrumb } from 'react-bootstrap';
 import dummy from '../../../assets/img/dummy.jpg';
+import ButtonSubmitReset from '../layouts/ButtonSubmitReset';
 
 const Create = () => {
     const [fileName, setFileName] = useState('');
     const [icon, setIcon] = useState(dummy);
+    const [btnloader, setbtnloader] = useState(false);
+
     const {
         register,
         handleSubmit,
@@ -63,14 +66,18 @@ const Create = () => {
             });
     };
     const onSubmit = (data) => {
+        setbtnloader(true);
+
         data['image'] = fileName;
         const config = configHeaderAxios();
         axios
             .post(process.env.REACT_APP_BASE_URL + url.store_setting, JSON.stringify(data), config)
             .then((response) => {
+                setbtnloader(false);
                 successResponse(response);
             })
             .catch((error) => {
+                setbtnloader(false);
                 if (error.response) {
                     errorResponse(error);
                 }
@@ -143,12 +150,8 @@ const Create = () => {
                                     />
                                 </div>
 
-                                <div className="form-group">
-                                    <div className="form-action-btn">
-                                        <button type="submit" className="btn btn-primary">Submit</button>
-                                        <button type="reset" className="btn btn-secondary">Reset</button>
-                                    </div>
-                                </div>
+                                <ButtonSubmitReset btnloader={btnloader}/>
+
                             </div>
                         </div>
                     </form>

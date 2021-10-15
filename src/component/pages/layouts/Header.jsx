@@ -42,7 +42,7 @@ const Header = (props) => {
                         </button>
                     </div>
                     <Link to="/" className="brand-logo">
-                        <img src={Logo} alt="" height="20" />
+                        <img src={Logo} alt="Logo" />
                     </Link>
                 </div>
 
@@ -56,7 +56,7 @@ const Header = (props) => {
                             <div className="menu-text">{name}</div>
                         </Dropdown.Toggle>
                         <Dropdown.Menu menuAlign="right" className="mr-lg-3">
-                            <Link to="profile" className="dropdown-item d-flex align-items-center">
+                            <Link to="/profile" className="dropdown-item d-flex align-items-center">
                                 Edit Profile
                                 <FontAwesomeIcon icon={faUserCircle} className="fa-fw ml-auto text-gray-400 f-s-16" />
                             </Link>
@@ -64,10 +64,10 @@ const Header = (props) => {
                                 Change Password
                                 <FontAwesomeIcon icon={faWrench} className="fa-fw ml-auto text-gray-400 f-s-16" />
                             </Link>
-                            <Link to="/users" className="dropdown-item d-flex align-items-center">
+                            {/* <Link to="/users" className="dropdown-item d-flex align-items-center">
                                 Setting
                                 <FontAwesomeIcon icon={faWrench} className="fa-fw ml-auto text-gray-400 f-s-16" />
-                            </Link>
+                            </Link> */}
                             <div className="dropdown-divider"></div>
                             <Link to="/logout" className="dropdown-item d-flex align-items-center">
                                 Log Out

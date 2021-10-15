@@ -4,15 +4,19 @@ import { useForm } from "react-hook-form";
 import url from "../../../Development.json";
 import { errorResponse, successResponse, isError, configHeaderAxios } from "../../helpers/response";
 import { Breadcrumb } from 'react-bootstrap';
+import ButtonSubmitReset from '../layouts/ButtonSubmitReset';
+import dummy from '../../../assets/img/dummy.jpg';
 
 const Profile = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [profilePic, setProfilePic] = useState('aaaa');
     const [fileName, setFileName] = useState('');
+    const [icon, setIcon] = useState(dummy);
+    const [btnloader, setbtnloader] = useState(false);
+    const [id, setId] = useState('');
+
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors }
     } = useForm();
 
@@ -33,7 +37,7 @@ const Profile = () => {
             .post(urlcall, formData, config)
             .then((res) => {
                 let data = res.data.data;
-                setProfilePic(data.img);
+                setIcon(data.img);
                 setFileName(data.filename);
             })
             .catch((error) => {
@@ -48,10 +52,13 @@ const Profile = () => {
             .post(process.env.REACT_APP_BASE_URL + url.profile_get, [], config)
             .then((response) => {
                 var data = response.data.data;
-                setName(data.name);
-                setEmail(data.email);
-                setProfilePic(data.profile_pic);
-                setFileName(data.fileName);
+                setId(data.id);
+                setValue('name', data.name);
+                setValue('email', data.email);
+                setValue('fileName', data.profile_pic);
+                setIcon(data.profile_pic);
+                setValue('id', data.id);
+
             })
             .catch((error) => {
                 if (error.response) {
@@ -60,12 +67,13 @@ const Profile = () => {
             });
     }
     const onSubmit = (data) => {
+        setbtnloader(true);
         const config = configHeaderAxios();
         data['profile_pic'] = fileName;
         axios
             .post(process.env.REACT_APP_BASE_URL + url.profile_update, JSON.stringify(data), config)
             .then((response) => {
-                console.log(response);
+                setbtnloader(false);
                 successResponse(response);
                 localStorage.setItem(
                     "admin_profile",
@@ -73,6 +81,7 @@ const Profile = () => {
                 );
             })
             .catch((error) => {
+                setbtnloader(false);
                 if (error.response) {
                     errorResponse(error);
                 }
@@ -88,9 +97,6 @@ const Profile = () => {
                     </Breadcrumb>
                     <h1 className="page-header">Profile</h1>
                 </div>
-                {/* <div className="page-heading-action">
-                    <Link to="" className="btn btn-primary"> <FontAwesomeIcon icon={faPlusCircle} className="fa-fw mr-1" />Add</Link>
-                </div> */}
             </div>
             <div className="card">
                 <div className="card-body pb-2">
@@ -103,7 +109,6 @@ const Profile = () => {
                                         className="form-control"
                                         id="name"
                                         placeholder="Name"
-                                        defaultValue={name}
                                         {...register('name', { required: true })}
                                     />
 
@@ -111,7 +116,7 @@ const Profile = () => {
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="profile_pic">Profile Pic</label>
                                     <input
-                                        {...register('profile_pic', { required: true })}
+                                        {...register('profile_pic', (!icon) ? { required: true } : '')}
                                         type="file"
                                         className="form-control"
                                         id="profile_pic"
@@ -123,8 +128,8 @@ const Profile = () => {
 
                                 <div className="form-group">
                                     <img
-                                        src={profilePic}
-                                        alt={profilePic} width="100" height="100"
+                                        src={icon}
+                                        alt={icon} width="100" height="100"
                                         className="imgBox"
                                     />
                                 </div>
@@ -133,17 +138,12 @@ const Profile = () => {
                                     <input type="email"
                                         className="form-control"
                                         id="email"
-                                        defaultValue={email}
                                         placeholder="Email"
                                         {...register('email', { required: true })}
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <div className="form-action-btn">
-                                        <button type="submit" className="btn btn-primary">Submit</button>
-                                        <button type="reset" className="btn btn-secondary">Reset</button>
-                                    </div>
-                                </div>
+                                <ButtonSubmitReset btnloader={btnloader}/>
+
                             </div>
                         </div>
                     </form>
