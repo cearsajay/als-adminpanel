@@ -118,6 +118,7 @@ const Index = () => {
             axios
                 .post(process.env.REACT_APP_BASE_URL + url.user_kyc, JSON.stringify(data), config)
                 .then((response) => {
+                    successResponse(response);
                 })
                 .catch((error) => {
                     if (error.response) {
