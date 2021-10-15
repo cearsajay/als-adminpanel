@@ -87,31 +87,33 @@ const Index = () => {
                 <input id="reason" type="text" class="form-control"></ br>`,
             focusConfirm: false,
         })
-
         if (formValues) {
             const config = configHeaderAxios();
             const data = {};
 
+
             var reason = document.getElementById('reason').value;
             var status = document.getElementById('status').selectedIndex;
+            // console.log(document.getElementById('status').selectedIndex);
             data['id'] = id;
             data['reason'] = reason;
             data['status'] = status;
-
-            if (reason !== null && reason !== '' && reason != null) {
+            if (!reason) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Please Enter Any Reason',
                 })
+                return false;
             }
 
-            if (status !== null && status !== 0) {
+            if (!status) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Please Select Any Status of Kyc!',
                 })
+                return false;
             }
             axios
                 .post(process.env.REACT_APP_BASE_URL + url.user_kyc, JSON.stringify(data), config)

@@ -108,93 +108,97 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <div className="row mb-4">
-                <div className="col-xl-12">
-                    <div className="card">
-                        <div className="card-body">
-                            <div className="d-flex align-items-center mb-2">
-                                <div className="flex-grow-1">
-                                    <h5 className="mb-1">Transaction</h5>
-                                    <div className="fs-13px">Latest transaction history</div>
+            {transactionList.length > 0  ?
+                <div className="row mb-4">
+                    <div className="col-xl-12">
+                        <div className="card">
+                            <div className="card-body">
+                                <div className="d-flex align-items-center mb-2">
+                                    <div className="flex-grow-1">
+                                        <h5 className="mb-1">Transaction</h5>
+                                        <div className="fs-13px">Latest transaction history</div>
+                                    </div>
+                                    <Link to="/transaction">
+                                        See All
+                                    </Link>
                                 </div>
-                                <Link to="/transaction">
-                                    See All
-                                </Link>
-                            </div>
-                            <div className="table-responsive mb-n2">
-                                <table className="table table-borderless mb-0">
-                                    <thead>
-                                        <tr className="text-dark">
-                                            <th className="pl-0">No</th>
-                                            <th>To</th>
-                                            <th>From</th>
-                                            <th>Amount</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            transactionList.map((data, index) => {
-                                                return <tr key={index}>
-                                                    <td>{++index}</td>
-                                                    <td>{data.to_user_name}</td>
-                                                    <td>{data.from_user_name}</td>
-                                                    <td>{data.amount}</td>
-                                                </tr>
-                                            })
-                                        }
+                                <div className="table-responsive mb-n2">
+                                    <table className="table table-borderless mb-0">
+                                        <thead>
+                                            <tr className="text-dark">
+                                                <th className="pl-0">No</th>
+                                                <th>To</th>
+                                                <th>From</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                transactionList.map((data, index) => {
+                                                    return <tr key={index}>
+                                                        <td>{++index}</td>
+                                                        <td>{data.to_user_name}</td>
+                                                        <td>{data.from_user_name}</td>
+                                                        <td>{data.amount}</td>
+                                                    </tr>
+                                                })
+                                            }
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-xl-12">
-                    <div className="card">
-                        <div className="card-body">
-                            <div className="d-flex align-items-center mb-2">
-                                <div className="flex-grow-1">
-                                    <h5 className="mb-1">Users</h5>
-                                    <div className="fs-13px">Latest user history</div>
+                : ''}
+            {userList.length > 0 ?
+                <div className="row">
+                    <div className="col-xl-12">
+                        <div className="card">
+                            <div className="card-body">
+                                <div className="d-flex align-items-center mb-2">
+                                    <div className="flex-grow-1">
+                                        <h5 className="mb-1">Users</h5>
+                                        <div className="fs-13px">Latest user history</div>
+                                    </div>
+                                    <Link to="/user/list">
+                                        See All
+                                    </Link>
                                 </div>
-                                <Link to="/user/list">
-                                    See All
-                                </Link>
-                            </div>
-                            <div className="table-responsive mb-n2">
-                                <table className="table table-borderless mb-0">
-                                    <thead>
-                                        <tr className="text-dark">
-                                            <th className="pl-0">No</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Address</th>
-                                            <th>Date Of Birth</th>
+                                <div className="table-responsive mb-n2">
+                                    <table className="table table-borderless mb-0">
+                                        <thead>
+                                            <tr className="text-dark">
+                                                <th className="pl-0">No</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Address</th>
+                                                <th>Date Of Birth</th>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            userList.map((data, index) => {
-                                                return <tr key={index}>
-                                                    <td>{++index}</td>
-                                                    <td>{data.name}</td>
-                                                    <td>{data.email}</td>
-                                                    <td>{data.address}</td>
-                                                    <td>{data.date_of_birth}</td>
-                                                </tr>
-                                            })
-                                        }
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                userList.map((data, index) => {
+                                                    return <tr key={index}>
+                                                        <td>{++index}</td>
+                                                        <td>{data.name}</td>
+                                                        <td>{data.email}</td>
+                                                        <td>{data.address}</td>
+                                                        <td>{data.date_of_birth}</td>
+                                                    </tr>
+                                                })
+                                            }
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                : ''}
         </>
     )
 }
