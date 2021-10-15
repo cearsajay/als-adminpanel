@@ -116,7 +116,6 @@ const Create = () => {
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="name">Name</label>
                                    
-
                                     <input type="text"
                                         className="form-control"
                                         id="name"

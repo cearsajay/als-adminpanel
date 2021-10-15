@@ -21,9 +21,11 @@ const Profile = () => {
     } = useForm();
 
     useEffect(() => {
-        isError(errors);
         fetchData();
     }, []);
+    useEffect(() => {
+        isError(errors);
+    });
     const onFileChange = (e) => {
         onFileUpload(e.target.files[0]);
     };
@@ -51,16 +53,17 @@ const Profile = () => {
     const fetchData = () => {
         const config = configHeaderAxios();
         axios
-            .post(process.env.REACT_APP_BASE_URL + url.profile_get, [], config)
+            .get(process.env.REACT_APP_BASE_URL + url.profile_get,  config)
             .then((response) => {
                 var data = response.data.data;
                 setId(data.id);
                 setValue('name', data.name);
                 setValue('email', data.email);
                 setValue('fileName', data.profile_pic);
-                setIcon(data.profile_pic);
+                if(data.profile_pic != ''){                    
+                    setIcon(data.profile_pic);
+                }
                 setValue('id', data.id);
-
             })
             .catch((error) => {
                 if (error.response) {
