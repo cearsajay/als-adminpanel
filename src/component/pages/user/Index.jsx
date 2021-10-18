@@ -125,10 +125,10 @@ const Index = () => {
         }
     };
     const KycDisplayButtonClick = (id, front, back) => {
-        if(back != ''){
+        if(back !== ''){
             setBack(back);
         }
-        if(front != ''){
+        if(front !== ''){
             setFront(front);
         }
         setShow(true);

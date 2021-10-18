@@ -39,7 +39,7 @@ const Profile = () => {
             .post(urlcall, formData, config)
             .then((res) => {
                 let data = res.data.data;
-                if(data.img != ''){
+                if(data.img !== ''){
                     setIcon(data.img);
                 }
                 setFileName(data.filename);
@@ -60,7 +60,7 @@ const Profile = () => {
                 setValue('name', data.name);
                 setValue('email', data.email);
                 setValue('fileName', data.profile_pic);
-                if(data.profile_pic != ''){                    
+                if(data.profile_pic !==''){                    
                     setIcon(data.profile_pic);
                 }
                 setValue('id', data.id);

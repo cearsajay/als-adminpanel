@@ -5,19 +5,16 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 //  start custome url define
 import url from "../../../Development.json";
-import { errorResponse, successResponse,  isError, configHeaderAxios } from "../../helpers/response";
-import { Breadcrumb } from 'react-bootstrap';
-import dummy from '../../../assets/img/dummyImg.png';
-
+import { errorResponse, successResponse, isError, configHeaderAxios } from "../../helpers/response";
+import { Breadcrumb, Form, Check } from 'react-bootstrap';
 import ButtonSubmitReset from '../layouts/ButtonSubmitReset';
 
 const Create = () => {
     let history = useHistory();
-    const [icon, setIcon] = useState(dummy);
-    const [fileName, setFileName] = useState("");
     const [id, setId] = useState('');
     const [btnloader, setbtnloader] = useState(false);
-
+    const [permissionsGet, setPermissionsGet] = useState([]);
+    const [selectPermissions, setSelectPermissions] = useState([]);
     const {
         register,
         setValue,
@@ -25,6 +22,7 @@ const Create = () => {
         formState: { errors }
     } = useForm();
     useEffect(() => {
+        PermissionsData();
         let query = new URLSearchParams(history.location.search);
         let id = query.get('id')
         if (id) {
@@ -32,19 +30,30 @@ const Create = () => {
         }
     }, [])
 
+    const PermissionsData = () => {
+        const config = configHeaderAxios();
+        axios
+            .get(process.env.REACT_APP_BASE_URL + url.permissions_get, config)
+            .then((response) => {
+                let data = response.data.data.rows;
+                setPermissionsGet(data);
+            })
+            .catch((error) => {
+                if (error.response) {
+                    errorResponse(error);
+                }
+            });
+    }
     const fetchData = (id) => {
         let idpass = `?id=${id}`;
         const config = configHeaderAxios();
         axios
-            .get(process.env.REACT_APP_BASE_URL + url.bank_edit + idpass, config)
+            .get(process.env.REACT_APP_BASE_URL + url.role_edit + idpass, config)
             .then((response) => {
                 let data = response.data.data;
-                setValue('name',data.name);
+                setValue('name', data.name);
+                setSelectPermissions(JSON.parse(data.permission_name));
                 setId(data.id);
-                if(data.icon !== ''){
-                    setIcon(data.icon);
-                }
-                setValue('icon',data.icon);
             })
             .catch((error) => {
                 if (error.response) {
@@ -55,40 +64,17 @@ const Create = () => {
     useEffect(() => {
         isError(errors);
     });
-    const onFileChange = (e) => {
-        onFileUpload(e.target.files[0]);
-    };
-    const onFileUpload = (image) => {
-        const formData = new FormData();
-        const config = configHeaderAxios();
-        formData.append("type", 3);//bank
-        formData.append("avatar", image);
-        let urlcall = process.env.REACT_APP_BASE_URL + url.image_upload;
-        axios
-            .post(urlcall, formData, config)
-            .then((res) => {
-                let data = res.data.data;
-                setIcon(data.img);
-                setFileName(data.filename);
-            })
-            .catch((error) => {
-                if (error.response) {
-                    errorResponse(error);
-                }
-            });
-    };
+
     const onSubmit = (data) => {
         setbtnloader(true);
-
-        data['icon'] = fileName;
         data['id'] = id;
         const config = configHeaderAxios();
         axios
-            .post(process.env.REACT_APP_BASE_URL + url.bank_store, JSON.stringify(data), config)
+            .post(process.env.REACT_APP_BASE_URL + url.role_store, JSON.stringify(data), config)
             .then((response) => {
                 setbtnloader(false);
                 successResponse(response);
-                history.push('/bank/list');
+                history.push('/role/list');
             })
             .catch((error) => {
                 setbtnloader(false);
@@ -103,9 +89,9 @@ const Create = () => {
                 <div className="page-heading-left">
                     <Breadcrumb>
                         <Breadcrumb.Item href="/">Admin</Breadcrumb.Item>
-                        <Breadcrumb.Item active>Bank { (id) ? "Edit" : "Add" }</Breadcrumb.Item>
+                        <Breadcrumb.Item active>Roles {(id) ? "Edit" : "Add"}</Breadcrumb.Item>
                     </Breadcrumb>
-                    <h1 className="page-header">Bank { (id) ? "Edit" : "Add" } </h1>
+                    <h1 className="page-header">Roles {(id) ? "Edit" : "Add"} </h1>
                 </div>
             </div>
             <div className="card">
@@ -115,36 +101,33 @@ const Create = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="name">Name</label>
-                                   
+
                                     <input type="text"
                                         className="form-control"
                                         id="name"
-                                        placeholder="Bank Name"
+                                        placeholder="Name"
                                         {...register('name', (!id) ? { required: true } : '')}
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <label className="form-label" htmlFor="icon">Icon</label>
-                                    <input
-                                        {...register('icon',  (!icon) ? { required: true } : '') }
-                                        type="file"
-                                        className="form-control"
-                                        id="icon"
-                                        name="icon"
-                                        placeholder="icon"
-                                        onChange={onFileChange}
-                                    />
-                                </div>
+                                <div className='checkboxgroup-scroll'>
 
-                                <div className="form-group">
-                                    <img
-                                        src={icon}
-                                        alt={icon} width="100" height="100"
-                                        className="imgBox"
-                                    />
+                                    {permissionsGet.map((elem, indx) => {
+                                        return (
+                                            <div className="mb-3" key={indx}>
+                                                <Form.Check
+                                                    type="checkbox"
+                                                    id={`permission_name_`+indx}
+                                                    label={elem.module}
+                                                    value={elem.name}
+                                                    checked={(selectPermissions.length > 0 && selectPermissions.includes(elem.name)) ? true : false}
+                                                    {...register('permission_name', (!id) ? { required: true } : '')}
+                                                    
+                                                />
+                                            </div>
+                                        )
+                                    })}
                                 </div>
-                                <ButtonSubmitReset btnloader={btnloader}/>
-
+                                <ButtonSubmitReset btnloader={btnloader} />
                             </div>
                         </div>
                     </form>

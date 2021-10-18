@@ -30,7 +30,7 @@ const Index = () => {
         const config = configHeaderAxios();
         let reqDD = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}`;
         axios
-            .get(process.env.REACT_APP_BASE_URL + url.bank_get + reqDD, config)
+            .get(process.env.REACT_APP_BASE_URL + url.role_get + reqDD, config)
             .then((response) => {
                 setDataTableData(response.data.data.rows);
                 setTotalRows(response.data.data.count);
@@ -49,7 +49,7 @@ const Index = () => {
 
     const editButtonClick = (id) => {
         history.push({
-            pathname: '/bank/create',
+            pathname: '/role/create',
             search1: { "id": id },
             search: '?id=' + id
         });
@@ -60,7 +60,7 @@ const Index = () => {
         };
         const config = configHeaderAxios();
         axios
-            .post(process.env.REACT_APP_BASE_URL + url.bank_change_status, obj, config)
+            .post(process.env.REACT_APP_BASE_URL + url.role_change_status, obj, config)
             .then((response) => {
                 getData();
                 successResponse(response);
@@ -86,7 +86,7 @@ const Index = () => {
                 let obj = `?id=${id}`;
                 const config = configHeaderAxios();
                 axios
-                    .delete(process.env.REACT_APP_BASE_URL + url.bank_delete + obj, config)
+                    .delete(process.env.REACT_APP_BASE_URL + url.role_delete + obj, config)
                     .then((response) => {
                         getData();
                         successResponse(response);
@@ -129,15 +129,6 @@ const Index = () => {
                 name: 'Name',
                 selector: row => row.name,
                 sortable: true,
-            },
-            {
-                name: 'Icon',
-                selector: row => <>
-                    {row.icon !== '' ?
-                        <img src={row.icon} alt={row.name} className="imageTable" />
-                        : <img src={dummy} className='img-list' alt='No Image Found' />}
-                </>,
-                sortable: false,
             },
             {
                 name: 'Action',
@@ -197,7 +188,7 @@ const Index = () => {
     );
 
     const actions = (
-        <Link to="/bank/create" className="menu-link">
+        <Link to="/role/create" className="menu-link">
             <button className="btn btn-success">
                 <FontAwesomeIcon icon={faPlus} />
             </button>
@@ -229,7 +220,7 @@ const Index = () => {
                 actions={actions}
                 subHeader
                 subHeaderComponent={FilterComponent}
-                title="Bank List"
+                title="Roles List"
                 columns={columns}
                 keyField="id"
 

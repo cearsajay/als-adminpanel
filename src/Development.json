@@ -22,6 +22,15 @@
     "bank_edit": "admin/bank/edit",
     "bank_change_status": "admin/bank/change-status",
 
+    "permissions_get": "admin/permissions/get",
+    "role_all_get": "admin/role/getAll",
+
+    "role_store": "admin/role/store",
+    "role_get": "admin/role/get",
+    "role_delete": "admin/role/delete",
+    "role_edit": "admin/role/edit",
+    "role_change_status": "admin/role/change-status",
+
     "user_store": "admin/user/store",
     "user_get": "admin/user/get",
     "user_delete": "admin/user/delete",

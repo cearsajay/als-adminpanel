@@ -32094,3 +32094,7 @@ body div.dt-button-info div {
     display: inline;
     content: "⚠ ";
 }
+.checkboxgroup-scroll{
+    max-height: 400px;
+    overflow-x: hidden;
+}

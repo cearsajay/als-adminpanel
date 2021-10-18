@@ -15,6 +15,8 @@ import ChangePassword from "../pages/admin/ChangePassword";
 import Users from "../pages/user/Index";
 import BankIndex from "../pages/bank/Index";
 import BankCreate from "../pages/bank/Create";
+import RoleIndex from "../pages/role/Index";
+import RoleCreate from "../pages/role/Create";
 import UserIndex from "../pages/user/Index";
 import UserCreate from "../pages/user/Create";
 import SubAdminIndex from "../pages/subadmin/Index";
@@ -70,12 +72,23 @@ const routes = [
         path: '/bank/list',
         exact: true,
         auth: false,
-        component: () => <Main title="Banl List"><BankIndex /></Main>,
+        component: () => <Main title="Bank List"><BankIndex /></Main>,
     },
     {
         path: '/bank/create',
         auth: false,
-        component: () => <Main title="Banl Create"><BankCreate /></Main>,
+        component: () => <Main title="Bank Create"><BankCreate /></Main>,
+    },
+    {
+        path: '/role/list',
+        exact: true,
+        auth: false,
+        component: () => <Main title="Roles List"><RoleIndex /></Main>,
+    },
+    {
+        path: '/role/create',
+        auth: false,
+        component: () => <Main title="Roles Create"><RoleCreate /></Main>,
     },
     {
         path: '/logout',

@@ -65,6 +65,11 @@ const Sidebar = (props) => {
                                 <FontAwesomeIcon icon={faHistory} /> Sub Admin 
                             </NavLink>
                         </Menu.Item>
+                        <Menu.Item key="8">
+                            <NavLink to="/role/list" className="menu-link">
+                                <FontAwesomeIcon icon={faHistory} /> Roles 
+                            </NavLink>
+                        </Menu.Item>
                     </Menu>
                 </div>
                 <button className="app-sidebar-mobile-backdrop" onClick={sidebarToggle} data-dismiss="sidebar-mobile"></button>

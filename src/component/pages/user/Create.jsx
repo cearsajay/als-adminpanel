@@ -52,10 +52,9 @@ const Create = () => {
                 setValue('address', data.address);
                 setValue('wallet_amount', data.wallet_amount);
                 setValue('fileName', data.fileName);
-                if(data.profile_pic != ''){
+                if(data.profile_pic !== ''){
                     setIcon(data.profile_pic);
                 }
-                console.log(data.country_code);
                 setValue('country_code', data.country_code);
                 setValue('phone_no', data.phone_no);
                 setValue('id', data.id);

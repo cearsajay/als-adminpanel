@@ -3,7 +3,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import axios from "axios";
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faPencilAlt, faTrashAlt, faToggleOn, faToggleOff, faKey, faStreetView } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faPencilAlt, faTrashAlt, faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import '../../../custome.css';
@@ -145,7 +145,7 @@ const Index = () => {
             {
                 name: 'Profile Pic',
                 selector: row => <>
-                    {row.icon != '' ?
+                    {row.icon !== '' ?
                         <img src={row.profile_pic} alt={row.name} className="imageTable" />
                         : <img src={dummy} className='img-list' alt='No Image Found' />}
                 </>,

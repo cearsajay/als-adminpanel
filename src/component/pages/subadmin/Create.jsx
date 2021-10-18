@@ -6,9 +6,8 @@ import { useForm } from "react-hook-form";
 import url from "../../../Development.json";
 import { errorResponse, successResponse, isError, configHeaderAxios } from "../../helpers/response";
 import { Breadcrumb } from 'react-bootstrap';
-import "react-datepicker/dist/react-datepicker.css";
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
+// import "react-datepicker/dist/react-datepicker.css";
+// import 'react-phone-input-2/lib/style.css'
 import dummy from '../../../assets/img/dummy.jpg';
 import ButtonSubmitReset from '../layouts/ButtonSubmitReset';
 
@@ -17,9 +16,8 @@ const Create = () => {
     const [fileName, setFileName] = useState('');
     const [icon, setIcon] = useState(dummy);
     const [id, setId] = useState('');
-    const [phoneNo, setMobilePhoneNo] = useState('');
-    const current = new Date();
-    const date = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`;
+    // const current = new Date();
+    // const date = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`;
     const [btnloader, setbtnloader] = useState(false);
 
     const {
@@ -31,14 +29,34 @@ const Create = () => {
     } = useForm();
     const password = useRef({});
     password.current = watch("password", "");
+    const [roleOptions, setRoleOptions] = useState([]);
 
     useEffect(() => {
+        RolefetchData();
         let query = new URLSearchParams(history.location.search);
         let id = query.get('id')
         if (id) {
             fetchData(id);
         }
     }, [])
+
+    const RolefetchData = () => {
+        const config = configHeaderAxios();
+        axios
+            .get(process.env.REACT_APP_BASE_URL + url.role_all_get, config)
+            .then((response) => {
+                let data = response.data.data;
+                setRoleOptions(data.rows);
+            })
+            .catch((error) => {
+                if (error.response) {
+                    errorResponse(error);
+                }
+            });
+    }
+    const handleChangeRole = (event) => {
+        setValue('role', event.target.value)
+    }
 
     const fetchData = (id) => {
         let idpass = `?id=${id}`;
@@ -51,9 +69,11 @@ const Create = () => {
                 setValue('name', data.name);
                 setValue('email', data.email);
                 setValue('fileName', data.profile_pic);
-                if(data.profile_pic != ''){
+                if (data.profile_pic !== '') {
                     setIcon(data.profile_pic);
                 }
+                setValue('role', data.role);
+
                 setValue('id', data.id);
             })
             .catch((error) => {
@@ -144,8 +164,8 @@ const Create = () => {
                                 </div>
 
                                 {
-                                    id ? 
-                                        ''  
+                                    id ?
+                                        ''
                                         :
                                         <>
                                             <div className="form-group">
@@ -189,13 +209,30 @@ const Create = () => {
 
                                 }
 
+                                <div className="form-group">
+                                    <label className="form-label" htmlFor="role">Roles</label>
+                                    <select className="form-control" id="role" onChange={handleChangeRole}
+>
+                                        {console.log(roleOptions)}
+                                        {roleOptions.map((option) =>
+                                            <option>
+                                                {option.name}
+                                            </option>)}
+                                    </select>
+                                </div>
 
+                                <div className="form-group">
+                                    <input type="hidden"
+                                        id="role"
+                                        {...register('role', { required: true })}
+                                    />
+                                </div>
 
 
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="profile_pic">Profile Pic</label>
                                     <input
-                                        {...register('profile_pic',(!icon) ? { required: true } : '') }
+                                        {...register('profile_pic', (!icon) ? { required: true } : '')}
                                         type="file"
                                         className="form-control"
                                         id="profile_pic"
@@ -212,7 +249,10 @@ const Create = () => {
                                         className="imgBox"
                                     />
                                 </div>
-                                <ButtonSubmitReset btnloader={btnloader}/>
+
+
+
+                                <ButtonSubmitReset btnloader={btnloader} />
 
                             </div>
                         </div>
