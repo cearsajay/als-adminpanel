@@ -152,6 +152,18 @@ const Index = () => {
                 sortable: false,
             },
             {
+                name: 'Status',
+                selector: row => <>
+                    <span className={`btn btn-sm  ${row.status === 1 ?  "btn-success" : "btn-danger" }`}>
+                        {
+                            row.status === 1 ? "Active" : "De-Active"
+                        }
+                    </span>
+
+                </>,
+                sortable: false,
+            },
+            {
                 name: 'Action',
                 minWidth: '300px',
                 className: 'justify-content-center',

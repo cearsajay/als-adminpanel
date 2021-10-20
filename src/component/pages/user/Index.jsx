@@ -91,7 +91,7 @@ const Index = () => {
             const config = configHeaderAxios();
             const data = {};
             var reason = document.getElementById('reason').value;
-            var status = document.getElementById('status').selectedIndex;
+            var status = document.getElementById('status').value;
             data['id'] = id;
             data['reason'] = reason;
             data['status'] = status;
@@ -125,10 +125,10 @@ const Index = () => {
         }
     };
     const KycDisplayButtonClick = (id, front, back) => {
-        if(back !== ''){
+        if (back !== '') {
             setBack(back);
         }
-        if(front !== ''){
+        if (front !== '') {
             setFront(front);
         }
         setShow(true);
@@ -230,6 +230,60 @@ const Index = () => {
                 name: 'Phone No',
                 selector: row => row.phone_no,
                 sortable: true,
+            },
+            {
+                name: 'Kyc Status',
+                selector: row => <>
+                    {(() => {
+                        if (row.kyc_status === 1) {
+                            return (
+
+                                <span className={`btn btn-sm warning`}>
+                                    Pending Upload
+                                </span>
+                            )
+                        } else if (row.kyc_status === 1) {
+                            return (
+                                <span className={`btn btn-sm secondary`}>
+                                    Approved
+                                </span>
+                            )
+                        } else if (row.kyc_status === 2) {
+                            return (
+                                <span className={`btn btn-sm info`}>
+                                    Pending
+                                </span>
+                            )
+                        } else if (row.kyc_status === 3) {
+                            return (
+                                <span className={`btn btn-sm danger`}>
+                                    Rejected
+                                </span>
+                            )
+                        } else {
+                            return (
+                                <span className={`btn btn-sm warning`}>
+                                    Nothing
+                                </span>
+                            )
+                        }
+                    })()}
+
+
+                </>,
+                sortable: false,
+            },
+            {
+                name: 'Status',
+                selector: row => <>
+                    <span className={`btn btn-sm  ${row.status === 1 ? "btn-success" : "btn-danger"}`}>
+                        {
+                            row.status === 1 ? "Active" : "De-Active"
+                        }
+                    </span>
+
+                </>,
+                sortable: false,
             },
             {
                 name: 'Action',

@@ -140,12 +140,23 @@ const Index = () => {
                 sortable: false,
             },
             {
+                name: 'Status',
+                selector: row => <>
+                    <span className={`btn btn-sm  ${row.status === 1 ?  "btn-success" : "btn-danger" }`}>
+                        {
+                            row.status === 1 ? "Active" : "De-Active"
+                        }
+                    </span>
+
+                </>,
+                sortable: false,
+            },
+            {
                 name: 'Action',
                 minWidth: 200,
                 selector: row =>
                     <>
                         <OverlayTrigger
-
                             placement="top"
                             overlay={
                                 <Tooltip id={`tooltip-inner`}>
@@ -157,7 +168,6 @@ const Index = () => {
                             <button className="btn btn-primary ml-2" onClick={(id) => { editButtonClick(row.id) }}>
                                 <FontAwesomeIcon icon={faPencilAlt} />
                             </button>
-
                         </OverlayTrigger>
                         <OverlayTrigger
 

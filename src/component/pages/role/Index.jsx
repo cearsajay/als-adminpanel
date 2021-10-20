@@ -164,21 +164,7 @@ const Index = () => {
                                 <FontAwesomeIcon icon={faTrashAlt} />
                             </button>
                         </OverlayTrigger>
-                        <OverlayTrigger
-
-                            placement="top"
-                            overlay={
-                                <Tooltip id={`tooltip-inner`}>
-                                    Change Status
-                                </Tooltip>
-                            }
-                        >
-                            <button className="btn btn-warning ml-2" onClick={(id) => { changeStatusButtonClick(row.id) }} >
-                                {
-                                    row.status === 1 ? <FontAwesomeIcon icon={faToggleOff} /> : <FontAwesomeIcon icon={faToggleOn} />
-                                }
-                            </button>
-                        </OverlayTrigger>
+                    
 
 
                     </>,
