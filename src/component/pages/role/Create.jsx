@@ -112,14 +112,16 @@ const Create = () => {
                                 <div className='checkboxgroup-scroll'>
 
                                     {permissionsGet.map((elem, indx) => {
+                                        let checkotnot = (selectPermissions.length > 0 && selectPermissions.includes(elem.name)) ? true : false;
+                                        console.log(checkotnot);
                                         return (
                                             <div className="mb-3" key={indx}>
                                                 <Form.Check
                                                     type="checkbox"
                                                     id={`permission_name_`+indx}
+                                                    defaultChecked={checkotnot}
                                                     label={elem.module}
                                                     value={elem.name}
-                                                    checked={(selectPermissions.length > 0 && selectPermissions.includes(elem.name)) ? true : false}
                                                     {...register('permission_name', (!id) ? { required: true } : '')}
                                                     
                                                 />
