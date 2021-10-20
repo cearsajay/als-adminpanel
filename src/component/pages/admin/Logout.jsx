@@ -20,6 +20,8 @@ const Logout = () => {
                 if (response.status === 200) {
                     localStorage.removeItem('access_token');
                     localStorage.removeItem('admin_profile');
+                    localStorage.removeItem('role');
+                    localStorage.removeItem('permissions');
                     history.push("/login");
                 }
             })

@@ -41,7 +41,7 @@ const Header = (props) => {
                             <span className="bar"></span>
                         </button>
                     </div>
-                    <Link to="/" className="brand-logo">
+                    <Link to={"/"} className="brand-logo">
                         <img src={Logo} alt="Logo" />
                     </Link>
                 </div>
@@ -56,23 +56,25 @@ const Header = (props) => {
                             <div className="menu-text">{name}</div>
                         </Dropdown.Toggle>
                         <Dropdown.Menu menuAlign="right" className="mr-lg-3">
-                            <Link to="/profile" className="dropdown-item d-flex align-items-center">
-                                Edit Profile
-                                <FontAwesomeIcon icon={faUserCircle} className="fa-fw ml-auto text-gray-400 f-s-16" />
-                            </Link>
-                            <Link to="/change-password" className="dropdown-item d-flex align-items-center">
-                                Change Password
-                                <FontAwesomeIcon icon={faWrench} className="fa-fw ml-auto text-gray-400 f-s-16" />
-                            </Link>
-                            {/* <Link to="/users" className="dropdown-item d-flex align-items-center">
-                                Setting
-                                <FontAwesomeIcon icon={faWrench} className="fa-fw ml-auto text-gray-400 f-s-16" />
-                            </Link> */}
+                            {localStorage.getItem('permissions').includes('subadmin_profile') ?
+                                <Link to={"/profile"} className="dropdown-item d-flex align-items-center">
+                                    Edit Profile
+                                    <FontAwesomeIcon icon={faUserCircle} className="fa-fw ml-auto text-gray-400 f-s-16" />
+                                </Link>
+                                : ''}
+                            {localStorage.getItem('permissions').includes('subadmin_change_password') ?
+                                <Link to={"/change-password"} className="dropdown-item d-flex align-items-center">
+                                    Change Password
+                                    <FontAwesomeIcon icon={faWrench} className="fa-fw ml-auto text-gray-400 f-s-16" />
+                                </Link>
+                                : ''}
                             <div className="dropdown-divider"></div>
-                            <Link to="/logout" className="dropdown-item d-flex align-items-center">
-                                Log Out
-                                <FontAwesomeIcon icon={faToggleOff} className="fa-fw ml-auto text-gray-400 f-s-16" />
-                            </Link>
+                            {localStorage.getItem('permissions').includes('subadmin_logout') ?
+                                <Link to={"/logout"} className="dropdown-item d-flex align-items-center">
+                                    Log Out
+                                    <FontAwesomeIcon icon={faToggleOff} className="fa-fw ml-auto text-gray-400 f-s-16" />
+                                </Link>
+                                : ''}
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    HashRouter  as Router,
+    HashRouter as Router,
     Route,
     Redirect,
     Switch
@@ -11,9 +11,19 @@ import routes from "./routes.jsx";
 require('dotenv').config()
 
 const AuthRoute = (props) => {
+
     const isLogin = localStorage.getItem("access_token") || false;
     const render = isLogin ? (
+        <>
         <Route {...props} />
+
+            {/* {(localStorage.getItem('permissions') && localStorage.getItem('permissions').length > 0 && localStorage.getItem('permissions').includes(props.permission)) ? <Route {...props} /> : <Redirect
+                to={{
+                    pathname: "/permissions_not_access",
+                }}
+            />} */}
+
+        </>
     ) : (
         <Redirect
             to={{
@@ -23,6 +33,8 @@ const AuthRoute = (props) => {
     );
 
     return render;
+
+
 };
 const Routes = () => (
     <Router>

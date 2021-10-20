@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import url from "../../../Development.json";
 import { errorResponse, successResponse } from "../../helpers/response";
 import { withRouter } from "react-router-dom";
+
 const Login = () => {
     let history = useHistory();
     const {
@@ -44,7 +45,15 @@ const Login = () => {
                     "site_setting",
                     JSON.stringify(data.site_setting)
                 );
-                history.push("/dashBoard");
+                localStorage.setItem(
+                    "role",
+                    JSON.stringify(data.data.role)
+                );
+                localStorage.setItem(
+                    "permissions",
+                    data.roles.permission_name
+                );
+                history.push("dashboard");
                 successResponse(response);
             })
             .catch((error) => {

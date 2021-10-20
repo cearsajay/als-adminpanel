@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 
 import Main from "../pages/layouts/Main";
 // ======================================================================================/=
@@ -25,118 +25,149 @@ import AdminSetting from "../pages/setting/Create";
 import AppSetting from "../pages/appsetting/Create";
 import Transaction from "../pages/transaction/Index";
 import PageNotFound from "../pages/NotFound";
+import PermissionsNotAccess from "../pages/PermissionsNotAccess";
 
 const routes = [
     {
         path: '/admin/app-setting',
         exact: true,
-        auth: false,
-        title:"App Setting",
+        auth: true,
+        title: "App Setting",
+        permission: 'app-setting_view',
         component: () => <Main title="App Setting"><AppSetting /></Main>,
     },
     {
         path: '/transaction',
         exact: true,
-        auth: false,
+        auth: true,
+        permission: 'transaction_view',
         component: () => <Main title="Transaction"><Transaction /></Main>,
     },
     {
         path: '/admin/setting',
         exact: true,
-        auth: false,
+        auth: true,
+        permission: 'setting_view',
         component: () => <Main title="Setting"><AdminSetting /></Main>,
     },
     {
         path: '/user/list',
         exact: true,
-        auth: false,
+        auth: true,
+        permission: 'user_view',
         component: () => <Main title="User List"><UserIndex /></Main>,
     },
     {
         path: '/user/create',
-        auth: false,
+        auth: true,
+        exact: true,
+        permission: 'user_store',
         component: () => <Main title="User Create"><UserCreate /></Main>,
     },
     {
         path: '/subadmin/list',
         exact: true,
-        auth: false,
+        auth: true,
+        permission: 'subadmin_view',
         component: () => <Main title="Sub Admin List"><SubAdminIndex /></Main>,
     },
     {
         path: '/subadmin/create',
-        auth: false,
+        exact: true,
+        auth: true,
+        permission: 'subadmin_store',
+
         component: () => <Main title="Sub Admin Create"><SubAdminCreate /></Main>,
     },
     {
         path: '/bank/list',
         exact: true,
-        auth: false,
+        auth: true,
+        permission: 'bank_view',
+
         component: () => <Main title="Bank List"><BankIndex /></Main>,
     },
     {
         path: '/bank/create',
-        auth: false,
+        exact: true,
+        auth: true,
+        permission: 'bank_store',
+
         component: () => <Main title="Bank Create"><BankCreate /></Main>,
     },
     {
         path: '/role/list',
         exact: true,
-        auth: false,
+        auth: true,
+        permission: 'role_view',
+
         component: () => <Main title="Roles List"><RoleIndex /></Main>,
     },
     {
         path: '/role/create',
-        auth: false,
+        exact: true,
+        auth: true,
+        permission: 'role_store',
+
         component: () => <Main title="Roles Create"><RoleCreate /></Main>,
     },
     {
         path: '/logout',
         exact: true,
         auth: true,
-        component: () => <Logout/>,
+        permission: 'subadmin_logout',
+
+        component: () => <Logout />,
     },
     {
         path: '/login',
         exact: true,
         auth: false,
-        component: () =><Login />,
+        permission: '',
+
+        component: () => <Login />,
     },
     {
         path: '/profile',
         exact: true,
-        auth: false,
+        auth: true,
+        permission: 'subadmin_profile',
+
         component: () => <Main title="Profile"><Profile /></Main>,
     },
     {
         path: '/change-password',
         exact: true,
-        auth: false,
+        auth: true,
+        permission: 'subadmin_change_password',
+
         component: () => <Main title="Change Password"><ChangePassword /></Main>,
-    },
-    {
-        path: '/users',
-        exact: true,
-        auth: false,
-        component: () => <Main title="Users"><Users /></Main>,
     },
     {
         path: '/dashBoard',
         exact: true,
         auth: true,
+        permission: 'dashboard_view',
         component: () => <Main title="Home"><DashBoard /></Main>,
+    },
+    {
+        path: '/permissions_not_access',
+        exact: false,
+        auth: false,
+        component: () => <PermissionsNotAccess />,
     },
     {
         path: '/',
         exact: true,
         auth: true,
+        permission: 'dashboard_view',
         component: () => <Main title="Home"><DashBoard /></Main>,
     },
-    // {
-    //     path: '*',
-    //     exact: true,
-    //     component: () => <PageNotFound />,
-    // }
-  ];
+    {
+        path: '*',
+        exact: true,
+        component: () => <PageNotFound />,
+    }
+];
 
-  export default routes;
+export default routes;

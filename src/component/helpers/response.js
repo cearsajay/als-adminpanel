@@ -1,5 +1,8 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+    Redirect,
+} from "react-router-dom";
 toast.configure({
     // autoClose: 500,
 });
@@ -49,7 +52,7 @@ function isError(error) {
             let type = errorAll[1].type;
             let name = errorAll[1].ref.name;
             let message = '';
- 
+
             if (type === 'required') {
                 message = 'is required.';
                 isErrorMessage(name, message);
@@ -132,6 +135,11 @@ function errorResponse(error) {
         let errorData = error.response.data.Unauthorized;
         localStorage.removeItem('access_token');
         localStorage.removeItem('admin_profile');
+        <Redirect
+            to={{
+                pathname: "/login",
+            }}
+        />
         toast.error(errorData);
     }
     if (error.response.data.message) {
@@ -145,6 +153,12 @@ function successResponse(response) {
         }
     }
 }
-
+function HasRole(response) {
+    if (response.status === 200) {
+        if (response.data.message) {
+            toast.success(response.data.message);
+        }
+    }
+}
 
 export { errorResponse, successResponse, isLoginResponse, configHeaderAxios, isError };
