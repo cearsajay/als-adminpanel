@@ -115,6 +115,7 @@ const Index = () => {
             axios
                 .post(process.env.REACT_APP_BASE_URL + url.user_kyc, JSON.stringify(data), config)
                 .then((response) => {
+                    getData();
                     successResponse(response);
                 })
                 .catch((error) => {
@@ -233,44 +234,48 @@ const Index = () => {
             },
             {
                 name: 'Kyc Status',
-                selector: row => <>
-                    {(() => {
-                        if (row.kyc_status === 1) {
-                            return (
+                selector: row =>
+                    <>
 
-                                <span className={`btn btn-sm warning`}>
-                                    Pending Upload
-                                </span>
-                            )
-                        } else if (row.kyc_status === 1) {
-                            return (
-                                <span className={`btn btn-sm secondary`}>
-                                    Approved
-                                </span>
-                            )
-                        } else if (row.kyc_status === 2) {
-                            return (
-                                <span className={`btn btn-sm info`}>
-                                    Pending
-                                </span>
-                            )
-                        } else if (row.kyc_status === 3) {
-                            return (
-                                <span className={`btn btn-sm danger`}>
-                                    Rejected
-                                </span>
-                            )
-                        } else {
-                            return (
-                                <span className={`btn btn-sm warning`}>
-                                    Nothing
-                                </span>
-                            )
-                        }
-                    })()}
+                        {(() => {
+                            if (row.kyc_status === 0) {
+                                return (
+                                    <span className={`btn btn-sm  btn-warning `}>
+                                        {
+                                            "Pending"
+                                        }
+                                    </span>
+                                )
+                            } else if (row.kyc_status === 1) {
+                                return (
+                                    <span className={`btn btn-sm  btn-success`}>
+                                        {
+                                            "Approved"
+                                        }
+                                    </span>
+                                )
+                            } else if (row.kyc_status === 2) {
+                                return (
+                                    <span className={`btn btn-sm  btn-success`}>
+                                        {
+                                            "Pending"
+                                        }
+                                    </span>
+                                )
+                            } else if (row.kyc_status === 3) {
+                                return (
+                                    <span className={`btn btn-sm  btn-danger`}>
+                                        {
+                                            "Rejected"
+                                        }
+                                    </span>
+                                )
+                            } else {
 
+                            }
+                        })()}
 
-                </>,
+                    </>,
                 sortable: false,
             },
             {
