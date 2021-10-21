@@ -119,7 +119,7 @@ const Create = () => {
                                                 <Form.Check
                                                     type="checkbox"
                                                     id={`permission_name_`+indx}
-                                                    defaultChecked={checkotnot}
+                                                    Checked={checkotnot}
                                                     label={elem.module}
                                                     value={elem.name}
                                                     {...register('permission_name', (!id) ? { required: true } : '')}

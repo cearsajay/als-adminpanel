@@ -16,6 +16,11 @@ const ButtonSubmitReset = (props) => {
 
                         {btnloader ? 'loading...' : 'Submit'}</button>
                     <button type="reset" className="btn btn-secondary">Reset</button>
+
+                    <button type="button" onClick={() => reset({ defaultValues })}>Reset</button>
+
+
+
                 </div>
             </div>
         </>
