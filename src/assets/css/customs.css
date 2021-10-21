@@ -63,8 +63,11 @@ button:focus{
     font-weight: 600;
     background: 0 0;
 } */
-
+.ant-menu-item a {
+    font-size: 16px;
+}
 .ant-menu-item a svg{
+    min-width: 22px;
     margin-right: 5px;
 }
 .ant-menu-item a.active {

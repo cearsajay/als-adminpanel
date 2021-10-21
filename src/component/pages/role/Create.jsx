@@ -15,6 +15,7 @@ const Create = () => {
     const [btnloader, setbtnloader] = useState(false);
     const [permissionsGet, setPermissionsGet] = useState([]);
     const [selectPermissions, setSelectPermissions] = useState([]);
+    
     const {
         register,
         setValue,
@@ -29,7 +30,6 @@ const Create = () => {
             fetchData(id);
         }
     }, [])
-
     const PermissionsData = () => {
         const config = configHeaderAxios();
         axios
@@ -111,21 +111,25 @@ const Create = () => {
                                 </div>
                                 <div className='checkboxgroup-scroll'>
                                     <ul>
-                                        {permissionsGet.map((elem, indx) => {
-                                            let checkotnot = (selectPermissions.length > 0 && selectPermissions.includes(elem.name)) ? false : true;
-                                            return (                                                
+                                        {selectPermissions.length > 0 ?  permissionsGet.map((elem, indx) => {
+                                            // let checkotnot = (selectPermissions.length > 0 && selectPermissions.includes(elem.name)) ? true : false;
+                                            
+                                            return (
                                                 <li className="mb-3" key={indx}>
                                                     <Form.Check
                                                         type="checkbox"
-                                                        id={`permission_name_`+indx}
+                                                        id={`permission_name_` + indx}
                                                         label={elem.module}
                                                         defaultValue={elem.name}
-                                                        defaultChecked={checkotnot}
+                                                        defaultChecked={selectPermissions.includes(elem.name) ? true : false}
                                                         {...register('permission_name', (!id) ? { required: true } : '')}
                                                     />
                                                 </li>
                                             )
-                                        })}
+                                        }): ''}
+                                        
+
+
                                     </ul>
                                 </div>
                                 <ButtonSubmitReset btnloader={btnloader} />
