@@ -70,17 +70,15 @@ const Profile = () => {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label className="form-label" htmlFor="confimPassword">Confirm Password</label>
+                                    <label className="form-label" htmlFor="password_confirmation">Confirm Password</label>
                                     <input type="password"
                                         className="form-control"
-                                        id="confimPassword"
+                                        id="password_confirmation"
                                         placeholder="New Password"
-                                        {...register('confimPassword', { required: true })}
+                                        {...register('password_confirmation', { required: true })}
                                     />
                                 </div>
-
                                 <ButtonSubmitReset btnloader={btnloader}/>
-
                             </div>
                         </div>
                     </form>
