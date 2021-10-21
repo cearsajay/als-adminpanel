@@ -220,7 +220,7 @@ const Index = () => {
     const actions = (
         <Link to="/subadmin/create" className="menu-link">
             <button className="btn btn-success">
-                <FontAwesomeIcon icon={faPlus} />
+                <FontAwesomeIcon icon={faPlus} /> Add Sub Admin
             </button>
         </Link>
     );

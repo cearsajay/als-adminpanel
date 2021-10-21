@@ -176,7 +176,7 @@ const Index = () => {
     const actions = (
         <Link to="/role/create" className="menu-link">
             <button className="btn btn-success">
-                <FontAwesomeIcon icon={faPlus} />
+                <FontAwesomeIcon icon={faPlus} /> Add Role
             </button>
         </Link>
     );

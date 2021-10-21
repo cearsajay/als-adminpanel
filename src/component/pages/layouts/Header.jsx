@@ -49,8 +49,7 @@ const Header = (props) => {
                 <div className="menu">
                     <Dropdown className="menu-item">
                         <Dropdown.Toggle id="dropdown-profile-button" className="menu-link">
-                            <div className="menu-img online">
-
+                            <div className="menu-img user-profile-img online">
                                 <img src={profile} alt="" className="mw-100 mh-100 rounded-circle" />
                             </div>
                             <div className="menu-text">{name}</div>
@@ -58,21 +57,18 @@ const Header = (props) => {
                         <Dropdown.Menu menuAlign="right" className="mr-lg-3">
                             {localStorage.getItem('permissions').includes('subadmin_profile') ?
                                 <Link to={"/profile"} className="dropdown-item d-flex align-items-center">
-                                    Edit Profile
-                                    <FontAwesomeIcon icon={faUserCircle} className="fa-fw ml-auto text-gray-400 f-s-16" />
+                                    <FontAwesomeIcon icon={faUserCircle} className="fa-fw mr-2 text-gray-400 f-s-16" /> Edit Profile
                                 </Link>
                                 : ''}
                             {localStorage.getItem('permissions').includes('subadmin_change_password') ?
                                 <Link to={"/change-password"} className="dropdown-item d-flex align-items-center">
-                                    Change Password
-                                    <FontAwesomeIcon icon={faWrench} className="fa-fw ml-auto text-gray-400 f-s-16" />
+                                    <FontAwesomeIcon icon={faWrench} className="fa-fw mr-2 text-gray-400 f-s-16" /> Change Password
                                 </Link>
                                 : ''}
                             <div className="dropdown-divider"></div>
                             {localStorage.getItem('permissions').includes('subadmin_logout') ?
                                 <Link to={"/logout"} className="dropdown-item d-flex align-items-center">
-                                    Log Out
-                                    <FontAwesomeIcon icon={faToggleOff} className="fa-fw ml-auto text-gray-400 f-s-16" />
+                                    <FontAwesomeIcon icon={faToggleOff} className="fa-fw mr-2 text-gray-400 f-s-16" /> Log Out
                                 </Link>
                                 : ''}
                         </Dropdown.Menu>

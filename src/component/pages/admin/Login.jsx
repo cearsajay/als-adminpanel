@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import url from "../../../Development.json";
 import { errorResponse, successResponse } from "../../helpers/response";
 import { withRouter } from "react-router-dom";
-
+import Logo from '../../../assets/img/logo.png';
 const Login = () => {
     let history = useHistory();
     const {
@@ -65,13 +65,16 @@ const Login = () => {
     return (
 
         <div className="container-scroller">
-            <div className="container-fluid page-body-wrapper full-page-wrapper">
-                <div className="content-wrapper d-flex align-items-center auth px-0">
+            <div className="page-body-wrapper full-page-wrapper">
+                <div className="content-wrapper d-flex align-items-center auth px-0 admin-auth-wrapper">
                     <div className="row w-100 mx-0">
-                        <div className="col-lg-4 mx-auto">
+                        <div className="col-lg-4 col-md-5 col-sm-6 mx-auto">
                             <div className="auth-form-light text-left py-5 px-4 px-sm-5">
+                                <div className="auth-form-logo">
+                                    <img src={Logo} className="img-fluid" alt="Als transfer" />
+                                </div>
                                 <h4> Hello! let's get started</h4>
-                                <h6 className="font-weight-light">Sign in to continue.</h6>
+                                <h6>Sign in to continue.</h6>
                                 <form className="pt-3" onSubmit={handleSubmit(onSubmit)}>
 
                                     <div className="form-group">

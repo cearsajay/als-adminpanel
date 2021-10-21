@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // import { useSelector } from "react-redux";
 import { Menu } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHistory, faLaptop, faUniversity, faUserCog, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faHistory, faLaptop, faTags, faUniversity, faUserCog, faUsers, faUserTag, faUserTie } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = (props) => {
@@ -69,14 +69,14 @@ const Sidebar = (props) => {
                         {localStorage.getItem('permissions').includes('subadmin_view') ?
                             <Menu.Item key="7">
                                 <NavLink to={"/subadmin/list"} className="menu-link">
-                                    <FontAwesomeIcon icon={faHistory} /> Sub Admin
+                                    <FontAwesomeIcon icon={faUserTie} /> Sub Admin
                                 </NavLink>
                             </Menu.Item>
                             : ''}
                         {localStorage.getItem('permissions').includes('role_view') ?
                             <Menu.Item key="8">
                                 <NavLink to={"/role/list"} className="menu-link">
-                                    <FontAwesomeIcon icon={faHistory} /> Roles
+                                    <FontAwesomeIcon icon={faTags} /> Roles
                                 </NavLink>
                             </Menu.Item>
                             : ''}
