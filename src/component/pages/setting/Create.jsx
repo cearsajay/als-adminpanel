@@ -105,7 +105,7 @@ const Create = () => {
                                     <input type="text"
                                         className="form-control"
                                         id="name"
-                                        placeholder="Admin Name"
+                                        placeholder="Name"
                                         {...register('name', { required: true })}
                                     />
                                 </div>
@@ -115,7 +115,7 @@ const Create = () => {
                                     <input type="email"
                                         className="form-control"
                                         id="email"
-                                        placeholder="Admin Email"
+                                        placeholder="Email"
                                         {...register('email', { required: true })}
                                     />
                                 </div>

@@ -113,9 +113,7 @@ const Create = () => {
                                     <ul>
                                         {permissionsGet.map((elem, indx) => {
                                             let checkotnot = (selectPermissions.length > 0 && selectPermissions.includes(elem.name)) ? false : true;
-                                            return (
-
-                                                
+                                            return (                                                
                                                 <li className="mb-3" key={indx}>
                                                     <Form.Check
                                                         type="checkbox"

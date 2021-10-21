@@ -12,6 +12,10 @@ const Profile = () => {
     const [icon, setIcon] = useState(dummy);
     const [btnloader, setbtnloader] = useState(false);
     const [id, setId] = useState('');
+    const defaultValues = {
+        email: "",
+        name: ""
+    };
 
     const {
         register,
@@ -20,6 +24,10 @@ const Profile = () => {
         reset,
         formState: { errors }
     } = useForm();
+
+    useEffect(() => {
+        reset(fileName);
+    }, [fileName]);
 
     useEffect(() => {
         fetchData();
@@ -40,7 +48,7 @@ const Profile = () => {
             .post(urlcall, formData, config)
             .then((res) => {
                 let data = res.data.data;
-                if(data.img !== ''){
+                if (data.img !== '') {
                     setIcon(data.img);
                 }
                 setFileName(data.filename);
@@ -54,14 +62,14 @@ const Profile = () => {
     const fetchData = () => {
         const config = configHeaderAxios();
         axios
-            .get(process.env.REACT_APP_BASE_URL + url.profile_get,  config)
+            .get(process.env.REACT_APP_BASE_URL + url.profile_get, config)
             .then((response) => {
                 var data = response.data.data;
                 setId(data.id);
                 setValue('name', data.name);
                 setValue('email', data.email);
                 setValue('fileName', data.profile_pic);
-                if(data.profile_pic !==''){                    
+                if (data.profile_pic !== '') {
                     setIcon(data.profile_pic);
                 }
                 setValue('id', data.id);
@@ -148,7 +156,8 @@ const Profile = () => {
                                         {...register('email', { required: true })}
                                     />
                                 </div>
-                                <ButtonSubmitReset btnloader={btnloader}/>
+                                <ButtonSubmitReset btnloader={btnloader} />
+                                <button type="button" onClick={() => reset()}>Reset1111</button>
 
                             </div>
                         </div>
