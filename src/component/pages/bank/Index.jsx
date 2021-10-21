@@ -209,7 +209,7 @@ const Index = () => {
     const actions = (
         <Link to="/bank/create" className="menu-link">
             <button className="btn btn-success">
-                <FontAwesomeIcon icon={faPlus} />
+                <FontAwesomeIcon icon={faPlus} /> Add Bank
             </button>
         </Link>
     );

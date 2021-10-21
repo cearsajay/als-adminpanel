@@ -57,7 +57,7 @@ const Dashboard = () => {
                             </div>
                             <div className="d-flex">
                                 <div className="flex-grow-1">
-                                    <h3 className="mb-1">{userCount}</h3>
+                                    <h2 className="mb-1">{userCount}</h2>
                                 </div>
                                 <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                     <FontAwesomeIcon icon={faUser} className='fa-lg text-primary' />
@@ -77,7 +77,7 @@ const Dashboard = () => {
                             </div>
                             <div className="d-flex">
                                 <div className="flex-grow-1">
-                                    <h3 className="mb-1">{transactionCount}</h3>
+                                    <h2 className="mb-1">{transactionCount}</h2>
                                 </div>
                                 <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                     <FontAwesomeIcon icon={faHistory} className='fa-lg text-primary' />
@@ -98,7 +98,7 @@ const Dashboard = () => {
                             </div>
                             <div className="d-flex">
                                 <div className="flex-grow-1">
-                                    <h3 className="mb-1">{todayUserCount}</h3>
+                                    <h2 className="mb-1">{todayUserCount}</h2>
                                 </div>
                                 <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                     <FontAwesomeIcon icon={faUser} className='fa-lg text-primary' />

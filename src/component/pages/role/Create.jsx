@@ -89,9 +89,9 @@ const Create = () => {
                 <div className="page-heading-left">
                     <Breadcrumb>
                         <Breadcrumb.Item href="/">Admin</Breadcrumb.Item>
-                        <Breadcrumb.Item active>Roles {(id) ? "Edit" : "Add"}</Breadcrumb.Item>
+                        <Breadcrumb.Item active>Role {(id) ? "Edit" : "Add"}</Breadcrumb.Item>
                     </Breadcrumb>
-                    <h1 className="page-header">Roles {(id) ? "Edit" : "Add"} </h1>
+                    <h1 className="page-header">Role {(id) ? "Edit" : "Add"} </h1>
                 </div>
             </div>
             <div className="card">
@@ -110,24 +110,23 @@ const Create = () => {
                                     />
                                 </div>
                                 <div className='checkboxgroup-scroll'>
-
-                                    {permissionsGet.map((elem, indx) => {
-                                        let checkotnot = (selectPermissions.length > 0 && selectPermissions.includes(elem.name)) ? true : false;
-                                        console.log(checkotnot);
-                                        return (
-                                            <div className="mb-3" key={indx}>
-                                                <Form.Check
-                                                    type="checkbox"
-                                                    id={`permission_name_`+indx}
-                                                    defaultChecked={checkotnot}
-                                                    label={elem.module}
-                                                    value={elem.name}
-                                                    {...register('permission_name', (!id) ? { required: true } : '')}
-                                                    
-                                                />
-                                            </div>
-                                        )
-                                    })}
+                                    <ul>
+                                        {permissionsGet.map((elem, indx) => {
+                                            let checkotnot = (selectPermissions.length > 0 && selectPermissions.includes(elem.name)) ? false : true;
+                                            return (
+                                                <li className="mb-3" key={indx}>
+                                                    <Form.Check
+                                                        type="checkbox"
+                                                        id={`permission_name_`+indx}
+                                                        label={elem.module}
+                                                        defaultValue={elem.name}
+                                                        defaultChecked={checkotnot}
+                                                        {...register('permission_name', (!id) ? { required: true } : '')}
+                                                    />
+                                                </li>
+                                            )
+                                        })}
+                                    </ul>
                                 </div>
                                 <ButtonSubmitReset btnloader={btnloader} />
                             </div>
