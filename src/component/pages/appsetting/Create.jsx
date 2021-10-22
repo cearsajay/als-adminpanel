@@ -77,7 +77,6 @@ const Create = () => {
                     <form className="pt-3" onSubmit={handleSubmit(onSubmit)}>
                         <div className="row">
                             <div className="col-md-6">
-
                                 <div className="form-group">
                                     <label className="form-label flex-label flex-label" htmlFor="service_charge">Service Charge
 
@@ -103,6 +102,8 @@ const Create = () => {
 
 
                                 </div>
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label flex-label" htmlFor="admin_fee">Admin Fee
 
@@ -129,7 +130,8 @@ const Create = () => {
                                         })}
                                     />
                                 </div>
-
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label flex-label" htmlFor="payment_process_fee"> Payment Process Fee
                                         <small className="form-text text-muted"> fee charged by payment processors to process a particular credit card transaction .</small>
@@ -154,6 +156,8 @@ const Create = () => {
                                         })}
                                     />
                                 </div>
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label flex-label" htmlFor="admin_fee_min">Fee Minimum
                                         <small className="form-text text-muted"> Employer to remit @ 0.5% of contributions (subject a minimum) .</small>
@@ -178,7 +182,8 @@ const Create = () => {
                                         })}
                                     />
                                 </div>
-
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label flex-label" htmlFor="admin_fee_max">Fee Maximum
                                         <small className="form-text text-muted"> Employer to remit @ 0.5% of contributions (subject a miximum) .</small>
@@ -202,7 +207,8 @@ const Create = () => {
                                         })}
                                     />
                                 </div>
-
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label flex-label" htmlFor="admin_fee_amount">Fee Amount
                                         <small className="form-text text-muted">The admin fee is the fee you pay.</small>
@@ -227,7 +233,8 @@ const Create = () => {
                                         })}
                                     />
                                 </div>
-
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label flex-label" htmlFor="admin_fee_discount">Fee Discount
                                         <small className="form-text text-muted">Admin Fees On Discounted Price .</small>

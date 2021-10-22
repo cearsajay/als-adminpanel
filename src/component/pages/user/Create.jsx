@@ -53,7 +53,7 @@ const Create = () => {
                 setValue('address', data.address);
                 setValue('wallet_amount', data.wallet_amount);
                 setValue('fileName', data.fileName);
-                if(data.profile_pic !== ''){
+                if (data.profile_pic !== '') {
                     setIcon(data.profile_pic);
                 }
                 setValue('country_code', data.country_code);
@@ -139,7 +139,6 @@ const Create = () => {
                     <form className="pt-3" onSubmit={handleSubmit(onSubmit)}>
                         <div className="row">
                             <div className="col-md-6">
-
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="name">Name</label>
                                     <input type="text"
@@ -149,7 +148,8 @@ const Create = () => {
                                         {...register('name', { required: true })}
                                     />
                                 </div>
-
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="address">Address</label>
                                     <input type="text"
@@ -159,7 +159,8 @@ const Create = () => {
                                         {...register('address', { required: true })}
                                     />
                                 </div>
-
+                            </div>
+                            <div className="col-md-6">
 
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="date_of_birth">Date Of Birth</label>
@@ -172,7 +173,8 @@ const Create = () => {
                                         {...register('date_of_birth', { required: true })}
                                     />
                                 </div>
-
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="country_code">Country Code</label>
 
@@ -199,6 +201,8 @@ const Create = () => {
 
 
                                 </div>
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
 
                                     <input type="hidden"
@@ -206,13 +210,16 @@ const Create = () => {
                                         {...register('phone_no', { required: true })}
                                     />
                                 </div>
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
-
                                     <input type="hidden"
                                         id="country_code"
                                         {...register('country_code', { required: true })}
                                     />
                                 </div>
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="wallet_amount">Wallet Amount</label>
                                     <input type="text"
@@ -222,7 +229,8 @@ const Create = () => {
                                         {...register('wallet_amount', { required: true })}
                                     />
                                 </div>
-
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="refer_to">Refer To</label>
                                     <input type="text"
@@ -232,6 +240,8 @@ const Create = () => {
                                         {...register('refer_to', { required: false })}
                                     />
                                 </div>
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="email">Email</label>
                                     <input type="email"
@@ -241,52 +251,58 @@ const Create = () => {
                                         {...register('email', { required: true })}
                                     />
                                 </div>
-
+                            </div>
+                            <div className="col-12">
                                 {
-                                    id ?
-                                        ''
-                                        :
+                                    id ? '' :
                                         <>
-                                            <div className="form-group">
-                                                <label className="form-label" htmlFor="password">Password</label>
-                                                <input type="password"
-                                                    className="form-control"
-                                                    id="password"
-                                                    placeholder="User Password"
-                                                    {...register('password', {
-                                                        required: true,
-                                                        minLength: {
-                                                            value: 6,
-                                                        },
-                                                        maxLength: {
-                                                            value: 15,
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <div className="form-group">
+                                                    <label className="form-label" htmlFor="password">Password</label>
+                                                    <input type="password"
+                                                        className="form-control"
+                                                        id="password"
+                                                        placeholder="User Password"
+                                                        {...register('password', {
+                                                            required: true,
+                                                            minLength: {
+                                                                value: 6,
+                                                            },
+                                                            maxLength: {
+                                                                value: 15,
+                                                            }
                                                         }
-                                                    }
-                                                    )}
-                                                />
+                                                        )}
+                                                    />
+                                                </div>
                                             </div>
-                                            <div className="form-group">
-                                                <label className="form-label" htmlFor="password_repeat">Repeat Password</label>
-                                                <input type="password"
-                                                    className="form-control"
-                                                    id="password_repeat"
-                                                    placeholder="User Password"
-                                                    {...register('password_repeat', {
-                                                        validate: value =>
-                                                            value === password.current || "Passwords do NOT match! ",
-                                                        minLength: {
-                                                            value: 6,
-                                                        },
-                                                        maxLength: {
-                                                            value: 15,
+                                            <div className="col-md-6">
+                                                <div className="form-group">
+                                                    <label className="form-label" htmlFor="password_repeat">Repeat Password</label>
+                                                    <input type="password"
+                                                        className="form-control"
+                                                        id="password_repeat"
+                                                        placeholder="User Password"
+                                                        {...register('password_repeat', {
+                                                            validate: value =>
+                                                                value === password.current || "Passwords do NOT match! ",
+                                                            minLength: {
+                                                                value: 6,
+                                                            },
+                                                            maxLength: {
+                                                                value: 15,
+                                                            }
                                                         }
-                                                    }
-                                                    )}
-                                                />
+                                                        )}
+                                                    />
+                                                </div>
                                             </div>
+                                        </div>
                                         </>
-
                                 }
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="profile_pic">Profile Pic</label>
                                     <input
@@ -299,7 +315,6 @@ const Create = () => {
                                         onChange={onFileChange}
                                     />
                                 </div>
-
                                 <div className="form-group">
                                     <img
                                         src={icon}
@@ -307,14 +322,17 @@ const Create = () => {
                                         className="imgBox"
                                     />
                                 </div>
+                            </div>
+                            <div className="col-12">
                                 <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
                                     reset();
                                 }} />
                             </div>
+                            
                         </div>
                     </form>
                 </div>
-            </div>
+            </div >
         </>
     );
 }

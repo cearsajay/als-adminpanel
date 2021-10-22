@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import '../../../custome.css';
 import url from "../../../Development.json";
-import { errorResponse, successResponse, configHeaderAxios } from "../../helpers/response";
+import { errorResponse, successResponse, configHeaderAxios ,customStylesDataTable  } from "../../helpers/response";
 import { useHistory } from 'react-router';
 import dummy from '../../../assets/img/dummyImg.png';
 
@@ -115,20 +115,14 @@ const Index = () => {
         getData(page);
     };
 
-    const customStyles = {
-        headCells: {
-            style: {
-                '&:last-child': {
-                    justifyContent: "center"
-                },
-            },
-        },
-    }
+    
+    const customStyles = customStylesDataTable();
 
     const columns = useMemo(
         () => [
             {
                 name: 'Serial No.',
+                width: '90px',
                 cell: (row, index) => index + 1  //RDT provides index by default
 
             },
@@ -146,8 +140,8 @@ const Index = () => {
                 name: 'Profile Pic',
                 selector: row => <>
                     {row.icon !== '' ?
-                        <img src={row.profile_pic} alt={row.name} className="imageTable" />
-                        : <img src={dummy} className='img-list' alt='No Image Found' />}
+                        <img src={row.profile_pic} alt={row.name} className="imageTableDataTable" />
+                        : <img src={dummy} className='imageTableDataTable' alt='No Image Found' />}
                 </>,
                 sortable: false,
             },
@@ -166,7 +160,6 @@ const Index = () => {
             {
                 name: 'Action',
                 minWidth: '300px',
-                className: 'justify-content-center',
                 selector: row =>
                     <>
                         <OverlayTrigger
