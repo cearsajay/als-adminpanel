@@ -10,7 +10,7 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 import '../../../custome.css';
 import url from "../../../Development.json";
-import { errorResponse, successResponse, configHeaderAxios } from "../../helpers/response";
+import { errorResponse, successResponse, configHeaderAxios  ,customStylesDataTable  } from "../../helpers/response";
 import { useHistory } from 'react-router';
 import dummy from '../../../assets/img/dummyImg.png';
 
@@ -122,6 +122,7 @@ const Index = () => {
         () => [
             {
                 name: 'Serial No.',
+                width: '90px',
                 cell: (row, index) => index + 1  //RDT provides index by default
 
             },
@@ -200,6 +201,8 @@ const Index = () => {
         </>
     );
 
+    const customStyles = customStylesDataTable();
+
     return (
         <>
             <DataTable
@@ -209,7 +212,7 @@ const Index = () => {
                 title="Roles List"
                 columns={columns}
                 keyField="id"
-
+                customStyles={customStyles}
                 data={dataTableData}
                 progressPending={loading}
                 pagination

@@ -16,6 +16,7 @@ const Create = () => {
         register,
         handleSubmit,
         setValue,
+        reset,
         formState: { errors }
     } = useForm();
 
@@ -105,7 +106,7 @@ const Create = () => {
                                     <input type="text"
                                         className="form-control"
                                         id="name"
-                                        placeholder="Admin Name"
+                                        placeholder="Name"
                                         {...register('name', { required: true })}
                                     />
                                 </div>
@@ -115,7 +116,7 @@ const Create = () => {
                                     <input type="email"
                                         className="form-control"
                                         id="email"
-                                        placeholder="Admin Email"
+                                        placeholder="Email"
                                         {...register('email', { required: true })}
                                     />
                                 </div>
@@ -150,7 +151,9 @@ const Create = () => {
                                     />
                                 </div>
 
-                                <ButtonSubmitReset btnloader={btnloader}/>
+                                <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
+                                    reset();
+                                }} />
 
                             </div>
                         </div>

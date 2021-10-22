@@ -25,6 +25,7 @@ const Create = () => {
         setValue,
         handleSubmit,
         watch,
+        reset,
         formState: { errors }
     } = useForm();
     const password = useRef({});
@@ -212,12 +213,15 @@ const Create = () => {
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="role">Roles</label>
                                     <select className="form-control" id="role" onChange={handleChangeRole}
->
-                                        {console.log(roleOptions)}
+                                    >
+                                        <option disabled selected>
+                                            Please Select Role
+                                        </option>
                                         {roleOptions.map((option) =>
                                             <option>
                                                 {option.name}
                                             </option>)}
+
                                     </select>
                                 </div>
 
@@ -252,8 +256,9 @@ const Create = () => {
 
 
 
-                                <ButtonSubmitReset btnloader={btnloader} />
-
+                                <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
+                                    reset();
+                                }} />
                             </div>
                         </div>
                     </form>

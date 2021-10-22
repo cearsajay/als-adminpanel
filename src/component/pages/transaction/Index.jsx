@@ -3,7 +3,7 @@ import React, { useMemo, useState,  useEffect } from 'react';
 import axios from "axios";
 import '../../../custome.css';
 import url from "../../../Development.json";
-import { errorResponse, configHeaderAxios } from "../../helpers/response";
+import { errorResponse, configHeaderAxios , customStylesDataTable } from "../../helpers/response";
 const Index = () => {
     const [dataTableData, setDataTableData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -55,13 +55,15 @@ const Index = () => {
         setPage(page);
         getData(page);
     };
+    const customStyles = customStylesDataTable();
+
 
     const columns = useMemo(
         () => [
             {
                 name: 'Serial No.',
+                width: '90px',
                 cell: (row, index) => index + 1  //RDT provides index by default
-
             },
             {
                 name: 'To User',
@@ -135,7 +137,7 @@ const Index = () => {
                 title="Transaction List"
                 columns={columns}
                 keyField="id"
-
+                customStyles={customStyles}
                 data={dataTableData}
                 progressPending={loading}
                 pagination

@@ -5,7 +5,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 //  start custome url define
 import url from "../../../Development.json";
-import { errorResponse, successResponse, isError, configHeaderAxios } from "../../helpers/response";
+import { errorResponse, successResponse, isError, configHeaderAxios   } from "../../helpers/response";
 import { Breadcrumb, Form, Check } from 'react-bootstrap';
 import ButtonSubmitReset from '../layouts/ButtonSubmitReset';
 
@@ -19,6 +19,7 @@ const Create = () => {
     const {
         register,
         setValue,
+        reset,
         handleSubmit,
         formState: { errors }
     } = useForm();
@@ -83,6 +84,7 @@ const Create = () => {
                 }
             });
     }
+
     return (
         <>
             <div className="page-heading-part">
@@ -98,7 +100,7 @@ const Create = () => {
                 <div className="card-body pb-2">
                     <form className="pt-3" onSubmit={handleSubmit(onSubmit)}>
                         <div className="row">
-                            <div className="col-md-6">
+                            <div className="col-12">
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="name">Name</label>
 
@@ -106,7 +108,7 @@ const Create = () => {
                                         className="form-control"
                                         id="name"
                                         placeholder="Name"
-                                        {...register('name', (!id) ? { required: true } : '')}
+                                        {...register('name',  { required: true } )}
                                     />
                                 </div>
                                 <div className='checkboxgroup-scroll'>
@@ -132,7 +134,9 @@ const Create = () => {
 
                                     </ul>
                                 </div>
-                                <ButtonSubmitReset btnloader={btnloader} />
+                                <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
+                                    reset();
+                                }} />
                             </div>
                         </div>
                     </form>

@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import '../../../custome.css';
 import url from "../../../Development.json";
-import { errorResponse, successResponse, configHeaderAxios } from "../../helpers/response";
+import { errorResponse, successResponse, configHeaderAxios , customStylesDataTable } from "../../helpers/response";
 import { useHistory } from 'react-router';
 import KycDummy from '../../../assets/img/kyc.png';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
@@ -181,15 +181,7 @@ const Index = () => {
         getData(page);
     };
 
-    const customStyles = {
-        headCells: {
-            style: {
-                '&:last-child': {
-                    justifyContent: "center"
-                },
-            },
-        },
-    }
+    const customStyles = customStylesDataTable();
 
     const FilterComponent = (
         <>
@@ -208,9 +200,9 @@ const Index = () => {
     const columns = useMemo(
         () => [
             {
-                name: 'Serial No.',
+                name: 'Serial No',
+                width: '90px',
                 cell: (row, index) => index + 1  //RDT provides index by default
-
             },
             {
                 name: 'Name',
@@ -234,6 +226,7 @@ const Index = () => {
             },
             {
                 name: 'Kyc Status',
+                width: '110px',
                 selector: row =>
                     <>
 
@@ -280,6 +273,7 @@ const Index = () => {
             },
             {
                 name: 'Status',
+                width: '90px',
                 selector: row => <>
                     <span className={`btn btn-sm  ${row.status === 1 ? "btn-success" : "btn-danger"}`}>
                         {
@@ -293,7 +287,6 @@ const Index = () => {
             {
                 name: 'Action',
                 minWidth: '300px',
-                className: 'justify-content-center',
                 selector: row =>
                     <>
                         <OverlayTrigger

@@ -7,6 +7,30 @@ toast.configure({
     // autoClose: 500,
 });
 
+function customStylesDataTable() {
+    const customStyles = {
+        headCells: {
+            style: {
+                '&:last-child': {
+                    justifyContent: "center"
+                },
+            },
+        },
+        cells:{
+            style: {
+                '&:first-child': {
+                    justifyContent: "center"
+                },
+                '&:last-child': {
+                    justifyContent: "center"
+                },
+            },
+        }
+    }
+    return customStyles;
+
+
+}
 function isLoginResponse(history) {
     const isLogin = localStorage.getItem("access_token") || false;
 
@@ -161,4 +185,4 @@ function HasRole(response) {
     }
 }
 
-export { errorResponse, successResponse, isLoginResponse, configHeaderAxios, isError };
+export { errorResponse, successResponse, isLoginResponse, configHeaderAxios, isError ,customStylesDataTable };

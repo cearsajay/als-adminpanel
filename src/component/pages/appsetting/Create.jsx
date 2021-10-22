@@ -1,4 +1,4 @@
-import React, { useEffect , useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import url from "../../../Development.json";
@@ -11,6 +11,7 @@ const Create = () => {
         register,
         handleSubmit,
         setValue,
+        reset,
         formState: { errors }
     } = useForm();
 
@@ -76,29 +77,46 @@ const Create = () => {
                     <form className="pt-3" onSubmit={handleSubmit(onSubmit)}>
                         <div className="row">
                             <div className="col-md-6">
-
                                 <div className="form-group">
-                                    <label className="form-label" htmlFor="service_charge">Service Charge</label>
+                                    <label className="form-label flex-label flex-label" htmlFor="service_charge">Service Charge
+
+                                        <small className="form-text text-muted">A service charge is a fee collected to pay for services.</small>
+                                        <div className="input-group-append ml-2">
+                                            <span className="input-group-text" id="basic-addon2">%</span>
+                                        </div>
+                                    </label>
                                     <input type="number"
                                         className="form-control"
                                         id="service_charge"
-                                        placeholder="Admin Service Charge"
-                                        {...register('service_charge', { required: true,
+                                        placeholder="Service Charge"
+                                        {...register('service_charge', {
+                                            required: true,
                                             min: {
                                                 value: 0,
                                             },
                                             max: {
                                                 value: 100,
                                             }
-                                         })}
+                                        })}
                                     />
+
+
                                 </div>
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
-                                    <label className="form-label" htmlFor="admin_fee">Admin Fee</label>
+                                    <label className="form-label flex-label" htmlFor="admin_fee">Admin Fee
+
+                                        <small className="form-text text-muted">An admin fee is an important component of the cost.</small>
+
+                                        <div className="input-group-append ml-2">
+                                            <span className="input-group-text" id="basic-addon2">%</span>
+                                        </div>
+                                    </label>
                                     <input type="number"
                                         className="form-control"
                                         id="admin_fee"
-                                         
+
                                         placeholder="Admin Fee"
                                         {...register('admin_fee', {
                                             required: true,
@@ -112,91 +130,138 @@ const Create = () => {
                                         })}
                                     />
                                 </div>
-
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
-                                    <label className="form-label" htmlFor="payment_process_fee"> Payment Process Fee </label>
+                                    <label className="form-label flex-label" htmlFor="payment_process_fee"> Payment Process Fee
+                                        <small className="form-text text-muted"> fee charged by payment processors to process a particular credit card transaction .</small>
+
+                                        <div className="input-group-append ml-2">
+                                            <span className="input-group-text" id="basic-addon2">%</span>
+                                        </div>
+                                    </label>
                                     <input type="number"
                                         className="form-control"
                                         id="payment_process_fee"
-                                         
-                                        placeholder="Admin  Payment Process Fee "
-                                        {...register('payment_process_fee', { required: true,
+
+                                        placeholder="Payment Process Fee "
+                                        {...register('payment_process_fee', {
+                                            required: true,
                                             min: {
                                                 value: 0,
                                             },
                                             max: {
                                                 value: 100,
-                                            } })}
+                                            }
+                                        })}
                                     />
                                 </div>
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
-                                    <label className="form-label" htmlFor="admin_fee_min"> Admin Fee Minimum </label>
+                                    <label className="form-label flex-label" htmlFor="admin_fee_min">Fee Minimum
+                                        <small className="form-text text-muted"> Employer to remit @ 0.5% of contributions (subject a minimum) .</small>
+
+                                        <div className="input-group-append ml-2">
+                                            <span className="input-group-text" id="basic-addon2">%</span>
+                                        </div>
+                                    </label>
                                     <input type="number"
                                         className="form-control"
                                         id="admin_fee_min"
-                                         
-                                        placeholder="Admin  Admin Fee Minimum "
-                                        {...register('admin_fee_min', { required: true,
+
+                                        placeholder="Fee Minimum "
+                                        {...register('admin_fee_min', {
+                                            required: true,
                                             min: {
                                                 value: 0,
                                             },
                                             max: {
                                                 value: 100,
-                                            } })}
+                                            }
+                                        })}
                                     />
                                 </div>
-
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
-                                    <label className="form-label" htmlFor="admin_fee_max"> Admin Fee Maximum </label>
+                                    <label className="form-label flex-label" htmlFor="admin_fee_max">Fee Maximum
+                                        <small className="form-text text-muted"> Employer to remit @ 0.5% of contributions (subject a miximum) .</small>
+
+                                        <div className="input-group-append ml-2">
+                                            <span className="input-group-text" id="basic-addon2">%</span>
+                                        </div>
+                                    </label>
                                     <input type="number"
                                         className="form-control"
                                         id="admin_fee_max"
-                                         
-                                        placeholder="Admin  Admin Fee Maximum "
-                                        {...register('admin_fee_max', { required: true,  min: {
-                                            value: 0,
-                                        },
-                                        max: {
-                                            value: 100,
-                                        }})}
+
+                                        placeholder="Fee Maximum "
+                                        {...register('admin_fee_max', {
+                                            required: true, min: {
+                                                value: 0,
+                                            },
+                                            max: {
+                                                value: 100,
+                                            }
+                                        })}
                                     />
                                 </div>
-
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
-                                    <label className="form-label" htmlFor="admin_fee_amount"> Admin Fee Amount </label>
+                                    <label className="form-label flex-label" htmlFor="admin_fee_amount">Fee Amount
+                                        <small className="form-text text-muted">The admin fee is the fee you pay.</small>
+
+                                        <div className="input-group-append ml-2">
+                                            <span className="input-group-text" id="basic-addon2">$</span>
+                                        </div>
+                                    </label>
                                     <input type="number"
                                         className="form-control"
                                         id="admin_fee_amount"
-                                         
-                                        placeholder="Admin  Admin Fee Amount "
-                                        {...register('admin_fee_amount', { required: true,
+
+                                        placeholder="Fee Amount "
+                                        {...register('admin_fee_amount', {
+                                            required: true,
                                             min: {
                                                 value: 0,
                                             },
                                             max: {
                                                 value: 100,
-                                            } })}
+                                            }
+                                        })}
                                     />
                                 </div>
-
+                            </div>
+                            <div className="col-md-6">
                                 <div className="form-group">
-                                    <label className="form-label" htmlFor="admin_fee_discount"> Admin Fee Discount </label>
+                                    <label className="form-label flex-label" htmlFor="admin_fee_discount">Fee Discount
+                                        <small className="form-text text-muted">Admin Fees On Discounted Price .</small>
+
+                                        <div className="input-group-append ml-2">
+                                            <span className="input-group-text" id="basic-addon2">$</span>
+                                        </div></label>
                                     <input type="number"
                                         className="form-control"
                                         id="admin_fee_discount"
-                                         
-                                        placeholder="Admin  Admin Fee Discount "
-                                        {...register('admin_fee_discount', { required: true, min: {
-                                            value: 0,
-                                        },
-                                        max: {
-                                            value: 100,
-                                        } })}
+
+                                        placeholder="Fee Discount "
+                                        {...register('admin_fee_discount', {
+                                            required: true, min: {
+                                                value: 0,
+                                            },
+                                            max: {
+                                                value: 100,
+                                            }
+                                        })}
                                     />
                                 </div>
 
 
-                                <ButtonSubmitReset btnloader={btnloader}/>
+                                <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
+                                    reset();
+                                }} />
 
                             </div>
                         </div>

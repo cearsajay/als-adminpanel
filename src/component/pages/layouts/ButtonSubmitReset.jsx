@@ -2,7 +2,7 @@ import React from 'react';
 import { Spinner } from 'react-bootstrap';
 
 const ButtonSubmitReset = (props) => {
-    const {btnloader} = props;
+    const {btnloader, onsubmitFun} = props;
     return (
         <>
             <div className="form-group">
@@ -13,9 +13,8 @@ const ButtonSubmitReset = (props) => {
                         </>
                             : ''
                         }
-
                         {btnloader ? 'loading...' : 'Submit'}</button>
-                    <button type="reset" className="btn btn-secondary">Reset</button>
+                    <button type="button" className="btn btn-secondary" onClick={onsubmitFun}>Reset</button>
                 </div>
             </div>
         </>

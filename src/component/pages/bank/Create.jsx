@@ -21,6 +21,7 @@ const Create = () => {
     const {
         register,
         setValue,
+        reset,
         handleSubmit,
         formState: { errors }
     } = useForm();
@@ -120,7 +121,7 @@ const Create = () => {
                                         className="form-control"
                                         id="name"
                                         placeholder="Bank Name"
-                                        {...register('name', (!id) ? { required: true } : '')}
+                                        {...register('name',  { required: true } )}
                                     />
                                 </div>
                                 <div className="form-group">
@@ -143,7 +144,9 @@ const Create = () => {
                                         className="imgBox"
                                     />
                                 </div>
-                                <ButtonSubmitReset btnloader={btnloader}/>
+                                <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
+                                    reset();
+                                }} />
 
                             </div>
                         </div>
