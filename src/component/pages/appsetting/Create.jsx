@@ -89,7 +89,7 @@ const Create = () => {
                                     <input type="number"
                                         className="form-control"
                                         id="service_charge"
-                                        placeholder="Admin Service Charge"
+                                        placeholder="Service Charge"
                                         {...register('service_charge', {
                                             required: true,
                                             min: {
@@ -142,7 +142,7 @@ const Create = () => {
                                         className="form-control"
                                         id="payment_process_fee"
 
-                                        placeholder="Admin  Payment Process Fee "
+                                        placeholder="Payment Process Fee "
                                         {...register('payment_process_fee', {
                                             required: true,
                                             min: {
@@ -155,7 +155,7 @@ const Create = () => {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label className="form-label flex-label" htmlFor="admin_fee_min"> Admin Fee Minimum
+                                    <label className="form-label flex-label" htmlFor="admin_fee_min">Fee Minimum
                                         <small className="form-text text-muted"> Employer to remit @ 0.5% of contributions (subject a minimum) .</small>
 
                                         <div className="input-group-append ml-2">
@@ -166,7 +166,7 @@ const Create = () => {
                                         className="form-control"
                                         id="admin_fee_min"
 
-                                        placeholder="Admin  Admin Fee Minimum "
+                                        placeholder="Fee Minimum "
                                         {...register('admin_fee_min', {
                                             required: true,
                                             min: {
@@ -180,7 +180,7 @@ const Create = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="form-label flex-label" htmlFor="admin_fee_max"> Admin Fee Maximum
+                                    <label className="form-label flex-label" htmlFor="admin_fee_max">Fee Maximum
                                         <small className="form-text text-muted"> Employer to remit @ 0.5% of contributions (subject a miximum) .</small>
 
                                         <div className="input-group-append ml-2">
@@ -191,7 +191,7 @@ const Create = () => {
                                         className="form-control"
                                         id="admin_fee_max"
 
-                                        placeholder="Admin  Admin Fee Maximum "
+                                        placeholder="Fee Maximum "
                                         {...register('admin_fee_max', {
                                             required: true, min: {
                                                 value: 0,
@@ -204,7 +204,7 @@ const Create = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="form-label flex-label" htmlFor="admin_fee_amount"> Admin Fee Amount
+                                    <label className="form-label flex-label" htmlFor="admin_fee_amount">Fee Amount
                                         <small className="form-text text-muted">The admin fee is the fee you pay.</small>
 
                                         <div className="input-group-append ml-2">
@@ -215,7 +215,7 @@ const Create = () => {
                                         className="form-control"
                                         id="admin_fee_amount"
 
-                                        placeholder="Admin  Admin Fee Amount "
+                                        placeholder="Fee Amount "
                                         {...register('admin_fee_amount', {
                                             required: true,
                                             min: {
@@ -229,7 +229,7 @@ const Create = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="form-label flex-label" htmlFor="admin_fee_discount"> Admin Fee Discount
+                                    <label className="form-label flex-label" htmlFor="admin_fee_discount">Fee Discount
                                         <small className="form-text text-muted">Admin Fees On Discounted Price .</small>
 
                                         <div className="input-group-append ml-2">
@@ -239,7 +239,7 @@ const Create = () => {
                                         className="form-control"
                                         id="admin_fee_discount"
 
-                                        placeholder="Admin  Admin Fee Discount "
+                                        placeholder="Fee Discount "
                                         {...register('admin_fee_discount', {
                                             required: true, min: {
                                                 value: 0,
