@@ -146,7 +146,7 @@ button:focus{
     font-weight: 600;
 }
 .imageTableDataTable{
-    width: 50px;
+    width: 40px;
 }
 input[type="file"].form-control{
     height: 40px;
@@ -154,7 +154,15 @@ input[type="file"].form-control{
 .app-sidebar{
     background: #fff;
 }
-
+.rdt_TableCol, .rdt_TableCell {
+    padding: 6px 10px !important;
+}
+.rdt_TableCell{
+    font-size: 15px;
+}
+.flex-label{
+    font-weight: 500;
+}
 
 @media (max-width: 767.98px){
     .checkboxgroup-scroll ul li{
