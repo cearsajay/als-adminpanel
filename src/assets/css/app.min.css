@@ -24914,7 +24914,7 @@ a.text-gray-900:hover {
 }
 
 .text-muted {
-    color: #869ac0 !important;
+    color: #677899 !important;
 }
 
 .bg-muted {
@@ -32097,4 +32097,9 @@ body div.dt-button-info div {
 .checkboxgroup-scroll{
     max-height: 400px;
     overflow-x: hidden;
+}
+.flex-label{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

@@ -19,6 +19,7 @@ const Create = () => {
     const {
         register,
         setValue,
+        reset,
         handleSubmit,
         formState: { errors }
     } = useForm();
@@ -106,7 +107,7 @@ const Create = () => {
                                         className="form-control"
                                         id="name"
                                         placeholder="Name"
-                                        {...register('name', (!id) ? { required: true } : '')}
+                                        {...register('name',  { required: true } )}
                                     />
                                 </div>
                                 <div className='checkboxgroup-scroll'>
@@ -132,7 +133,9 @@ const Create = () => {
 
                                     </ul>
                                 </div>
-                                <ButtonSubmitReset btnloader={btnloader} />
+                                <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
+                                    reset();
+                                }} />
                             </div>
                         </div>
                     </form>

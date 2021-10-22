@@ -10,6 +10,7 @@ const Profile = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors }
     } = useForm();
 
@@ -78,7 +79,9 @@ const Profile = () => {
                                         {...register('password_confirmation', { required: true })}
                                     />
                                 </div>
-                                <ButtonSubmitReset btnloader={btnloader}/>
+                                <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
+                                    reset();
+                                }} />
                             </div>
                         </div>
                     </form>

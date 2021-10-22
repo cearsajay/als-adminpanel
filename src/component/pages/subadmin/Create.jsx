@@ -25,6 +25,7 @@ const Create = () => {
         setValue,
         handleSubmit,
         watch,
+        reset,
         formState: { errors }
     } = useForm();
     const password = useRef({});
@@ -252,8 +253,9 @@ const Create = () => {
 
 
 
-                                <ButtonSubmitReset btnloader={btnloader} />
-
+                                <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
+                                    reset();
+                                }} />
                             </div>
                         </div>
                     </form>

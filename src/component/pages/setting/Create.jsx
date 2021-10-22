@@ -16,6 +16,7 @@ const Create = () => {
         register,
         handleSubmit,
         setValue,
+        reset,
         formState: { errors }
     } = useForm();
 
@@ -150,7 +151,9 @@ const Create = () => {
                                     />
                                 </div>
 
-                                <ButtonSubmitReset btnloader={btnloader}/>
+                                <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
+                                    reset();
+                                }} />
 
                             </div>
                         </div>

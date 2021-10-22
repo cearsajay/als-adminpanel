@@ -24,6 +24,7 @@ const Create = () => {
     const {
         register,
         setValue,
+        reset,
         handleSubmit,
         watch,
         formState: { errors }
@@ -306,7 +307,9 @@ const Create = () => {
                                         className="imgBox"
                                     />
                                 </div>
-                                <ButtonSubmitReset btnloader={btnloader} />
+                                <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
+                                    reset();
+                                }} />
                             </div>
                         </div>
                     </form>

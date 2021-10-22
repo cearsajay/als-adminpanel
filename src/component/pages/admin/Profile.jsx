@@ -12,10 +12,6 @@ const Profile = () => {
     const [icon, setIcon] = useState(dummy);
     const [btnloader, setbtnloader] = useState(false);
     const [id, setId] = useState('');
-    const defaultValues = {
-        email: "",
-        name: ""
-    };
 
     const {
         register,
@@ -24,10 +20,6 @@ const Profile = () => {
         reset,
         formState: { errors }
     } = useForm();
-
-    useEffect(() => {
-        reset(fileName);
-    }, [fileName]);
 
     useEffect(() => {
         fetchData();
@@ -101,6 +93,7 @@ const Profile = () => {
                 }
             });
     }
+
     return (
         <>
             <div className="page-heading-part">
@@ -156,9 +149,9 @@ const Profile = () => {
                                         {...register('email', { required: true })}
                                     />
                                 </div>
-                                <ButtonSubmitReset btnloader={btnloader} />
-                                <button type="button" onClick={() => reset()}>Reset1111</button>
-
+                                <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
+                                    reset();
+                                }} />
                             </div>
                         </div>
                     </form>
