@@ -50,7 +50,7 @@ const Header = (props) => {
                     <Dropdown className="menu-item">
                         <Dropdown.Toggle id="dropdown-profile-button" className="menu-link">
                             <div className="menu-img user-profile-img online">
-                                <img src={profile} alt="" className="mw-100 mh-100 rounded-circle" />
+                                <img src={profile} alt="" className="w-100 h-100 rounded-circle" />
                             </div>
                             <div className="menu-text">{name}</div>
                         </Dropdown.Toggle>
