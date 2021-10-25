@@ -10,8 +10,8 @@ import { Link } from 'react-router-dom';
 const Header = (props) => {
     const { sidebarToggle } = props;
 
-    const [name, setName] = useState(User);
-    const [profile, setProfile] = useState(User);
+    const [name, setName] = useState('');
+    const [profile, setProfile] = useState('');
 
     useEffect(() => {
         if (JSON.parse(localStorage.getItem('admin_profile'))) {

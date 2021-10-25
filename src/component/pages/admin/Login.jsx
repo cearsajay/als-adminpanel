@@ -6,6 +6,12 @@ import url from "../../../Development.json";
 import { errorResponse, successResponse } from "../../helpers/response";
 import { withRouter } from "react-router-dom";
 import Logo from '../../../assets/img/logo.png';
+
+import {
+    Redirect,
+} from "react-router-dom";
+
+
 const Login = () => {
     let history = useHistory();
     const {
@@ -14,8 +20,8 @@ const Login = () => {
         formState: { errors }
     } = useForm();
     useEffect(() => {
+        get_setting();
         const isLogin = localStorage.getItem("access_token") || false;
-
         if (isLogin) {
             history.push("/");
         }
@@ -32,7 +38,7 @@ const Login = () => {
         axios
             .post(process.env.REACT_APP_BASE_URL + url.login, JSON.stringify(data), config)
             .then((response) => {
-                let data = response.data.data; 
+                let data = response.data.data;
                 localStorage.setItem(
                     "access_token",
                     data.data.access_token
@@ -59,6 +65,32 @@ const Login = () => {
             .catch((error) => {
                 if (error.response) {
                     errorResponse(error);
+                }
+            });
+    }
+    const get_setting = () => {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": 'application/json'
+            },
+        };
+        axios
+            .get(process.env.REACT_APP_BASE_URL + url.get_setting, config)
+            .then((response) => {
+                successResponse(response);
+            })
+            .catch((error) => {
+                if (error.response) {
+                    localStorage.removeItem('access_token');
+                    localStorage.removeItem('admin_profile');
+                    <Redirect
+                        to={{
+                            pathname: "/login",
+                        }}
+                    />
+
+
                 }
             });
     }
