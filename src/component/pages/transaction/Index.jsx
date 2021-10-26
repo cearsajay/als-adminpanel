@@ -66,6 +66,33 @@ const Index = () => {
                 cell: (row, index) => index + 1  //RDT provides index by default
             },
             {
+                name: 'Type',
+                selector: row => <>
+                    <span className={`btn btn-sm  ${row.type === 0 ? "btn-warning" : row.type === 1 ? "btn-success" : row.type === 2 ? "btn-success" : row.type === 3 ? "btn-success"  : row.type === 4 ? "btn-success"  : "" }`}>
+                        {
+                            row.type === 0 
+                            ? "Default"
+                            :
+                            row.type === 1
+                            ? "Withdraw"
+                            :
+                            row.type === 2
+                            ? "Add Money"
+                            :
+                            row.type === 3
+                            ? "Transfer"
+                            :
+                            row.type === 4
+                            ? "Req-Accpeted"
+                            :
+                            " "
+                        }
+                    </span>
+                </>,
+                sortable: false,
+            },
+
+            {
                 name: 'To User',
                 selector: row => row.to_user_name,
                 sortable: true,

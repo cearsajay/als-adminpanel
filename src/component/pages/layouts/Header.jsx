@@ -66,11 +66,11 @@ const Header = (props) => {
                                 </Link>
                                 : ''}
                             <div className="dropdown-divider"></div>
-                            {localStorage.getItem('permissions').includes('subadmin_logout') ?
+                            {/* {localStorage.getItem('permissions').includes('subadmin_logout') ? */}
                                 <Link to={"/logout"} className="dropdown-item d-flex align-items-center">
                                     <FontAwesomeIcon icon={faToggleOff} className="fa-fw mr-2 text-gray-400 f-s-16" /> Log Out
                                 </Link>
-                                : ''}
+                                {/* : ''} */}
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
