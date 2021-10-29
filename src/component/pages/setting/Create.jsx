@@ -11,7 +11,7 @@ const Create = () => {
     const [fileName, setFileName] = useState('');
     const [icon, setIcon] = useState(dummy);
     const [btnloader, setbtnloader] = useState(false);
-
+    const [underMainte, setUnderMainte] = useState('');
     const {
         register,
         handleSubmit,
@@ -22,7 +22,7 @@ const Create = () => {
 
     useEffect(() => {
         fetchData();
-    },[])
+    }, [])
 
     const fetchData = () => {
         const config = configHeaderAxios();
@@ -30,10 +30,12 @@ const Create = () => {
             .get(process.env.REACT_APP_BASE_URL + url.get_setting, config)
             .then((response) => {
                 let data = response.data.data;
-                setValue('name', data[0].value);
-                setValue('email', data[1].value);
-                setValue('db_backup_email_id', data[2].value);
-                setValue('icon',process.env.REACT_APP_BASE_URL + 'uploads/logo/' + data[3].value);
+                data.map((option) => {
+                    setValue(option.key, option.value);
+                    if (option.key === 'app_is_under_maintenances') {
+                        setUnderMainte(option.value);
+                    }
+                })
             })
             .catch((error) => {
                 if (error.response) {
@@ -43,6 +45,8 @@ const Create = () => {
     }
     useEffect(() => {
         isError(errors);
+        console.log(underMainte);
+        console.log("underMainte");
     });
     const onFileChange = (e) => {
         onFileUpload(e.target.files[0]);
@@ -50,7 +54,7 @@ const Create = () => {
     const onFileUpload = (image) => {
         const formData = new FormData();
         const config = configHeaderAxios();
-        formData.append("type",2);//admin Logo
+        formData.append("type", 2);//admin Logo
         formData.append("avatar", image);
         let urlcall = process.env.REACT_APP_BASE_URL + url.image_upload;
         axios
@@ -84,6 +88,10 @@ const Create = () => {
                 }
             });
     }
+    const handleChangeRole = (event) => {
+        setValue('app_is_under_maintenances', event.target.value)
+    }
+
     return (
         <>
             <div className="page-heading-part">
@@ -121,6 +129,21 @@ const Create = () => {
                                     />
                                 </div>
                                 <div className="form-group">
+
+                                    <label className="form-label" htmlFor="app_is_under_maintenances">Under Maintenances</label>
+                                    <select className="form-control" id="app_is_under_maintenances" onChange={handleChangeRole}
+                                    >
+                                        <option value="0" selected={underMainte === '0' ? true : false} >
+                                            OFF
+                                        </option>
+                                        <option value="1" selected={underMainte === '1' ? true : false} >
+                                            ON
+                                        </option>
+
+                                    </select>
+                                </div>
+
+                                <div className="form-group">
                                     <label className="form-label" htmlFor="db_backup_email_id">Db Backup Email </label>
                                     <input type="email"
                                         className="form-control"
@@ -133,7 +156,7 @@ const Create = () => {
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="image">Logo</label>
                                     <input
-                                        {...register('image', (!icon) ? { required: true } : '') }
+                                        {...register('image', (!icon) ? { required: true } : '')}
                                         type="file"
                                         className="form-control"
                                         id="image"

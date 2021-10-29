@@ -170,6 +170,25 @@ const Create = () => {
                                         :
                                         <>
                                             <div className="form-group">
+                                                <label className="form-label" htmlFor="pin">Pin</label>
+                                                <input type="text"
+                                                    className="form-control"
+                                                    id="pin"
+                                                    placeholder="Pin"
+                                                    {...register('pin', {
+                                                        required: true,
+                                                        minLength: {
+                                                            value: 4,
+                                                        },
+                                                        maxLength: {
+                                                            value: 4,
+                                                        }
+                                                    }
+                                                    )}
+                                                />
+                                            </div>
+
+                                            <div className="form-group">
                                                 <label className="form-label" htmlFor="password">Password</label>
                                                 <input type="password"
                                                     className="form-control"

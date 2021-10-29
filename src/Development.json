@@ -5,6 +5,7 @@
     "profile_get": "admin/profile-get",
     "profile_update": "admin/profile-update",
     "change_password": "admin/change-password",
+    "change_pin": "admin/change-pin",
     "dashboard": "admin/dashboard",
 
     "get_country": "admin/country",

@@ -12,6 +12,7 @@ import DashBoard from "../pages/admin/DashBoard";
 import Logout from "../pages/admin/Logout";
 import Profile from "../pages/admin/Profile";
 import ChangePassword from "../pages/admin/ChangePassword";
+import ChangePin from "../pages/admin/ChangePin";
 import Users from "../pages/user/Index";
 import BankIndex from "../pages/bank/Index";
 import BankCreate from "../pages/bank/Create";
@@ -142,6 +143,13 @@ const routes = [
         permission: 'subadmin_change_password',
 
         component: () => <Main title="Change Password"><ChangePassword /></Main>,
+    },
+    {
+        path: '/change-pin',
+        exact: true,
+        auth: true,
+        permission: 'subadmin_change_password',
+        component: () => <Main title="Change Pin"><ChangePin /></Main>,
     },
     {
         path: '/dashBoard',

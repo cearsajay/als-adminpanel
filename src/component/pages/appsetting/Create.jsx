@@ -198,7 +198,8 @@ const Create = () => {
 
                                         placeholder="Fee Maximum "
                                         {...register('admin_fee_max', {
-                                            required: true, min: {
+                                            required: true,
+                                            min: {
                                                 value: 0,
                                             },
                                             max: {

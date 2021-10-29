@@ -65,6 +65,11 @@ const Header = (props) => {
                                     <FontAwesomeIcon icon={faWrench} className="fa-fw mr-2 text-gray-400 f-s-16" /> Change Password
                                 </Link>
                                 : ''}
+                            {localStorage.getItem('permissions').includes('subadmin_change_password') ?
+                                <Link to={"/change-pin"} className="dropdown-item d-flex align-items-center">
+                                    <FontAwesomeIcon icon={faWrench} className="fa-fw mr-2 text-gray-400 f-s-16" /> Change Pin
+                                </Link>
+                                : ''}
                             <div className="dropdown-divider"></div>
                             {/* {localStorage.getItem('permissions').includes('subadmin_logout') ? */}
                                 <Link to={"/logout"} className="dropdown-item d-flex align-items-center">

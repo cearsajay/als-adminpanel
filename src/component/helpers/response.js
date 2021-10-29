@@ -98,6 +98,10 @@ function isError(error) {
             } else if (type === 'validate') {
                 message = errorAll[1].message;
                 isErrorMessage(name, message);
+            
+            } else if (type === 'pattern') {
+                message = errorAll[1].message;
+                isErrorMessage(name, message);
             }
             else {
                 message = 'required.';

@@ -84,16 +84,21 @@ const Index = () => {
                     <option value="3">Reject</option>
                 </select>
                 <label>Reason</label>
-                <input id="reason" type="text" class="form-control"></ br>`,
+                <input id="reason" type="text" class="form-control"></ br>
+                <label>Pin</label>
+                <input id="pin" type="text" class="form-control"></ br>
+                `,
             focusConfirm: false,
         })
         if (formValues) {
             const config = configHeaderAxios();
             const data = {};
             var reason = document.getElementById('reason').value;
+            var pin = document.getElementById('pin').value;
             var status = document.getElementById('status').value;
             data['id'] = id;
             data['reason'] = reason;
+            data['pin'] = pin;
             data['status'] = status;
             if (!reason) {
                 Swal.fire({
@@ -109,6 +114,14 @@ const Index = () => {
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Please Select Any Status of Kyc!',
+                })
+                return false;
+            }
+            if (!pin) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter your pin!',
                 })
                 return false;
             }
