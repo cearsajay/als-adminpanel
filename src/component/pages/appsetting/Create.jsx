@@ -160,10 +160,10 @@ const Create = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label flex-label" htmlFor="admin_fee_min">Fee Minimum
-                                        <small className="form-text text-muted"> Employer to remit @ 0.5% of contributions (subject a minimum) .</small>
+                                        <small className="form-text text-muted"> Employer to remit @ 0.5 of contributions (subject a minimum) .</small>
 
                                         <div className="input-group-append ml-2">
-                                            <span className="input-group-text" id="basic-addon2">%</span>
+                                            <span className="input-group-text" id="basic-addon2">$</span>
                                         </div>
                                     </label>
                                     <input type="number"
@@ -186,10 +186,10 @@ const Create = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label flex-label" htmlFor="admin_fee_max">Fee Maximum
-                                        <small className="form-text text-muted"> Employer to remit @ 0.5% of contributions (subject a miximum) .</small>
+                                        <small className="form-text text-muted"> Employer to remit @ 0.5 of contributions (subject a miximum) .</small>
 
                                         <div className="input-group-append ml-2">
-                                            <span className="input-group-text" id="basic-addon2">%</span>
+                                            <span className="input-group-text" id="basic-addon2">$</span>
                                         </div>
                                     </label>
                                     <input type="number"

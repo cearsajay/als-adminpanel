@@ -15,7 +15,6 @@ const Pin = () => {
     } = useForm();
 
     useEffect(() => {
-        console.log(errors);
         isError(errors);
     });
     const [btnloader, setbtnloader] = useState(false);

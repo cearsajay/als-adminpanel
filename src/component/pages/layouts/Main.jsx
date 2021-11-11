@@ -23,7 +23,6 @@ const Main = ({ component: Component, title, ...rest }) => {
         const interval = setInterval(() => {
             localStorage.removeItem('access_token');
             localStorage.removeItem('admin_profile');
-            console.log('Logs every minute');
         }, MINUTE_MS);
 
         return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.

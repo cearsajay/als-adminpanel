@@ -45,8 +45,7 @@ const Create = () => {
     }
     useEffect(() => {
         isError(errors);
-        console.log(underMainte);
-        console.log("underMainte");
+
     });
     const onFileChange = (e) => {
         onFileUpload(e.target.files[0]);
