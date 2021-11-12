@@ -152,6 +152,27 @@ const Create = () => {
                                     />
                                 </div>
 
+
+                                <div className="form-group">
+                                    <label className="form-label" htmlFor="latest_ios">Latest Ios version</label>
+                                    <input type="number"
+                                        className="form-control"
+                                        id="latest_ios"
+                                        placeholder="latest ios"
+                                        {...register('latest_ios', { required: true })}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className="form-label" htmlFor="latest_android">Latest android version</label>
+                                    <input type="number"
+                                        className="form-control"
+                                        id="latest_android"
+                                        placeholder="latest android"
+                                        {...register('latest_android', { required: true })}
+                                    />
+                                </div>
+                                
+
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="image">Logo</label>
                                     <input

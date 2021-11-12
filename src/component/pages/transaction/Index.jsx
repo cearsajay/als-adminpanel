@@ -14,7 +14,7 @@ const Index = () => {
     const [filterText, setFilterText] = useState('');
     let currentFilterText = '';
 
-    const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'ASC') => {
+    const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC') => {
         const config = configHeaderAxios();
         let dataSend = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}`;
         axios
