@@ -155,7 +155,7 @@ const Create = () => {
 
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="latest_ios">Latest Ios version</label>
-                                    <input type="number"
+                                    <input type="text"
                                         className="form-control"
                                         id="latest_ios"
                                         placeholder="latest ios"
@@ -164,7 +164,7 @@ const Create = () => {
                                 </div>
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="latest_android">Latest android version</label>
-                                    <input type="number"
+                                    <input type="text"
                                         className="form-control"
                                         id="latest_android"
                                         placeholder="latest android"
