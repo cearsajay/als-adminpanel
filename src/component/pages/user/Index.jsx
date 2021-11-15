@@ -229,7 +229,7 @@ const Index = () => {
             },
             {
                 name: 'Date Of Birth',
-                selector: row => row.date_of_birth,
+                selector: row => row.date_of_birth_formed,
                 sortable: true,
             },
             {
