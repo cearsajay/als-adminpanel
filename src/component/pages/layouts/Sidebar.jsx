@@ -80,6 +80,20 @@ const Sidebar = (props) => {
                                 </NavLink>
                             </Menu.Item>
                             : ''}
+                        {localStorage.getItem('permissions').includes('feed_back_view') ?
+                            <Menu.Item key="9">
+                                <NavLink to={"/support/list"} className="menu-link">
+                                    <FontAwesomeIcon icon={faTags} /> Support
+                                </NavLink>
+                            </Menu.Item>
+                            : ''}
+                        {localStorage.getItem('permissions').includes('feed_back_type_view') ?
+                            <Menu.Item key="10">
+                                <NavLink to={"/feed_back_type/list"} className="menu-link">
+                                    <FontAwesomeIcon icon={faTags} /> Feed Back Type
+                                </NavLink>
+                            </Menu.Item>
+                            : ''}
                     </Menu>
                 </div>
                 <button className="app-sidebar-mobile-backdrop" onClick={sidebarToggle} data-dismiss="sidebar-mobile"></button>

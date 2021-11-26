@@ -1,0 +1,148 @@
+import DataTable from 'react-data-table-component';
+import React, { useMemo, useState, useEffect } from 'react';
+import axios from "axios";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import '../../../custome.css';
+import url from "../../../Development.json";
+import { errorResponse, successResponse, configHeaderAxios, customStylesDataTable } from "../../helpers/response";
+import { useHistory } from 'react-router';
+
+const Index = () => {
+    const [dataTableData, setDataTableData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState(1);
+    const [totalRows, setTotalRows] = useState(0);
+    const [perPage, setPerPage] = useState(10);
+    const history = useHistory();
+    let currentFilterText = '';
+    const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC') => {
+        const config = configHeaderAxios();
+        let reqDD = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}`;
+        axios
+            .get(process.env.REACT_APP_BASE_URL + url.feed_back_get + reqDD, config)
+            .then((response) => {
+                setDataTableData(response.data.data.rows);
+                setTotalRows(response.data.data.count);
+                setLoading(false);
+            })
+            .catch((error) => {
+                if (error.response) {
+                    errorResponse(error);
+                }
+            });
+    }
+
+    useEffect(() => {
+        getData();
+    }, []);
+    const handlePerRowsChange = async (newPerPage, page) => {
+        setPage(page);
+        setLoading(true);
+        setPerPage(newPerPage);
+        getData(page, newPerPage);
+        setLoading(false);
+    };
+    const handleSort = (column, sortDirection) => {
+        setLoading(true);
+        setTimeout(() => {
+            getData(page, perPage, column.sortField, sortDirection);
+            setLoading(false);
+        }, 100);
+    };
+    const handlePageChange = page => {
+        setPage(page);
+        getData(page);
+    };
+    const supportButtonClick = (id) => {
+        history.push({
+            pathname: '/support/create',
+            search: '?id=' + id
+        });
+    };
+    const customStyles = customStylesDataTable();
+    const columns = useMemo(
+        () => [
+            {
+                name: 'Serial No.',
+                width: '90px',
+                cell: (row, index) => index + 1  //RDT provides index by default
+
+            },
+            {
+                name: 'User Name',
+                selector: row => row.from_user_name,
+                sortable: true,
+            },
+            {
+                name: 'Feed back Type',
+                selector: row => row.feed_back_type_name,
+                sortable: true,
+            },
+            {
+                name: 'Contact Information',
+                selector: row => row.contact_information,
+                sortable: true,
+            },
+            {
+                name: 'Status',
+                selector: row => <>
+                    <span className={`btn btn-sm  ${row.status === 1 ? "btn-success" : "btn-danger"}`}>
+                        {
+                            row.status === 1 ? "Active" : "De-Active"
+                        }
+                    </span>
+
+                </>,
+                sortable: false,
+            },
+            {
+                name: 'Action',
+                minWidth: '300px',
+                selector: row =>
+                    <>
+                        <OverlayTrigger
+
+                            placement="top"
+                            overlay={
+                                <Tooltip id={`tooltip-inner`}>
+                                    Manage Support
+                                </Tooltip>
+                            }
+                        >
+                            <button className="btn btn-primary ml-2" onClick={(id) => { supportButtonClick(row.id) }}>
+                                <FontAwesomeIcon icon={faPencilAlt} />
+                            </button>
+
+                        </OverlayTrigger>
+
+                    </>,
+            },
+        ],
+        [],
+    );
+    return (
+        <>
+            <DataTable
+                subHeader
+                title="Support List"
+                columns={columns}
+                customStyles={customStyles}
+                keyField="id"
+                data={dataTableData}
+                progressPending={loading}
+                pagination
+                paginationServer
+                paginationTotalRows={totalRows}
+                onChangeRowsPerPage={handlePerRowsChange}
+                onChangePage={handlePageChange}
+                sortServer
+                onSort={handleSort}
+                responsive
+            />
+        </>
+    );
+}
+
+export default Index;

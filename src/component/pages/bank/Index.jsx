@@ -50,7 +50,6 @@ const Index = () => {
     const editButtonClick = (id) => {
         history.push({
             pathname: '/bank/create',
-            search1: { "id": id },
             search: '?id=' + id
         });
     };

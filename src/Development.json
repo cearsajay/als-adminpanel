@@ -17,11 +17,21 @@
     "store_fee_setting": "admin/store-fee-setting",
 
     "transaction_get": "admin/transaction",
+
     "bank_store": "admin/bank/store",
     "bank_get": "admin/bank/get",
     "bank_delete": "admin/bank/delete",
     "bank_edit": "admin/bank/edit",
     "bank_change_status": "admin/bank/change-status",
+
+    "feed_back_get": "admin/feed_back/get",
+    "feed_back_get_replay": "admin/feed_back/replay",
+
+    "feed_back_type_store": "admin/feed_back_type/store",
+    "feed_back_type_get": "admin/feed_back_type/get",
+    "feed_back_type_delete": "admin/feed_back_type/delete",
+    "feed_back_type_edit": "admin/feed_back_type/edit",
+    "feed_back_type_change_status": "admin/feed_back_type/change-status",
 
     "permissions_get": "admin/permissions/get",
     "role_all_get": "admin/role/getAll",

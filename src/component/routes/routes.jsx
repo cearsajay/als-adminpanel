@@ -13,9 +13,12 @@ import Logout from "../pages/admin/Logout";
 import Profile from "../pages/admin/Profile";
 import ChangePassword from "../pages/admin/ChangePassword";
 import ChangePin from "../pages/admin/ChangePin";
-import Users from "../pages/user/Index";
 import BankIndex from "../pages/bank/Index";
 import BankCreate from "../pages/bank/Create";
+import FeedBackTypeIndex from "../pages/feedbacktype/Index";
+import FeedBackTypeCreate from "../pages/feedbacktype/Create";
+import SupportIndex from "../pages/support/Index";
+import SupportCreate from "../pages/support/Create";
 import RoleIndex from "../pages/role/Index";
 import RoleCreate from "../pages/role/Create";
 import UserIndex from "../pages/user/Index";
@@ -81,11 +84,38 @@ const routes = [
         component: () => <Main title="Sub Admin Create"><SubAdminCreate /></Main>,
     },
     {
+        path: '/support/list',
+        exact: true,
+        auth: true,
+        permission: 'support_view',
+        component: () => <Main title="Supoort List"><SupportIndex /></Main>,
+    },
+    {
+        path: '/support/create',
+        exact: true,
+        auth: true,
+        permission: 'support_store',
+        component: () => <Main title="Support Create"><SupportCreate /></Main>,
+    },
+    {
+        path: '/feed_back_type/list',
+        exact: true,
+        auth: true,
+        permission: 'feed-back_type_view',
+        component: () => <Main title="Feed Back Type List"><FeedBackTypeIndex /></Main>,
+    },
+    {
+        path: '/feed_back_type/create',
+        exact: true,
+        auth: true,
+        permission: 'feed_back_type_store',
+        component: () => <Main title="Feed Back Type Create"><FeedBackTypeCreate /></Main>,
+    },
+    {
         path: '/bank/list',
         exact: true,
         auth: true,
         permission: 'bank_view',
-
         component: () => <Main title="Bank List"><BankIndex /></Main>,
     },
     {

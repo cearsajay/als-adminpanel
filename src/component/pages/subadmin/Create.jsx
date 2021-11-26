@@ -16,8 +16,7 @@ const Create = () => {
     const [fileName, setFileName] = useState('');
     const [icon, setIcon] = useState(dummy);
     const [id, setId] = useState('');
-    // const current = new Date();
-    // const date = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`;
+
     const [btnloader, setbtnloader] = useState(false);
 
     const {
