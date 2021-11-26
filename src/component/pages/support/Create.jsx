@@ -14,6 +14,7 @@ let socket;
 const CONNECTION_PORT = "192.168.0.49:4001/";
 const Create = () => {
     let history = useHistory();
+    const [FeedBackImagesDataResponse, setFeedBackImagesDataResponse] = useState([]);
     const [replayDataResponse, setReplayDataResponse] = useState([]);
     const [FeedbackDataResponse, setFeedbackDataResponse] = useState([]);
     const [message, setMessage] = useState("");
@@ -21,6 +22,7 @@ const Create = () => {
     const [FeedBackId, setFeedBackId] = useState(0);
     const [mySocket, setMySocket] = useState(socket);
     let itemList = [];
+    let imageList = [];
     useEffect(() => {
         return () => {
             if (socket) {
@@ -30,16 +32,33 @@ const Create = () => {
     }, []);
     useEffect(() => {
         scrollTopCustom();
-    }, []);
+    });
     useEffect(() => {
         let query = new URLSearchParams(history.location.search);
         let id = query.get('id')
         if (id) {
             setFeedBackId(id);
-            fetchData(id, true);
+            fetchData(id);
         }
     }, [])
-    const fetchData = async (id, connect) => {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        if(count === 0){
+            if (FeedbackDataResponse.id) {
+                connectSocket(FeedbackDataResponse);
+                setCount(1);
+                socket.on("supportMessage", async (data) => {
+                    console.log("jp");
+                    console.log(data);
+                    await fetchData(FeedBackId);
+                });
+            }
+        }
+        
+    }, [FeedbackDataResponse])
+
+    const fetchData = async (id) => {
         let idpass = `?id=${id}`;
         const config = configHeaderAxios();
         axios
@@ -47,13 +66,10 @@ const Create = () => {
             .then(async (response) => {
                 let Replaydata = response.data.data.replay;
                 let feedbackData = response.data.data.feedback;
+                feedbackData.feedback_id = feedbackData.id;
+                await setFeedBackImagesDataResponse(feedbackData.feed_back_image);
                 await setReplayDataResponse(Replaydata);
                 await setFeedbackDataResponse(feedbackData);
-                scrollTopCustom();
-                if (connect) {
-                    connectSocket(feedbackData);
-                }
-
             })
             .catch((error) => {
                 if (error.response) {
@@ -61,6 +77,11 @@ const Create = () => {
                 }
             });
     }
+    imageList = FeedBackImagesDataResponse.map((item, i) => {
+        return <>
+            <img src={item.image} alt={item.image} className="imageTableDataTable" />
+        </>
+    })
     itemList = replayDataResponse.map((item, i) => {
         let classNameGiven = '';
         if (item.send_by == 1) {
@@ -82,6 +103,7 @@ const Create = () => {
     })
     // socket Start
     const connectSocket = async (feedbackData) => {
+        console.log("try socket connect");
         socket = io(CONNECTION_PORT, {
             transports: ['websocket'],
             upgrade: false,
@@ -104,10 +126,10 @@ const Create = () => {
             "feedback_id": feedbackData.id,
             "type": 2,
         });
-        socket.on("supportMessage", (data) => {
-            if (data.sender_soc_id !== socket.id) {
-                fetchData(data.feedbackData.feedback_id, false);
-            }
+        socket.on("supportMessage", async (data) => {
+            console.log("jp");
+            console.log(data);
+            await fetchData(FeedBackId);
         });
     };
     const scrollTopCustom = async () => {
@@ -121,14 +143,13 @@ const Create = () => {
         let messageContent = {
             user_id: FeedbackDataResponse.user_id,
             admin_id: AdminId,
-            feedback_id: FeedBackId,
+            feedback_id: Number(FeedBackId),
             reply: message,
             send_by: 2,
         };
         await socket.emit("supportMessage", messageContent);
-        setReplayDataResponse([...replayDataResponse, messageContent]);
+        await fetchData(FeedBackId);
         setMessage("");
-        scrollTopCustom();
     };
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
@@ -167,11 +188,16 @@ const Create = () => {
                                     {Moment(FeedbackDataResponse.createdAt).format('YYYY-MM-DD HH:MM:SS')}
                                 </p>
                             </div>
+
                             <div className="message-data">
                                 <p>
                                     Message :- {FeedbackDataResponse.message}
                                 </p>
                             </div>
+                            <div className="message-data">
+                                {imageList}
+                            </div>
+
                             {itemList}
                         </div>
                         <div className="message-chat-footer">

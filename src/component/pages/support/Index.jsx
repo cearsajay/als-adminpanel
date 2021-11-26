@@ -16,6 +16,8 @@ const Index = () => {
     const [totalRows, setTotalRows] = useState(0);
     const [perPage, setPerPage] = useState(10);
     const history = useHistory();
+    const [filterText, setFilterText] = useState('');
+
     let currentFilterText = '';
     const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC') => {
         const config = configHeaderAxios();
@@ -33,7 +35,6 @@ const Index = () => {
                 }
             });
     }
-
     useEffect(() => {
         getData();
     }, []);
@@ -68,11 +69,20 @@ const Index = () => {
                 name: 'Serial No.',
                 width: '90px',
                 cell: (row, index) => index + 1  //RDT provides index by default
-
             },
             {
                 name: 'User Name',
                 selector: row => row.from_user_name,
+                sortable: true,
+            },
+            {
+                name: 'Ticket No',
+                selector: row => row.ticket_id,
+                sortable: true,
+            },
+            {
+                name: 'Message',
+                selector: row => row.message,
                 sortable: true,
             },
             {
@@ -122,10 +132,31 @@ const Index = () => {
         ],
         [],
     );
+
+    const FilterComponent = (
+        <>
+            <div className="d-flex">
+                <input type="text"
+                    className="form-control"
+                    id="search"
+                    placeholder="Filter By Name"
+                    value={filterText}
+                    onChange={(event) => handleChange2(event)}
+                />
+            </div>
+        </>
+    );
+    const handleChange2 = (event) => {
+        currentFilterText = event.target.value;
+        setFilterText(currentFilterText);
+        getData(page);
+    }
+
     return (
         <>
             <DataTable
                 subHeader
+                subHeaderComponent={FilterComponent}
                 title="Support List"
                 columns={columns}
                 customStyles={customStyles}
