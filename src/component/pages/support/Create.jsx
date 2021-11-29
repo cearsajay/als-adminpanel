@@ -11,7 +11,7 @@ import { errorResponse, successResponse, isError, configHeaderAxios } from "../.
 import Moment from 'moment';
 import io from "socket.io-client";
 let socket;
-const CONNECTION_PORT = "192.168.0.49:4001/";
+const CONNECTION_PORT = process.env.REACT_APP_CONNECTION_PORTS;
 const Create = () => {
     let history = useHistory();
     const [FeedBackImagesDataResponse, setFeedBackImagesDataResponse] = useState([]);
@@ -44,7 +44,7 @@ const Create = () => {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        if(count === 0){
+        if (count === 0) {
             if (FeedbackDataResponse.id) {
                 connectSocket(FeedbackDataResponse);
                 setCount(1);
@@ -55,7 +55,7 @@ const Create = () => {
                 });
             }
         }
-        
+
     }, [FeedbackDataResponse])
 
     const fetchData = async (id) => {
@@ -104,19 +104,16 @@ const Create = () => {
     // socket Start
     const connectSocket = async (feedbackData) => {
         console.log("try socket connect");
-        socket = io(CONNECTION_PORT, {
-            transports: ['websocket'],
+        socket = io('/', {
+            path: "/alssocket",
+            secure: false,
+            // transports: ['websocket'],
             upgrade: false,
-            query: {
-                "userId": "admin"
-            },
             reconnection: false,
             rejectUnauthorized: false,
-            cors: {
-                origin: "http://localhost:4001",
-                credentials: true
-            }
         });
+        console.log("socket");
+        console.log(socket);
         if (JSON.parse(localStorage.getItem('admin_profile'))) {
             setAdminId(JSON.parse(localStorage.getItem('admin_profile')).id);
         }
