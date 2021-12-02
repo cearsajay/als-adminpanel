@@ -80,7 +80,7 @@ const Sidebar = (props) => {
                                 </NavLink>
                             </Menu.Item>
                             : ''}
-                        {localStorage.getItem('permissions').includes('feed_back_view') ?
+                        {localStorage.getItem('permissions').includes('support_view') ?
                             <Menu.Item key="9">
                                 <NavLink to={"/support/list"} className="menu-link">
                                     <FontAwesomeIcon icon={faTags} /> Support

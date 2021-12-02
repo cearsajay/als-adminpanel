@@ -1,17 +1,15 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import $ from "jquery";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import {  faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
-import { useForm } from "react-hook-form";
 //  start custome url define
 import url from "../../../Development.json";
-import { errorResponse, successResponse, isError, configHeaderAxios } from "../../helpers/response";
+import { errorResponse, configHeaderAxios } from "../../helpers/response";
 import Moment from 'moment';
 import io from "socket.io-client";
 let socket;
-const CONNECTION_PORT = process.env.REACT_APP_CONNECTION_PORTS;
 const Create = () => {
     let history = useHistory();
     const [FeedBackImagesDataResponse, setFeedBackImagesDataResponse] = useState([]);
@@ -84,10 +82,10 @@ const Create = () => {
     })
     itemList = replayDataResponse.map((item, i) => {
         let classNameGiven = '';
-        if (item.send_by == 1) {
+        if (item.send_by === 1) {
             classNameGiven = 'message-chat-list-sec left-chat';
         }
-        if (item.send_by == 2) {
+        if (item.send_by === 2) {
             classNameGiven = 'message-chat-list-sec right-chat';
         }
         return <>
