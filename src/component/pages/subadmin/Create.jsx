@@ -16,9 +16,10 @@ const Create = () => {
     const [fileName, setFileName] = useState('');
     const [icon, setIcon] = useState(dummy);
     const [id, setId] = useState('');
+    const [role, setRole] = useState('');
 
     const [btnloader, setbtnloader] = useState(false);
-
+    let itemList = [];
     const {
         register,
         setValue,
@@ -73,7 +74,7 @@ const Create = () => {
                     setIcon(data.profile_pic);
                 }
                 setValue('role', data.role);
-
+                setRole(data.role);
                 setValue('id', data.id);
             })
             .catch((error) => {
@@ -127,6 +128,17 @@ const Create = () => {
                 }
             });
     }
+
+    itemList = roleOptions.map((item, i) => {
+        return <>
+            <option value={item.name} selected={item.name == role}  >
+                {item.name}
+            </option>
+        </>
+    })
+
+
+
     return (
         <>
             <div className="page-heading-part">
@@ -235,10 +247,11 @@ const Create = () => {
                                         <option disabled selected>
                                             Please Select Role
                                         </option>
-                                        {roleOptions.map((option) =>
-                                            <option>
-                                                {option.name}
-                                            </option>)}
+                                        {itemList}
+                                        {/* {roleOptions.map((optiondata) =>
+                                            <option { ...optiondata.name === role ?? 'selected' } >
+                                                {optiondata.name}
+                                            </option>)} */}
 
                                     </select>
                                 </div>

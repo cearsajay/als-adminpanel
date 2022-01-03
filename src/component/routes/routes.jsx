@@ -30,13 +30,11 @@ import AppSetting from "../pages/appsetting/Create";
 import Transaction from "../pages/transaction/Index";
 import PageNotFound from "../pages/NotFound";
 import PermissionsNotAccess from "../pages/PermissionsNotAccess";
-
 const routes = [
     {
         path: '/admin/app-setting',
         exact: true,
         auth: true,
-        title: "App Setting",
         permission: 'app-setting_view',
         component: () => <Main title="App Setting"><AppSetting /></Main>,
     },
@@ -101,7 +99,7 @@ const routes = [
         path: '/feed_back_type/list',
         exact: true,
         auth: true,
-        permission: 'feed-back_type_view',
+        permission: 'feed_back_type_view',
         component: () => <Main title="Feed Back Type List"><FeedBackTypeIndex /></Main>,
     },
     {
@@ -123,7 +121,6 @@ const routes = [
         exact: true,
         auth: true,
         permission: 'bank_store',
-
         component: () => <Main title="Bank Create"><BankCreate /></Main>,
     },
     {
@@ -131,7 +128,6 @@ const routes = [
         exact: true,
         auth: true,
         permission: 'role_view',
-
         component: () => <Main title="Roles List"><RoleIndex /></Main>,
     },
     {
@@ -146,8 +142,7 @@ const routes = [
         path: '/logout',
         exact: true,
         auth: true,
-        permission: 'subadmin_logout',
-
+        permission: '',
         component: () => <Logout />,
     },
     {
@@ -155,7 +150,6 @@ const routes = [
         exact: true,
         auth: false,
         permission: '',
-
         component: () => <Login />,
     },
     {
@@ -163,7 +157,6 @@ const routes = [
         exact: true,
         auth: true,
         permission: 'subadmin_profile',
-
         component: () => <Main title="Profile"><Profile /></Main>,
     },
     {
@@ -171,7 +164,6 @@ const routes = [
         exact: true,
         auth: true,
         permission: 'subadmin_change_password',
-
         component: () => <Main title="Change Password"><ChangePassword /></Main>,
     },
     {

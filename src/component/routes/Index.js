@@ -5,24 +5,17 @@ import {
     Redirect,
     Switch
 } from "react-router-dom";
-
-
 import routes from "./routes.jsx";
 require('dotenv').config()
-
 const AuthRoute = (props) => {
-
     const isLogin = localStorage.getItem("access_token") || false;
     const render = isLogin ? (
         <>
-        <Route {...props} />
-
-            {/* {(localStorage.getItem('permissions') && localStorage.getItem('permissions').length > 0 && localStorage.getItem('permissions').includes(props.permission)) ? <Route {...props} /> : <Redirect
+            {(localStorage.getItem('permissions') && localStorage.getItem('permissions').length > 0 && localStorage.getItem('permissions').includes(props.permission)) ? <Route {...props} /> : <Redirect
                 to={{
                     pathname: "/permissions_not_access",
                 }}
-            />} */}
-
+            />}
         </>
     ) : (
         <Redirect
@@ -31,10 +24,7 @@ const AuthRoute = (props) => {
             }}
         />
     );
-
     return render;
-
-
 };
 const Routes = () => (
     <Router>
@@ -49,5 +39,4 @@ const Routes = () => (
         </Switch>
     </Router>
 );
-
 export default Routes;

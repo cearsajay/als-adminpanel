@@ -138,11 +138,16 @@ const Index = () => {
             {
                 name: 'Profile Pic',
                 selector: row => <>
-                    {row.icon !== '' ?
+                    {row.profile_pic !== '' ?
                         <img src={row.profile_pic} alt={row.name} className="imageTableDataTable" />
                         : <img src={dummy} className='imageTableDataTable' alt='No Image Found' />}
                 </>,
                 sortable: false,
+            },
+            {
+                name: 'Role',
+                selector: row => row.role,
+                sortable: true,
             },
             {
                 name: 'Status',

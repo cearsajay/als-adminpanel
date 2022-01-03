@@ -1,17 +1,15 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import $ from "jquery";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import {  faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
-import { useForm } from "react-hook-form";
 //  start custome url define
 import url from "../../../Development.json";
-import { errorResponse, successResponse, isError, configHeaderAxios } from "../../helpers/response";
+import { errorResponse, configHeaderAxios } from "../../helpers/response";
 import Moment from 'moment';
 import io from "socket.io-client";
 let socket;
-const CONNECTION_PORT = "192.168.0.49:4001/";
 const Create = () => {
     let history = useHistory();
     const [FeedBackImagesDataResponse, setFeedBackImagesDataResponse] = useState([]);
@@ -44,7 +42,7 @@ const Create = () => {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        if(count === 0){
+        if (count === 0) {
             if (FeedbackDataResponse.id) {
                 connectSocket(FeedbackDataResponse);
                 setCount(1);
@@ -55,7 +53,7 @@ const Create = () => {
                 });
             }
         }
-        
+
     }, [FeedbackDataResponse])
 
     const fetchData = async (id) => {
@@ -84,10 +82,10 @@ const Create = () => {
     })
     itemList = replayDataResponse.map((item, i) => {
         let classNameGiven = '';
-        if (item.send_by == 1) {
+        if (item.send_by === 1) {
             classNameGiven = 'message-chat-list-sec left-chat';
         }
-        if (item.send_by == 2) {
+        if (item.send_by === 2) {
             classNameGiven = 'message-chat-list-sec right-chat';
         }
         return <>
@@ -104,19 +102,16 @@ const Create = () => {
     // socket Start
     const connectSocket = async (feedbackData) => {
         console.log("try socket connect");
-        socket = io(CONNECTION_PORT, {
-            transports: ['websocket'],
+        socket = io('/', {
+            path: "/alssocket",
+            secure: false,
+            // transports: ['websocket'],
             upgrade: false,
-            query: {
-                "userId": "admin"
-            },
             reconnection: false,
             rejectUnauthorized: false,
-            cors: {
-                origin: "http://localhost:4001",
-                credentials: true
-            }
         });
+        console.log("socket");
+        console.log(socket);
         if (JSON.parse(localStorage.getItem('admin_profile'))) {
             setAdminId(JSON.parse(localStorage.getItem('admin_profile')).id);
         }

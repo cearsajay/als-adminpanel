@@ -18,7 +18,9 @@ const Create = () => {
     const [id, setId] = useState('');
     const [phoneNo, setMobilePhoneNo] = useState('');
     const current = new Date();
-    const date = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`;
+    const date = '01-01-2005';
+    // const date = `${current.getDate()}-${current.getMonth() + 1}-${current.getFullYear()}`;
+    // const date = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`;
     const [btnloader, setbtnloader] = useState(false);
 
     const {
@@ -165,10 +167,13 @@ const Create = () => {
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="date_of_birth">Date Of Birth</label>
 
+
                                     <input type="date"
                                         className="form-control"
                                         id="date_of_birth"
                                         max={date}
+                                        min="1950-01-01"
+                                        max="2005-01-01"
                                         placeholder="User date_of_birth"
                                         {...register('date_of_birth', { required: true })}
                                     />

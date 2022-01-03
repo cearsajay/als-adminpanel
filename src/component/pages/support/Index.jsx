@@ -72,31 +72,37 @@ const Index = () => {
             },
             {
                 name: 'User Name',
+                width: '90px',
                 selector: row => row.from_user_name,
                 sortable: true,
             },
             {
                 name: 'Ticket No',
-                selector: row => row.ticket_id,
+                width: '90px',
+                selector: row => "$" + row.ticket_id,
                 sortable: true,
             },
             {
                 name: 'Message',
+                width: '200px',
                 selector: row => row.message,
                 sortable: true,
             },
             {
                 name: 'Feed back Type',
+                width: '90px',
                 selector: row => row.feed_back_type_name,
                 sortable: true,
             },
             {
                 name: 'Contact Information',
+                width: '200px',
                 selector: row => row.contact_information,
                 sortable: true,
             },
             {
                 name: 'Status',
+                width: '90px',
                 selector: row => <>
                     <span className={`btn btn-sm  ${row.status === 1 ? "btn-success" : "btn-danger"}`}>
                         {
@@ -109,7 +115,7 @@ const Index = () => {
             },
             {
                 name: 'Action',
-                minWidth: '300px',
+                minWidth: '50px',
                 selector: row =>
                     <>
                         <OverlayTrigger
