@@ -30,6 +30,7 @@ const Create = () => {
                 setValue('admin_fee_max', data[4].value);
                 setValue('admin_fee_amount', data[5].value);
                 setValue('admin_fee_discount', data[6].value);
+                setValue('wallet_to_wallet', data[7].value);
             })
             .catch((error) => {
                 if (error.response) {
@@ -146,6 +147,32 @@ const Create = () => {
 
                                         placeholder="Payment Process Fee "
                                         {...register('payment_process_fee', {
+                                            required: true,
+                                            min: {
+                                                value: 0,
+                                            },
+                                            max: {
+                                                value: 100,
+                                            }
+                                        })}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label className="form-label flex-label" htmlFor="wallet_to_wallet"> wallet to Wallet Fee
+                                        <small className="form-text text-muted"> fee charged by wallet to wallet to process a particular.</small>
+
+                                        <div className="input-group-append ml-2">
+                                            <span className="input-group-text" id="basic-addon2">%</span>
+                                        </div>
+                                    </label>
+                                    <input type="number"
+                                        className="form-control"
+                                        id="wallet_to_wallet"
+
+                                        placeholder="wallet to wallet Fee "
+                                        {...register('wallet_to_wallet', {
                                             required: true,
                                             min: {
                                                 value: 0,
