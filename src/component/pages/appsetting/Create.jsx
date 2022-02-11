@@ -31,6 +31,8 @@ const Create = () => {
                 setValue('admin_fee_amount', data[5].value);
                 setValue('admin_fee_discount', data[6].value);
                 setValue('wallet_to_wallet', data[7].value);
+                setValue('refer_transaction_min_amount', data[8].value);
+                setValue('refer_amount_reciver', data[9].value);
             })
             .catch((error) => {
                 if (error.response) {
@@ -285,8 +287,62 @@ const Create = () => {
                                         })}
                                     />
                                 </div>
+                            </div>
 
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label className="form-label flex-label" htmlFor="refer_transaction_min_amount">Refer Transaction Min Amount
+                                        <small className="form-text text-muted">The Refer Transaction Min Amount.</small>
 
+                                        <div className="input-group-append ml-2">
+                                            <span className="input-group-text" id="basic-addon2">$</span>
+                                        </div>
+                                    </label>
+                                    <input type="number"
+                                        className="form-control"
+                                        id="refer_transaction_min_amount"
+
+                                        placeholder="Fee Amount "
+                                        {...register('refer_transaction_min_amount', {
+                                            required: true,
+                                            min: {
+                                                value: 0,
+                                            },
+                                            // max: {
+                                            //     value: 100,
+                                            // }
+                                        })}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label className="form-label flex-label" htmlFor="refer_amount_reciver">Refer Amount Reciver
+                                        <small className="form-text text-muted">The That Reciver to New User.</small>
+
+                                        <div className="input-group-append ml-2">
+                                            <span className="input-group-text" id="basic-addon2">$</span>
+                                        </div>
+                                    </label>
+                                    <input type="number"
+                                        className="form-control"
+                                        id="refer_amount_reciver"
+
+                                        placeholder="Fee Amount "
+                                        {...register('refer_amount_reciver', {
+                                            required: true,
+                                            min: {
+                                                value: 0,
+                                            },
+                                            // max: {
+                                            //     value: 100,
+                                            // }
+                                        })}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="col-md-12">
                                 <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
                                     reset();
                                 }} />
