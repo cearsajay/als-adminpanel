@@ -138,6 +138,8 @@ const Create = () => {
                                                             elem.name
                                                         )}
                                                     >
+                                                        {console.log(indx)}
+                                                        {console.log(indx)}
                                                         <div className="custom-control custom-checkbox">
                                                             <input
                                                                 className="custom-control-input"
