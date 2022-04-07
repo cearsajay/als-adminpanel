@@ -173,7 +173,6 @@ const Create = () => {
                                         id="date_of_birth"
                                         max={date}
                                         min="1950-01-01"
-                                        max="2005-01-01"
                                         placeholder="User date_of_birth"
                                         {...register('date_of_birth', { required: true })}
                                     />

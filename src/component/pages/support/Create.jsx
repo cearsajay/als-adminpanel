@@ -47,8 +47,6 @@ const Create = () => {
                 connectSocket(FeedbackDataResponse);
                 setCount(1);
                 socket.on("supportMessage", async (data) => {
-                    console.log("jp");
-                    console.log(data);
                     await fetchData(FeedBackId);
                 });
             }
@@ -101,7 +99,6 @@ const Create = () => {
     })
     // socket Start
     const connectSocket = async (feedbackData) => {
-        console.log("try socket connect");
         socket = io('/', {
             path: "/alssocket",
             secure: false,
@@ -110,8 +107,6 @@ const Create = () => {
             reconnection: false,
             rejectUnauthorized: false,
         });
-        console.log("socket");
-        console.log(socket);
         if (JSON.parse(localStorage.getItem('admin_profile'))) {
             setAdminId(JSON.parse(localStorage.getItem('admin_profile')).id);
         }
@@ -122,8 +117,6 @@ const Create = () => {
             "type": 2,
         });
         socket.on("supportMessage", async (data) => {
-            console.log("jp");
-            console.log(data);
             await fetchData(FeedBackId);
         });
     };

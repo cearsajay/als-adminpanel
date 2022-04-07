@@ -65,11 +65,7 @@ const Index = () => {
     const customStyles = customStylesDataTable();
     const columns = useMemo(
         () => [
-            {
-                name: 'Serial No.',
-                width: '90px',
-                cell: (row, index) => index + 1  //RDT provides index by default
-            },
+          
             {
                 name: 'User Name',
                 width: '90px',

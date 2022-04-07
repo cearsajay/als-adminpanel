@@ -59,8 +59,6 @@ const Create = () => {
             .then((response) => {
                 let data = response.data.data;
                 setValue("name", data.name);
-                // console.log(data.permission_name);
-                // console.log(JSON.parse(data.permission_name));
                 setSelectPermissions(JSON.parse(data.permission_name));
                 setId(data.id);
             })
@@ -140,8 +138,6 @@ const Create = () => {
                                                             elem.name
                                                         )}
                                                     >
-                                                        {console.log(indx)}
-                                                        {console.log(indx)}
                                                         <div className="custom-control custom-checkbox">
                                                             <input
                                                                 className="custom-control-input"

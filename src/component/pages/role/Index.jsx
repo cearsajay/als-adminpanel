@@ -119,15 +119,11 @@ const Index = () => {
 
     const columns = useMemo(
         () => [
-            {
-                name: 'Serial No.',
-                width: '90px',
-                cell: (row, index) => index + 1  //RDT provides index by default
-
-            },
+          
             {
                 name: 'Name',
                 selector: row => row.name,
+                width: '200px',
                 sortable: true,
             },
             {
