@@ -245,7 +245,7 @@ const Index = () => {
                         {(() => {
                             if (row.kyc_status === 0) {
                                 return (
-                                    <span className={`btn btn-sm  btn-warning `}>
+                                    <span className={`btn-sm  btn-warning `}>
                                         {
                                             "Pending"
                                         }
@@ -253,7 +253,7 @@ const Index = () => {
                                 )
                             } else if (row.kyc_status === 1) {
                                 return (
-                                    <span className={`btn btn-sm  btn-success`}>
+                                    <span className={`btn-sm  btn-success`}>
                                         {
                                             "Approved"
                                         }
@@ -261,7 +261,7 @@ const Index = () => {
                                 )
                             } else if (row.kyc_status === 2) {
                                 return (
-                                    <span className={`btn btn-sm  btn-success`}>
+                                    <span className={`btn-sm  btn-success`}>
                                         {
                                             "Pending"
                                         }
@@ -269,7 +269,7 @@ const Index = () => {
                                 )
                             } else if (row.kyc_status === 3) {
                                 return (
-                                    <span className={`btn btn-sm  btn-danger`}>
+                                    <span className={`btn-sm  btn-danger`}>
                                         {
                                             "Rejected"
                                         }
@@ -287,7 +287,7 @@ const Index = () => {
                 name: 'Status',
                 width: '90px',
                 selector: row => <>
-                    <span className={`btn btn-sm  ${row.status === 1 ? "btn-success" : "btn-danger"}`}>
+                    <span className={`btn-sm  ${row.status === 1 ? "btn-success" : "btn-danger"}`}>
                         {
                             row.status === 1 ? "Active" : "De-Active"
                         }

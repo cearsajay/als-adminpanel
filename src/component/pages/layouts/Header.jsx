@@ -55,21 +55,21 @@ const Header = (props) => {
                             <div className="menu-text">{name}</div>
                         </Dropdown.Toggle>
                         <Dropdown.Menu menuAlign="right" className="mr-lg-3">
-                            {localStorage.getItem('permissions').includes('subadmin_profile') ?
+                            {/* {localStorage.getItem('permissions').includes('subadmin_profile') ? */}
                                 <Link to={"/profile"} className="dropdown-item d-flex align-items-center">
                                     <FontAwesomeIcon icon={faUserCircle} className="fa-fw mr-2 text-gray-400 f-s-16" /> Edit Profile
                                 </Link>
-                                : ''}
-                            {localStorage.getItem('permissions').includes('subadmin_change_password') ?
+                                {/* : ''} */}
+                            {/* {localStorage.getItem('permissions').includes('subadmin_change_password') ? */}
                                 <Link to={"/change-password"} className="dropdown-item d-flex align-items-center">
                                     <FontAwesomeIcon icon={faWrench} className="fa-fw mr-2 text-gray-400 f-s-16" /> Change Password
                                 </Link>
-                                : ''}
-                            {localStorage.getItem('permissions').includes('subadmin_change_password') ?
+                                {/* : ''} */}
+                            {/* {localStorage.getItem('permissions').includes('subadmin_change_password') ? */}
                                 <Link to={"/change-pin"} className="dropdown-item d-flex align-items-center">
                                     <FontAwesomeIcon icon={faWrench} className="fa-fw mr-2 text-gray-400 f-s-16" /> Change Pin
                                 </Link>
-                                : ''}
+                                {/* : ''} */}
                             <div className="dropdown-divider"></div>
                             {/* {localStorage.getItem('permissions').includes('subadmin_logout') ? */}
                                 <Link to={"/logout"} className="dropdown-item d-flex align-items-center">

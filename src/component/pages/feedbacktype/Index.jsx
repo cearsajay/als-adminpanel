@@ -131,7 +131,7 @@ const Index = () => {
             {
                 name: 'Status',
                 selector: row => <>
-                    <span className={`btn btn-sm  ${row.status === 1 ?  "btn-success" : "btn-danger" }`}>
+                    <span className={`btn-sm  ${row.status === 1 ?  "btn-success" : "btn-danger" }`}>
                         {
                             row.status === 1 ? "Active" : "De-Active"
                         }

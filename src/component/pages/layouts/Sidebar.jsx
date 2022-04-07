@@ -37,14 +37,14 @@ const Sidebar = (props) => {
                                 <NavLink to={"/user/list"} className="menu-link"><FontAwesomeIcon icon={faUsers} /> User List</NavLink>
                             </Menu.Item>
                             : ''}
-                        {localStorage.getItem('permissions').includes('bank_view') ?
+                        {/* {localStorage.getItem('permissions').includes('bank_view') ?
 
                             <Menu.Item key="3">
                                 <NavLink to={"/bank/list"} className="menu-link">
                                     <FontAwesomeIcon icon={faUniversity} /> Bank List
                                 </NavLink>
                             </Menu.Item>
-                            : ''}
+                            : ''} */}
                         {localStorage.getItem('permissions').includes('setting_view') ?
                             <Menu.Item key="4">
                                 <NavLink to={"/admin/setting"} className="menu-link">

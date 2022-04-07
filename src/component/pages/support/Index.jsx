@@ -73,7 +73,7 @@ const Index = () => {
             {
                 name: 'User Name',
                 width: '90px',
-                selector: row => row.from_user_name,
+                selector: row => (row.send_user) ? row.send_user.name : '',
                 sortable: true,
             },
             {
@@ -91,7 +91,7 @@ const Index = () => {
             {
                 name: 'Feed back Type',
                 width: '90px',
-                selector: row => row.feed_back_type_name,
+                selector: row => (row.feed_back_type) ? row.feed_back_type.name : '',
                 sortable: true,
             },
             {
@@ -104,7 +104,7 @@ const Index = () => {
                 name: 'Status',
                 width: '90px',
                 selector: row => <>
-                    <span className={`btn btn-sm  ${row.status === 1 ? "btn-success" : "btn-danger"}`}>
+                    <span className={`btn-sm  ${row.status === 1 ? "btn-success" : "btn-danger"}`}>
                         {
                             row.status === 1 ? "Active" : "De-Active"
                         }

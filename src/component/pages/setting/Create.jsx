@@ -106,99 +106,109 @@ const Create = () => {
                 <div className="card-body pb-2">
                     <form className="pt-3" onSubmit={handleSubmit(onSubmit)}>
                         <div className="row">
-                            <div className="col-md-6">
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <label className="form-label" htmlFor="name">Name</label>
+                                        <input type="text"
+                                            className="form-control"
+                                            id="name"
+                                            placeholder="Name"
+                                            {...register('name', { required: true })}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <label className="form-label" htmlFor="email">email</label>
+                                        <input type="email"
+                                            className="form-control"
+                                            id="email"
+                                            placeholder="Email"
+                                            {...register('email', { required: true })}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="form-group">
 
-                                <div className="form-group">
-                                    <label className="form-label" htmlFor="name">Name</label>
-                                    <input type="text"
-                                        className="form-control"
-                                        id="name"
-                                        placeholder="Name"
-                                        {...register('name', { required: true })}
-                                    />
+                                        <label className="form-label" htmlFor="app_is_under_maintenances">Under Maintenances</label>
+                                        <select className="form-control" id="app_is_under_maintenances" onChange={handleChangeRole}
+                                        >
+                                            <option value="0" selected={underMainte === '0' ? true : false} >
+                                                OFF
+                                            </option>
+                                            <option value="1" selected={underMainte === '1' ? true : false} >
+                                                ON
+                                            </option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <label className="form-label" htmlFor="db_backup_email_id">Db Backup Email </label>
+                                        <input type="email"
+                                            className="form-control"
+                                            id="db_backup_email_id"
+                                            placeholder="Admin Backup Email"
+                                            {...register('db_backup_email_id', { required: true })}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+
+                                    <div className="form-group">
+                                        <label className="form-label" htmlFor="latest_ios">Latest Ios version</label>
+                                        <input type="text"
+                                            className="form-control"
+                                            id="latest_ios"
+                                            placeholder="latest ios"
+                                            {...register('latest_ios', { required: true })}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <label className="form-label" htmlFor="latest_android">Latest android version</label>
+                                        <input type="text"
+                                            className="form-control"
+                                            id="latest_android"
+                                            placeholder="latest android"
+                                            {...register('latest_android', { required: true })}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+
+                                    <div className="form-group">
+                                        <label className="form-label" htmlFor="image">Logo</label>
+                                        <input
+                                            {...register('image', (!icon) ? { required: true } : '')}
+                                            type="file"
+                                            className="form-control"
+                                            id="image"
+                                            name="image"
+                                            placeholder="image"
+                                            onChange={onFileChange}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <img
+                                            src={icon}
+                                            alt={icon} width="100" height="100"
+                                            className="imgBox"
+                                        />
+                                    </div>
                                 </div>
 
-                                <div className="form-group">
-                                    <label className="form-label" htmlFor="email">email</label>
-                                    <input type="email"
-                                        className="form-control"
-                                        id="email"
-                                        placeholder="Email"
-                                        {...register('email', { required: true })}
-                                    />
-                                </div>
-                                <div className="form-group">
+                                <div className="col-12">
+                                    <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
+                                        reset();
+                                    }} />
 
-                                    <label className="form-label" htmlFor="app_is_under_maintenances">Under Maintenances</label>
-                                    <select className="form-control" id="app_is_under_maintenances" onChange={handleChangeRole}
-                                    >
-                                        <option value="0" selected={underMainte === '0' ? true : false} >
-                                            OFF
-                                        </option>
-                                        <option value="1" selected={underMainte === '1' ? true : false} >
-                                            ON
-                                        </option>
-
-                                    </select>
                                 </div>
 
-                                <div className="form-group">
-                                    <label className="form-label" htmlFor="db_backup_email_id">Db Backup Email </label>
-                                    <input type="email"
-                                        className="form-control"
-                                        id="db_backup_email_id"
-                                        placeholder="Admin Backup Email"
-                                        {...register('db_backup_email_id', { required: true })}
-                                    />
-                                </div>
-
-
-                                <div className="form-group">
-                                    <label className="form-label" htmlFor="latest_ios">Latest Ios version</label>
-                                    <input type="text"
-                                        className="form-control"
-                                        id="latest_ios"
-                                        placeholder="latest ios"
-                                        {...register('latest_ios', { required: true })}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label className="form-label" htmlFor="latest_android">Latest android version</label>
-                                    <input type="text"
-                                        className="form-control"
-                                        id="latest_android"
-                                        placeholder="latest android"
-                                        {...register('latest_android', { required: true })}
-                                    />
-                                </div>
-                                
-
-                                <div className="form-group">
-                                    <label className="form-label" htmlFor="image">Logo</label>
-                                    <input
-                                        {...register('image', (!icon) ? { required: true } : '')}
-                                        type="file"
-                                        className="form-control"
-                                        id="image"
-                                        name="image"
-                                        placeholder="image"
-                                        onChange={onFileChange}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <img
-                                        src={icon}
-                                        alt={icon} width="100" height="100"
-                                        className="imgBox"
-                                    />
-                                </div>
-
-                                <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
-                                    reset();
-                                }} />
-
-                            </div>
                         </div>
                     </form>
                 </div>

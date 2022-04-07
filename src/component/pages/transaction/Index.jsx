@@ -68,7 +68,7 @@ const Index = () => {
             {
                 name: 'Type',
                 selector: row => <>
-                    <span className={`btn btn-sm  ${row.type === 0 ? "btn-warning" : row.type === 1 ? "btn-success" : row.type === 2 ? "btn-success" : row.type === 3 ? "btn-success"  : row.type === 4 ? "btn-success"  : "" }`}>
+                    <span className={`btn-sm  ${row.type === 0 ? "btn-warning" : row.type === 1 ? "btn-success" : row.type === 2 ? "btn-success" : row.type === 3 ? "btn-success"  : row.type === 4 ? "btn-success"  : "" }`}>
                         {
                             row.type === 0 
                             ? "Default"

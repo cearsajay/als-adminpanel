@@ -368,6 +368,15 @@ input[type="file"].form-control{
     color: #7184ad;
 }
 
+.rdt_TableCol .rdt_TableCol_Sortable:hover,
+.rdt_TableCol .rdt_TableCol_Sortable:hover:active{
+    color:#fff;
+}
+
+.rdt_TableRow.btn-sm{
+    display: inline-block;
+}
+
 @media (max-width: 991px){
     .message-chat-area {
         max-width: 45%;
