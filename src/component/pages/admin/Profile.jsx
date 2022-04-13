@@ -109,17 +109,29 @@ const Profile = () => {
                 <div className="card-body pb-2">
                     <form className="pt-3" onSubmit={handleSubmit(onSubmit)}>
                         <div className="row">
-                            <div className="col-md-6">
-                                <div className="form-group">
-                                    <label className="form-label" htmlFor="name">Name</label>
-                                    <input type="test"
-                                        className="form-control"
-                                        id="name"
-                                        placeholder="Name"
-                                        {...register('name', { required: true })}
-                                    />
 
-                                </div>
+
+                            <div className="col-md-6">
+                                <label className="form-label" htmlFor="name">Name</label>
+                                <input type="test"
+                                    className="form-control"
+                                    id="name"
+                                    placeholder="Name"
+                                    {...register('name', { required: true })}
+                                />
+
+                            </div>
+                            <div className="col-md-6">
+                                <label className="form-label" htmlFor="email">Email</label>
+                                <input type="email"
+                                    className="form-control"
+                                    id="email"
+                                    placeholder="Email"
+                                    {...register('email', { required: true })}
+                                />
+                            </div>
+
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="profile_pic">Profile Pic</label>
                                     <input
@@ -133,27 +145,22 @@ const Profile = () => {
                                     />
                                 </div>
 
-                                <div className="form-group">
+                                <div className="col-md-6">
                                     <img
                                         src={icon}
                                         alt={icon} width="100" height="100"
                                         className="imgBox"
                                     />
-                                </div>
-                                <div className="form-group">
-                                    <label className="form-label" htmlFor="email">Email</label>
-                                    <input type="email"
-                                        className="form-control"
-                                        id="email"
-                                        placeholder="Email"
-                                        {...register('email', { required: true })}
-                                    />
-                                </div>
+                                </div><br></br>
+                            </div>
+                            <div className="col-12">
                                 <ButtonSubmitReset btnloader={btnloader} onsubmitFun={() => {
                                     reset();
                                 }} />
+
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>

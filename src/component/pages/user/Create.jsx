@@ -11,6 +11,7 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import dummy from '../../../assets/img/dummy.jpg';
 import ButtonSubmitReset from '../layouts/ButtonSubmitReset';
+import moment from "moment";
 const Create = () => {
     let history = useHistory();
     const [fileName, setFileName] = useState('');
@@ -21,6 +22,8 @@ const Create = () => {
     const date = '01-01-2005';
     // const date = `${current.getDate()}-${current.getMonth() + 1}-${current.getFullYear()}`;
     // const date = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`;
+
+
     const [btnloader, setbtnloader] = useState(false);
 
     const {
@@ -146,7 +149,7 @@ const Create = () => {
                                     <input type="text"
                                         className="form-control"
                                         id="name"
-                                        placeholder="User Name"
+                                        placeholder="Name"
                                         {...register('name', { required: true })}
                                     />
                                 </div>
@@ -157,8 +160,7 @@ const Create = () => {
                                     <input type="text"
                                         className="form-control"
                                         id="address"
-                                        placeholder="User address"
-                                        {...register('address', { required: true })}
+                                        placeholder="Address"                                        {...register('address', { required: true })}
                                     />
                                 </div>
                             </div>
@@ -173,15 +175,14 @@ const Create = () => {
                                         id="date_of_birth"
                                         max={date}
                                         min="1950-01-01"
-                                        placeholder="User date_of_birth"
+                                        placeholder="Date Of Birth"
                                         {...register('date_of_birth', { required: true })}
                                     />
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label className="form-label" htmlFor="country_code">Country Code</label>
-
+                                    <label className="form-label" htmlFor="phone_no">Phone No</label>
 
                                     {phoneNo && phoneNo !== '' ?
                                         <>
@@ -202,24 +203,9 @@ const Create = () => {
 
                                         />
                                     }
-
-
-                                </div>
-                            </div>
-                            <div className="col-md-6">
-                                <div className="form-group">
-
                                     <input type="hidden"
                                         id="phone_no"
                                         {...register('phone_no', { required: true })}
-                                    />
-                                </div>
-                            </div>
-                            <div className="col-md-6">
-                                <div className="form-group">
-                                    <input type="hidden"
-                                        id="country_code"
-                                        {...register('country_code', { required: true })}
                                     />
                                 </div>
                             </div>
@@ -229,7 +215,7 @@ const Create = () => {
                                     <input type="text"
                                         className="form-control"
                                         id="wallet_amount"
-                                        placeholder="User Wallet Amount"
+                                        placeholder="Wallet Amount"
                                         {...register('wallet_amount', { required: true })}
                                     />
                                 </div>
@@ -240,7 +226,7 @@ const Create = () => {
                                     <input type="text"
                                         className="form-control"
                                         id="refer_to"
-                                        placeholder="User Refer To"
+                                        placeholder="Refer To"
                                         {...register('refer_to', { required: false })}
                                     />
                                 </div>
@@ -251,7 +237,7 @@ const Create = () => {
                                     <input type="email"
                                         className="form-control"
                                         id="email"
-                                        placeholder="User email"
+                                        placeholder="Email"
                                         {...register('email', { required: true })}
                                     />
                                 </div>
@@ -267,7 +253,7 @@ const Create = () => {
                                                     <input type="password"
                                                         className="form-control"
                                                         id="password"
-                                                        placeholder="User Password"
+                                                        placeholder="Password"
                                                         {...register('password', {
                                                             required: true,
                                                             minLength: {
@@ -287,16 +273,11 @@ const Create = () => {
                                                     <input type="password"
                                                         className="form-control"
                                                         id="password_repeat"
-                                                        placeholder="User Password"
+                                                        placeholder="Password"
                                                         {...register('password_repeat', {
                                                             validate: value =>
                                                                 value === password.current || "Passwords do NOT match! ",
-                                                            minLength: {
-                                                                value: 6,
-                                                            },
-                                                            maxLength: {
-                                                                value: 15,
-                                                            }
+                                                           
                                                         }
                                                         )}
                                                     />

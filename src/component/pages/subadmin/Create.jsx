@@ -130,11 +130,7 @@ const Create = () => {
     }
 
     itemList = roleOptions.map((item, i) => {
-        return <>
-            <option value={item.name} selected={item.name == role}  >
-                {item.name}
-            </option>
-        </>
+        return <option key={i} value={item.name}   selected={item.name == role}  > {item.name} </option>
     })
 
 
@@ -161,7 +157,7 @@ const Create = () => {
                                     <input type="text"
                                         className="form-control"
                                         id="name"
-                                        placeholder="User Name"
+                                        placeholder="Name"
                                         {...register('name', { required: true })}
                                     />
                                 </div>
@@ -170,7 +166,7 @@ const Create = () => {
                                     <input type="email"
                                         className="form-control"
                                         id="email"
-                                        placeholder="User email"
+                                        placeholder="email"
                                         {...register('email', { required: true })}
                                     />
                                 </div>
@@ -204,7 +200,7 @@ const Create = () => {
                                                 <input type="password"
                                                     className="form-control"
                                                     id="password"
-                                                    placeholder="User Password"
+                                                    placeholder="Password"
                                                     {...register('password', {
                                                         required: true,
                                                         minLength: {
@@ -222,7 +218,7 @@ const Create = () => {
                                                 <input type="password"
                                                     className="form-control"
                                                     id="password_repeat"
-                                                    placeholder="User Password"
+                                                    placeholder="Password"
                                                     {...register('password_repeat', {
                                                         validate: value =>
                                                             value === password.current || "Passwords do NOT match! ",
@@ -248,10 +244,6 @@ const Create = () => {
                                             Please Select Role
                                         </option>
                                         {itemList}
-                                        {/* {roleOptions.map((optiondata) =>
-                                            <option { ...optiondata.name === role ?? 'selected' } >
-                                                {optiondata.name}
-                                            </option>)} */}
 
                                     </select>
                                 </div>
@@ -272,7 +264,6 @@ const Create = () => {
                                         className="form-control"
                                         id="profile_pic"
                                         name="profile_pic"
-                                        placeholder="profile_pic"
                                         onChange={onFileChange}
                                     />
                                 </div>
