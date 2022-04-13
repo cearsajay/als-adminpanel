@@ -3,7 +3,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import axios from "axios";
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faPencilAlt, faTrashAlt, faToggleOn, faToggleOff, faKey, faStreetView } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faPencilAlt, faTrashAlt, faToggleOn, faToggleOff, faKey, faStreetView, faList } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import '../../../custome.css';
@@ -50,6 +50,12 @@ const Index = () => {
     const editButtonClick = (id) => {
         history.push({
             pathname: '/user/create',
+            search: '?id=' + id
+        });
+    };
+    const transactionListButtonClick = (id) => {
+        history.push({
+            pathname: '/user/transaction',
             search: '?id=' + id
         });
     };
@@ -308,6 +314,20 @@ const Index = () => {
                         >
                             <button className="btn btn-primary ml-2" onClick={(id) => { editButtonClick(row.id) }}>
                                 <FontAwesomeIcon icon={faPencilAlt} />
+                            </button>
+
+                        </OverlayTrigger>
+                        <OverlayTrigger
+
+                            placement="top"
+                            overlay={
+                                <Tooltip id={`tooltip-inner`}>
+                                    Transaction 
+                                </Tooltip>
+                            }
+                        >
+                            <button className="btn btn-primary ml-2" onClick={(id) => { transactionListButtonClick(row.id) }}>
+                                <FontAwesomeIcon icon={faList} />
                             </button>
 
                         </OverlayTrigger>

@@ -22,6 +22,7 @@ import SupportCreate from "../pages/support/Create";
 import RoleIndex from "../pages/role/Index";
 import RoleCreate from "../pages/role/Create";
 import UserIndex from "../pages/user/Index";
+import UserTransaction from "../pages/user/Transaction";
 import UserCreate from "../pages/user/Create";
 import SubAdminIndex from "../pages/subadmin/Index";
 import SubAdminCreate from "../pages/subadmin/Create";
@@ -65,6 +66,13 @@ const routes = [
         exact: true,
         permission: 'user_store',
         component: () => <Main title="User Create"><UserCreate /></Main>,
+    },
+    {
+        path: '/user/transaction',
+        auth: true,
+        exact: true,
+        permission: 'user_store',
+        component: () => <Main title="User Transaction"><UserTransaction /></Main>,
     },
     {
         path: '/subadmin/list',
