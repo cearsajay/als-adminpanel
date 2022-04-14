@@ -24,6 +24,10 @@
     "bank_edit": "admin/bank/edit",
     "bank_change_status": "admin/bank/change-status",
 
+    "log_get": "admin/api-log/get",
+    
+    
+
     "feed_back_get": "admin/feed_back/get",
     "feed_back_get_replay": "admin/feed_back/replay",
 

@@ -1,37 +1,37 @@
 import DataTable from 'react-data-table-component';
 import React, { useMemo, useState, useEffect } from 'react';
-// import tableDataItems from '../constants/sampleDesserts';
 import axios from "axios";
-import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faPencilAlt, faTrashAlt, faToggleOn, faToggleOff, faEye } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom';
+import { faEye} from '@fortawesome/free-solid-svg-icons'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-
+import {Table as TableModal } from "reactstrap";
 import '../../../custome.css';
 import url from "../../../Development.json";
-import { errorResponse, successResponse, configHeaderAxios ,customStylesDataTable } from "../../helpers/response";
+import { errorResponse,configHeaderAxios, customStylesDataTable } from "../../helpers/response";
 import { useHistory } from 'react-router';
-import dummy from '../../../assets/img/dummyImg.png';
+import { Modal} from 'antd';
 
 const Index = () => {
     const [dataTableData, setDataTableData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
-
+    const [visible, setVisible] = useState(false);
+    const [visiblee, setVisiblee] = useState(false);
+    const [modalText, setModalText] = useState();
+    const [responseModalText, setResponseModalText] = useState();
+    const [viewModalText, setviewModalText] = useState();
     const [totalRows, setTotalRows] = useState(0);
     const [perPage, setPerPage] = useState(10);
     const [filterText, setFilterText] = useState('');
     const history = useHistory();
     let currentFilterText = '';
-
-
     const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC') => {
         const config = configHeaderAxios();
         let reqDD = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}`;
         axios
-            .get(process.env.REACT_APP_BASE_URL + url.bank_get + reqDD, config)
+            .get(process.env.REACT_APP_BASE_URL + url.log_get + reqDD, config)
             .then((response) => {
+                console.log(response)
                 setDataTableData(response.data.data.rows);
                 setTotalRows(response.data.data.count);
                 setLoading(false);
@@ -42,62 +42,78 @@ const Index = () => {
                 }
             });
     }
-
+    const showAddressModal = (row) => {
+        let TableModaldata = (
+                    <div>
+                        <TableModal striped bordered hover>
+                            <tbody>
+                                <tr>
+                                    <th>request_data</th>
+                                    <td>{row.request_data}</td>
+                                </tr>
+                            </tbody>
+                        </TableModal>
+                        <br></br>
+                    </div>
+        )
+        setModalText(TableModaldata);
+        setVisible(true);
+    };
+    const showModal = (row) => {
+        let data = (
+                    <div>
+                        <TableModal striped bordered hover className="cr-table" >
+                            <tbody>
+                                <tr>
+                                    <th>response_data</th>
+                                    <td>{row.response_data}</td>
+                                </tr>
+                            </tbody>
+                        </TableModal>
+                        <br></br>
+                    </div>
+        )
+        setResponseModalText(data);
+        setVisiblee(true);
+    };
+    const viewShowModal = (row) => {
+        console.log(row)
+        let data = (
+                    <div>
+                        <TableModal striped bordered hover className="cr-table" >
+                            <tbody>
+                                <tr>
+                                    <th>Client IP</th>
+                                    <td>{row.clientIP}</td>
+                                </tr>
+                                <tr>
+                                    <th>Response Data</th>
+                                    <td>{row.response_data}</td>
+                                </tr>
+                                <tr>
+                                    <th>Host</th>
+                                    <td>{row.host}</td>
+                                </tr>
+                                <tr>
+                                    <th>End Point</th>
+                                    <td>{row.endpoint}</td>
+                                </tr>
+                            </tbody>
+                        </TableModal>
+                        <br></br>
+                    </div>
+        )
+        setviewModalText(data);
+        setVisiblee(true);
+    };
+    const handleCancel = () => {
+        setVisible(false);
+        setVisiblee(false);
+    };
+    
     useEffect(() => {
         getData();
     }, []);
-
-    const viewButtonClick = (id) => {
-        history.push({
-            pathname: '/bank/create',
-            search: '?id=' + id
-        });
-    };
-    const changeStatusButtonClick = (id) => {
-        const obj = {
-            id: id,
-        };
-        const config = configHeaderAxios();
-        axios
-            .post(process.env.REACT_APP_BASE_URL + url.bank_change_status, obj, config)
-            .then((response) => {
-                getData();
-                successResponse(response);
-            })
-            .catch((error) => {
-                if (error.response) {
-                    errorResponse(error);
-                }
-            });
-    };
-    const deleteButtonClick = (id) => {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-
-                let obj = `?id=${id}`;
-                const config = configHeaderAxios();
-                axios
-                    .delete(process.env.REACT_APP_BASE_URL + url.bank_delete + obj, config)
-                    .then((response) => {
-                        getData();
-                        successResponse(response);
-                    })
-                    .catch((error) => {
-                        if (error.response) {
-                            errorResponse(error);
-                        }
-                    });
-            }
-        })
-    };
     const handlePerRowsChange = async (newPerPage, page) => {
         setPage(page);
         setLoading(true);
@@ -120,35 +136,67 @@ const Index = () => {
     const columns = useMemo(
         () => [
             {
-                name: 'Serial No',
-                width: '90px',
-                cell: (row, index) => index + 1  //RDT provides index by default
-            },
-            {
-                name: 'Name',
-                selector: row => row.name,
+                name: 'Client IP',
+                selector: row => row.clientIP,
                 sortable: true,
             },
             {
-                name: 'Icon',
-                selector: row => <>
-                    {row.icon !== '' ?
-                        <img src={row.icon} alt={row.name} className="imageTableDataTable" />
-                        : <img src={dummy} className='imageTableDataTable' alt='No Image Found' />}
-                </>,
-                sortable: false,
+                name: 'End point',
+                selector: row => row.endpoint,
+                sortable: true,
             },
             {
-                name: 'Status',
-                selector: row => <>
-                    <span className={`btn-sm  ${row.status === 1 ?  "btn-success" : "btn-danger" }`}>
-                        {
-                            row.status === 1 ? "Active" : "De-Active"
-                        }
-                    </span>
+                name: 'Host',
+                selector: row => row.host,
+                sortable: true,
+            },
+            {
+                name: 'Request Data',
+                sortable: true,
+                selector: row =>
+                    <>
+                        <OverlayTrigger
+                            placement="top"
+                            overlay={
+                                <Tooltip id={`tooltip-inner`}>
+                                    Request Data
+                                </Tooltip>
+                            }
+                        >
+                            {
+                                (row.request_data === null)  ?
+                                    <button className="btn btn-secondary ml-2" disabled>
+                                    <FontAwesomeIcon icon={faEye} />  </button> : <button className="btn btn-secondary ml-2" onClick={(e) => showAddressModal(row)}>
+                                        <FontAwesomeIcon icon={faEye} />
+                                    </button>
+                            }
+                        </OverlayTrigger>
+                    </>
 
-                </>,
-                sortable: false,
+            },
+            {
+                name: 'Response Data',
+                sortable: true,
+                selector: row =>
+                    <>
+                        <OverlayTrigger
+                            placement="top"
+                            overlay={
+                                <Tooltip id={`tooltip-inner`}>
+                                    Response Data
+                                </Tooltip>
+                            }
+                        >
+                            {
+                                (row.response_data === null)  ?
+                                    <button className="btn btn-secondary ml-2" disabled>
+                                    <FontAwesomeIcon icon={faEye} />  </button> : <button className="btn btn-secondary ml-2" onClick={(e) => showModal(row)}>
+                                        <FontAwesomeIcon icon={faEye} />
+                                    </button>
+                            }
+                        </OverlayTrigger>
+                    </>
+
             },
             {
                 name: 'Action',
@@ -164,55 +212,15 @@ const Index = () => {
                             }
                         >
 
-                            <button className="btn btn-primary ml-2" onClick={(id) => { viewButtonClick(row.id) }}>
+                            <button className="btn btn-primary ml-2" onClick={(e) => { viewShowModal(row) }}>
                                 <FontAwesomeIcon icon={faEye} />
                             </button>
                         </OverlayTrigger>
-                        <OverlayTrigger
-
-                            placement="top"
-                            overlay={
-                                <Tooltip id={`tooltip-inner`}>
-                                    Delete
-                                </Tooltip>
-                            }
-                        >
-
-                            <button className="btn btn-danger ml-2" onClick={(id) => { deleteButtonClick(row.id) }} >
-                                <FontAwesomeIcon icon={faTrashAlt} />
-                            </button>
-                        </OverlayTrigger>
-                        <OverlayTrigger
-
-                            placement="top"
-                            overlay={
-                                <Tooltip id={`tooltip-inner`}>
-                                    Change Status
-                                </Tooltip>
-                            }
-                        >
-                            <button className="btn btn-warning ml-2" onClick={(id) => { changeStatusButtonClick(row.id) }} >
-                                {
-                                    row.status === 1 ? <FontAwesomeIcon icon={faToggleOff} /> : <FontAwesomeIcon icon={faToggleOn} />
-                                }
-                            </button>
-                        </OverlayTrigger>
-
-
                     </>,
             },
         ],
         [],
     );
-
-    const actions = (
-        <Link to="/bank/create" className="menu-link">
-            <button className="btn btn-success">
-                <FontAwesomeIcon icon={faPlus} /> Add Bank
-            </button>
-        </Link>
-    );
-
     const handleChange2 = (event) => {
         currentFilterText = event.target.value;
         setFilterText(currentFilterText);
@@ -237,11 +245,25 @@ const Index = () => {
 
     return (
         <>
+            <Modal title="Request Detail" centered footer={''} visible={visible} onCancel={handleCancel}>
+                <div className='customeraddress-scroll'>
+                    {modalText}
+                </div>
+            </Modal>
+            <Modal title="Response Detail" centered footer={''} visible={visiblee} onCancel={handleCancel}>
+                <div className='customeraddress-scroll'>
+                    {responseModalText}
+                </div>
+            </Modal>
+            <Modal title="Log Detail" centered footer={''} visible={visiblee} onCancel={handleCancel}>
+                <div className='customeraddress-scroll'>
+                    {viewModalText}
+                </div>
+            </Modal>
             <DataTable
-                actions={actions}
                 subHeader
                 subHeaderComponent={FilterComponent}
-                title="Bank List"
+                title="Log List"
                 columns={columns}
                 keyField="id"
                 data={dataTableData}
