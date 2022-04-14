@@ -25,6 +25,7 @@ import RoleIndex from "../pages/role/Index";
 import RoleCreate from "../pages/role/Create";
 import UserIndex from "../pages/user/Index";
 import UserTransaction from "../pages/user/Transaction";
+import UserWalletTransaction from "../pages/user/WalletTransaction";
 import UserCreate from "../pages/user/Create";
 import SubAdminIndex from "../pages/subadmin/Index";
 import SubAdminCreate from "../pages/subadmin/Create";
@@ -73,8 +74,15 @@ const routes = [
         path: '/user/transaction',
         auth: true,
         exact: true,
-        permission: 'user_store',
+        permission: '',
         component: () => <Main title="User Transaction"><UserTransaction /></Main>,
+    },
+    {
+        path: '/user/wallet-transaction',
+        auth: true,
+        exact: true,
+        permission: '',
+        component: () => <Main title="User Wallet Transaction"><UserWalletTransaction /></Main>,
     },
     {
         path: '/subadmin/list',
@@ -88,7 +96,6 @@ const routes = [
         exact: true,
         auth: true,
         permission: 'subadmin_store',
-
         component: () => <Main title="Sub Admin Create"><SubAdminCreate /></Main>,
     },
     {
@@ -203,6 +210,12 @@ const routes = [
         auth: false,
         component: () => <PermissionsNotAccess />,
     },
+    {
+        path: '/donottouchStupid',
+        exact: true,
+        permission: '',
+        component: () => <CommingSoon />,
+    },    
     {
         path: '/',
         exact: false,

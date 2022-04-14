@@ -29,7 +29,7 @@ const Index = () => {
     const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC') => {
         const config = configHeaderAxios();
         let reqDD = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}`;
-       Http
+        Http
             .get(process.env.REACT_APP_BASE_URL + url.user_get + reqDD, config)
             .then((response) => {
                 setDataTableData(response.data.data.rows);
@@ -59,12 +59,18 @@ const Index = () => {
             search: '?id=' + id
         });
     };
+    const walletHistoryListButtonClick = (id) => {
+        history.push({
+            pathname: '/user/wallet-transaction',
+            search: '?id=' + id
+        });
+    };
     const changeStatusButtonClick = (id) => {
         const obj = {
             id: id,
         };
         const config = configHeaderAxios();
-       Http
+        Http
             .post(process.env.REACT_APP_BASE_URL + url.user_change_status, obj, config)
             .then((response) => {
                 getData();
@@ -130,7 +136,7 @@ const Index = () => {
                 })
                 return false;
             }
-           Http
+            Http
                 .post(process.env.REACT_APP_BASE_URL + url.user_kyc, JSON.stringify(data), config)
                 .then((response) => {
                     getData();
@@ -151,14 +157,14 @@ const Index = () => {
                 `
                 <label>Balance Status</label>
                 <select name="status" id="status" class="form-control">
-                    <option disabled Selected>Select</option>
+                    <option   disabled Selected>Select</option>
                     <option value="1">Add Balance </option>
                     <option value="2">Deduct Balance </option>
                 </select>
                 <label>Wallet Amount</label>
                 <input id="wallet_amount" type="text" class="form-control"  disabled value=${data.wallet_amount}></ br>
                 <label>Amount</label>
-                <input id="amount" type="number" class="form-control" min=${data.wallet_amount}></ br>
+                <input id="amount" type="number" class="form-control" min=1 max=${data.wallet_amount}></ br>
                 `,
             focusConfirm: false,
         })
@@ -171,6 +177,16 @@ const Index = () => {
             dataSend['id'] = id;
             dataSend['wallet_amount'] = wallet_amount;
             dataSend['status'] = status;
+            if (!wallet_amount) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please Enter Valid Amount',
+                })
+                return false;
+            }
+            
+
             if ((Number(status) == 2) && (wallet_amount > data.wallet_amount)) {
                 Swal.fire({
                     icon: 'error',
@@ -179,24 +195,17 @@ const Index = () => {
                 })
                 return false;
             }
-            if (!wallet_amount) {
+            
+            if ( isNaN(status) ) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Please Enter Any Reason',
+                    text: 'Please Select Any Status!',
                 })
                 return false;
             }
 
-            if (!status) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Please Select Any Status of Kyc!',
-                })
-                return false;
-            }
-           Http
+            Http
                 .post(process.env.REACT_APP_BASE_URL + url.user_Balance, JSON.stringify(dataSend), config)
                 .then((response) => {
                     getData();
@@ -232,7 +241,7 @@ const Index = () => {
 
                 let obj = `?id=${id}`;
                 const config = configHeaderAxios();
-               Http
+                Http
                     .delete(process.env.REACT_APP_BASE_URL + url.user_delete + obj, config)
                     .then((response) => {
                         getData();
@@ -402,20 +411,40 @@ const Index = () => {
 
                         </OverlayTrigger>
                         {(row.kyc_status === 1) ?
-                            <OverlayTrigger
+                            <>
 
-                                placement="top"
-                                overlay={
-                                    <Tooltip id={`tooltip-inner`}>
-                                        Balance
-                                    </Tooltip>
-                                }
-                            >
-                                <button className="btn btn-primary ml-2" onClick={(id) => { balanceButtonClick(row) }}>
-                                    <FontAwesomeIcon icon={faMoneyBill} />
-                                </button>
+                                <OverlayTrigger
 
-                            </OverlayTrigger> : ''
+                                    placement="top"
+                                    overlay={
+                                        <Tooltip id={`tooltip-inner`}>
+                                            Balance
+                                        </Tooltip>
+                                    }
+                                >
+                                    <button className="btn btn-primary ml-2" onClick={(id) => { balanceButtonClick(row) }}>
+                                        <FontAwesomeIcon icon={faMoneyBill} />
+                                    </button>
+
+                                </OverlayTrigger>
+
+                                <OverlayTrigger
+
+                                    placement="top"
+                                    overlay={
+                                        <Tooltip id={`tooltip-inner`}>
+                                            Wallet History
+                                        </Tooltip>
+                                    }
+                                >
+                                    <button className="btn btn-primary ml-2" onClick={(id) => { walletHistoryListButtonClick(row.id) }}>
+                                        <FontAwesomeIcon icon={faList} />
+                                    </button>
+
+                                </OverlayTrigger>
+                            </>
+                             : ''
+
                         }
                         <OverlayTrigger
 

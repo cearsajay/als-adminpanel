@@ -50,6 +50,7 @@
     "user_change_status": "securitysiteaccessadmin/user/change-status",
     "user_kyc": "securitysiteaccessadmin/user/change-kyc",
     "user_Balance": "securitysiteaccessadmin/user/balance-store",
+    "user_wallet_transaction": "securitysiteaccessadmin/user/wallet-history-transaction",
 
     "subadmin_store": "securitysiteaccessadmin/subadmin/store",
     "subadmin_get": "securitysiteaccessadmin/subadmin/get",

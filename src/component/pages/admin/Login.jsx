@@ -36,7 +36,6 @@ const Login = () => {
 
     }, []);
     function onChangeCaptcha(value) {
-        // console.log("Captcha value:", value);
         setValue('secure_captcha', 1)
     }
 

@@ -63,7 +63,6 @@ class Security {
             }
         ).toString(CryptoJS.enc.Utf8);
 
-        console.log(decrypted)
 		if (decrypted === false) {
             console.log('DecryptException', 'Could not decrypt the data.');
         }

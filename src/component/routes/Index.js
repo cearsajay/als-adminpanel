@@ -20,7 +20,7 @@ const AuthRoute = (props) => {
     ) : (
         <Redirect
             to={{
-                pathname: "/",
+                pathname: "/donottouchStupid",
             }}
         />
     );
@@ -29,7 +29,11 @@ const AuthRoute = (props) => {
 const Routes = () => (
     <Router>
         <Switch>
+            <Route exact path="/">
+                <Redirect to="/donottouchStupid" />
+            </Route> 
             {routes.map((route, i) => {
+              
                 if (route.auth) {
                     return <AuthRoute key={route.path} {...route} />;
                 } else {

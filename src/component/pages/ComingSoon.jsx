@@ -14,10 +14,10 @@ const ComingSoon = () => {
             <div className="full-page">
                 <div className="coming-soon-part">
                     <div className="cornerimages-sc">
-                        <img src={topleft} alt="corner one" class="react-reveal" />
-                        <img src={right1} alt="corner one" class="react-reveal" />
-                        <img src={topright} alt="corner one" class="react-reveal" />
-                        <img src={right2} alt="corner one" class="react-reveal" />
+                        <img src={topleft} alt="corner one" className="react-reveal" />
+                        <img src={right1} alt="corner one" className="react-reveal" />
+                        <img src={topright} alt="corner one" className="react-reveal" />
+                        <img src={right2} alt="corner one" className="react-reveal" />
                     </div>
                     <div className="container-sc">
                         <div className="mainContentSection-sc text-center">
