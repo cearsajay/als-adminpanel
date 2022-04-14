@@ -16,7 +16,6 @@ import ChangePin from "../pages/admin/ChangePin";
 import BankIndex from "../pages/bank/Index";
 import BankCreate from "../pages/bank/Create";
 import LogsIndex from "../pages/logs/Index";
-import LogsCreate from "../pages/logs/Create";
 import FeedBackTypeIndex from "../pages/feedbacktype/Index";
 import FeedBackTypeCreate from "../pages/feedbacktype/Create";
 import SupportIndex from "../pages/support/Index";
@@ -139,13 +138,6 @@ const routes = [
         auth: true,
         permission: 'bank_view',
         component: () => <Main title="Logs List"><LogsIndex /></Main>,
-    },
-    {
-        path: '/Logs/create',
-        exact: true,
-        auth: true,
-        permission: 'bank_store',
-        component: () => <Main title="Logs Create"><LogsCreate /></Main>,
     },
     {
         path: '/role/list',
