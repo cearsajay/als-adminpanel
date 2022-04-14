@@ -51,11 +51,11 @@
     "user_kyc": "securitysiteaccessadmin/user/change-kyc",
     "user_Balance": "securitysiteaccessadmin/user/balance-store",
 
-    "subadmin_store": "securitysiteaccessadmin/subsecuritysiteaccessadmin/store",
-    "subadmin_get": "securitysiteaccessadmin/subsecuritysiteaccessadmin/get",
-    "subadmin_delete": "securitysiteaccessadmin/subsecuritysiteaccessadmin/delete",
-    "subadmin_edit": "securitysiteaccessadmin/subsecuritysiteaccessadmin/edit",
-    "subadmin_change_status": "securitysiteaccessadmin/subsecuritysiteaccessadmin/change-status",
+    "subadmin_store": "securitysiteaccessadmin/subadmin/store",
+    "subadmin_get": "securitysiteaccessadmin/subadmin/get",
+    "subadmin_delete": "securitysiteaccessadmin/subadmin/delete",
+    "subadmin_edit": "securitysiteaccessadmin/subadmin/edit",
+    "subadmin_change_status": "securitysiteaccessadmin/subadmin/change-status",
     "log_get": "securitysiteaccessadmin/api-log/get",
 
     "logoutaaa": "admin-logout_custome"

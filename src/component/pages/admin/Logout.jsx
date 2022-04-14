@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import axios from "axios";
+import Http from '../../security/Http';
 import url from "../../../Development.json";
 import { errorResponse ,configHeaderAxios } from "../../helpers/response";
 import { useHistory } from "react-router-dom";
@@ -14,7 +14,7 @@ const Logout = () => {
         const obj = {
             access_token: localStorage.getItem('access_token')
         };
-        axios
+       Http
             .post(process.env.REACT_APP_BASE_URL + url.logout, obj, config)
             .then((response) => {
                 if (response.status === 200) {

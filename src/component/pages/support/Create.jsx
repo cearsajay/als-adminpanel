@@ -3,7 +3,7 @@ import $ from "jquery";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faPaperPlane } from '@fortawesome/free-solid-svg-icons'
-import axios from "axios";
+import Http from '../../security/Http';
 //  start custome url define
 import url from "../../../Development.json";
 import { errorResponse, configHeaderAxios } from "../../helpers/response";
@@ -57,7 +57,7 @@ const Create = () => {
     const fetchData = async (id) => {
         let idpass = `?id=${id}`;
         const config = configHeaderAxios();
-        axios
+       Http
             .get(process.env.REACT_APP_BASE_URL + url.feed_back_get_replay + idpass, config)
             .then(async (response) => {
                 let Replaydata = response.data.data.replay;

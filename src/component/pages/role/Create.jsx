@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import axios from "axios";
+import Http from '../../security/Http';
 import { useForm } from "react-hook-form";
 //  start custome url define
 import url from "../../../Development.json";
@@ -39,7 +39,7 @@ const Create = () => {
     }, []);
     const PermissionsData = () => {
         const config = configHeaderAxios();
-        axios
+       Http
             .get(process.env.REACT_APP_BASE_URL + url.permissions_get, config)
             .then((response) => {
                 let data = response.data.data.rows;
@@ -54,7 +54,7 @@ const Create = () => {
     const fetchData = (id) => {
         let idpass = `?id=${id}`;
         const config = configHeaderAxios();
-        axios
+       Http
             .get(process.env.REACT_APP_BASE_URL + url.role_edit + idpass, config)
             .then((response) => {
                 let data = response.data.data;
@@ -76,7 +76,7 @@ const Create = () => {
         setbtnloader(true);
         data["id"] = id;
         const config = configHeaderAxios();
-        axios
+       Http
             .post(
                 process.env.REACT_APP_BASE_URL + url.role_store,
                 JSON.stringify(data),

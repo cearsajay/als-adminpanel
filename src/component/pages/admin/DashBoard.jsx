@@ -1,6 +1,6 @@
 import { faHistory, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from "axios";
+import Http from '../../security/Http';
 import url from "../../../Development.json";
 import { errorResponse, successResponse, configHeaderAxios } from "../../helpers/response";
 import React, { useState, useEffect } from 'react';
@@ -23,7 +23,7 @@ const Dashboard = () => {
 
     const getData = async () => {
         const config = configHeaderAxios();
-        axios
+       Http
             .get(process.env.REACT_APP_BASE_URL + url.dashboard, config)
             .then((response) => {
                 let data = response.data.data;

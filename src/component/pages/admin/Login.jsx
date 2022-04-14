@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
-import axios from "axios";
+import Http from '../../security/Http';
 import { useForm } from "react-hook-form";
 import url from "../../../Development.json";
 import { errorResponse, successResponse } from "../../helpers/response";
@@ -49,7 +49,7 @@ const Login = () => {
                 "Accept": 'application/json'
             },
         };
-        axios
+       Http
             .post(process.env.REACT_APP_BASE_URL + url.login, JSON.stringify(data), config)
             .then((response) => {
                 let data = response.data.data;
@@ -94,7 +94,7 @@ const Login = () => {
                 "Accept": 'application/json'
             },
         };
-        axios
+       Http
             .get(process.env.REACT_APP_BASE_URL + url.get_setting, config)
             .then((response) => {
                 successResponse(response);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from "axios";
+import Http from '../../security/Http';
 import { useForm } from "react-hook-form";
 import url from "../../../Development.json";
 import { errorResponse, successResponse, isError, configHeaderAxios } from "../../helpers/response";
@@ -36,7 +36,7 @@ const Profile = () => {
         formData.append("type", 1);
         formData.append("avatar", image);
         let urlcall = process.env.REACT_APP_BASE_URL + url.image_upload;
-        axios
+       Http
             .post(urlcall, formData, config)
             .then((res) => {
                 let data = res.data.data;
@@ -53,7 +53,7 @@ const Profile = () => {
     };
     const fetchData = () => {
         const config = configHeaderAxios();
-        axios
+       Http
             .get(process.env.REACT_APP_BASE_URL + url.profile_get, config)
             .then((response) => {
                 var data = response.data.data;
@@ -76,7 +76,7 @@ const Profile = () => {
         setbtnloader(true);
         const config = configHeaderAxios();
         data['profile_pic'] = fileName;
-        axios
+       Http
             .post(process.env.REACT_APP_BASE_URL + url.profile_update, JSON.stringify(data), config)
             .then((response) => {
                 setbtnloader(false);

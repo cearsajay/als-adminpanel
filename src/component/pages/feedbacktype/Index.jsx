@@ -1,7 +1,7 @@
 import DataTable from 'react-data-table-component';
 import React, { useMemo, useState, useEffect } from 'react';
 // import tableDataItems from '../constants/sampleDesserts';
-import axios from "axios";
+import Http from '../../security/Http';
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faPencilAlt, faTrashAlt, faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons'
@@ -10,7 +10,7 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 import '../../../custome.css';
 import url from "../../../Development.json";
-import { errorResponse, successResponse, configHeaderAxios ,customStylesDataTable } from "../../helpers/response";
+import { errorResponse, successResponse, configHeaderAxios, customStylesDataTable } from "../../helpers/response";
 import { useHistory } from 'react-router';
 const Index = () => {
     const [dataTableData, setDataTableData] = useState([]);
@@ -27,7 +27,7 @@ const Index = () => {
     const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC') => {
         const config = configHeaderAxios();
         let reqDD = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}`;
-        axios
+       Http
             .get(process.env.REACT_APP_BASE_URL + url.feed_back_type_get + reqDD, config)
             .then((response) => {
                 setDataTableData(response.data.data.rows);
@@ -56,7 +56,7 @@ const Index = () => {
             id: id,
         };
         const config = configHeaderAxios();
-        axios
+       Http
             .post(process.env.REACT_APP_BASE_URL + url.feed_back_type_change_status, obj, config)
             .then((response) => {
                 getData();
@@ -82,7 +82,7 @@ const Index = () => {
 
                 let obj = `?id=${id}`;
                 const config = configHeaderAxios();
-                axios
+               Http
                     .delete(process.env.REACT_APP_BASE_URL + url.feed_back_type_delete + obj, config)
                     .then((response) => {
                         getData();
@@ -125,7 +125,7 @@ const Index = () => {
             {
                 name: 'Status',
                 selector: row => <>
-                    <span className={`btn-sm  ${row.status === 1 ?  "btn-success" : "btn-danger" }`}>
+                    <span className={`btn-sm  ${row.status === 1 ? "btn-success" : "btn-danger"}`}>
                         {
                             row.status === 1 ? "Active" : "De-Active"
                         }
@@ -138,7 +138,7 @@ const Index = () => {
                 name: 'Action',
                 minWidth: 200,
                 selector: row =>
-                    <>
+                    <div className='table-action-btn'>
                         <OverlayTrigger
                             placement="top"
                             overlay={
@@ -183,7 +183,7 @@ const Index = () => {
                         </OverlayTrigger>
 
 
-                    </>,
+                    </div>,
             },
         ],
         [],

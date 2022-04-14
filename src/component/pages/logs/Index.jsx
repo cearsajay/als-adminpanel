@@ -1,15 +1,15 @@
 import DataTable from 'react-data-table-component';
 import React, { useMemo, useState, useEffect } from 'react';
-import axios from "axios";
+import Http from '../../security/Http';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye} from '@fortawesome/free-solid-svg-icons'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import {Table as TableModal } from "reactstrap";
+import { Table as TableModal } from "reactstrap";
 import '../../../custome.css';
 import url from "../../../Development.json";
-import { errorResponse,configHeaderAxios, customStylesDataTable } from "../../helpers/response";
+import { errorResponse, configHeaderAxios, customStylesDataTable } from "../../helpers/response";
 import { useHistory } from 'react-router';
-import { Modal} from 'antd';
+import { Modal } from 'antd';
 
 const Index = () => {
     const [dataTableData, setDataTableData] = useState([]);
@@ -29,7 +29,7 @@ const Index = () => {
     const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC') => {
         const config = configHeaderAxios();
         let reqDD = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}`;
-        axios
+       Http
             .get(process.env.REACT_APP_BASE_URL + url.log_get + reqDD, config)
             .then((response) => {
                 setDataTableData(response.data.data.rows);
@@ -44,59 +44,59 @@ const Index = () => {
     }
     const showRequestModal = (row) => {
         let TableModaldata = (
-                    <div>
-                        <TableModal striped bordered hover>
-                            <tbody>
-                                <tr>
-                                    <th>request_data</th>
-                                    <td>{row.request_data}</td>
-                                </tr>
-                            </tbody>
-                        </TableModal>
-                        <br></br>
-                    </div>
+            <div>
+                <TableModal striped bordered hover>
+                    <tbody>
+                        <tr>
+                            <th>request_data</th>
+                            <td>{row.request_data}</td>
+                        </tr>
+                    </tbody>
+                </TableModal>
+                <br></br>
+            </div>
         )
         setModalText(TableModaldata);
         setVisible(true);
     };
     const showResponseModal = (row) => {
         let data = (
-                    <div>
-                        <TableModal striped bordered hover className="cr-table" >
-                            <tbody>
-                                <tr>
-                                    <th>response_data</th>
-                                    <td>{row.response_data}</td>
-                                </tr>
-                            </tbody>
-                        </TableModal>
-                        <br></br>
-                    </div>
+            <div>
+                <TableModal striped bordered hover className="cr-table" >
+                    <tbody>
+                        <tr>
+                            <th>response_data</th>
+                            <td>{row.response_data}</td>
+                        </tr>
+                    </tbody>
+                </TableModal>
+                <br></br>
+            </div>
         )
         setResponseModalText(data);
         setVisiblee(true);
     };
     const viewActionModal = (row) => {
         let data = (
-                    <div>
-                        <TableModal striped bordered hover className="cr-table" >
-                            <tbody>
-                                <tr>
-                                    <th>Client IP</th>
-                                    <td>{row.clientIP}</td>
-                                </tr>
-                                <tr>
-                                    <th>Host</th>
-                                    <td>{row.host}</td>
-                                </tr>
-                                <tr>
-                                    <th>End Point</th>
-                                    <td>{row.endpoint}</td>
-                                </tr>
-                            </tbody>
-                        </TableModal>
-                        <br></br>
-                    </div>
+            <div>
+                <TableModal striped bordered hover className="cr-table" >
+                    <tbody>
+                        <tr>
+                            <th>Client IP</th>
+                            <td>{row.clientIP}</td>
+                        </tr>
+                        <tr>
+                            <th>Host</th>
+                            <td>{row.host}</td>
+                        </tr>
+                        <tr>
+                            <th>End Point</th>
+                            <td>{row.endpoint}</td>
+                        </tr>
+                    </tbody>
+                </TableModal>
+                <br></br>
+            </div>
         )
         setviewModalText(data);
         setViewVisible(true);
@@ -106,7 +106,7 @@ const Index = () => {
         setVisiblee(false);
         setViewVisible(false);
     };
-    
+
     useEffect(() => {
         getData();
     }, []);
@@ -150,7 +150,7 @@ const Index = () => {
                 name: 'Request Data',
                 sortable: true,
                 selector: row =>
-                    <>
+                    <div className='table-action-btn'>
                         <OverlayTrigger
                             placement="top"
                             overlay={
@@ -160,14 +160,14 @@ const Index = () => {
                             }
                         >
                             {
-                                (row.request_data === null)  ?
+                                (row.request_data === null) ?
                                     <button className="btn btn-secondary ml-2" disabled>
-                                    <FontAwesomeIcon icon={faEye} />  </button> : <button className="btn btn-secondary ml-2" onClick={(e) => showRequestModal(row)}>
+                                        <FontAwesomeIcon icon={faEye} />  </button> : <button className="btn btn-secondary ml-2" onClick={(e) => showRequestModal(row)}>
                                         <FontAwesomeIcon icon={faEye} />
                                     </button>
                             }
                         </OverlayTrigger>
-                    </>
+                    </div>
 
             },
             {
@@ -184,9 +184,9 @@ const Index = () => {
                             }
                         >
                             {
-                                (row.response_data === null)  ?
+                                (row.response_data === null) ?
                                     <button className="btn btn-secondary ml-2" disabled>
-                                    <FontAwesomeIcon icon={faEye} />  </button> : <button className="btn btn-secondary ml-2" onClick={(e) => showResponseModal(row)}>
+                                        <FontAwesomeIcon icon={faEye} />  </button> : <button className="btn btn-secondary ml-2" onClick={(e) => showResponseModal(row)}>
                                         <FontAwesomeIcon icon={faEye} />
                                     </button>
                             }

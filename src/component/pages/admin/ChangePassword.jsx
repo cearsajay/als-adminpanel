@@ -1,5 +1,5 @@
 import React, { useEffect ,useState} from 'react';
-import axios from "axios";
+import Http from '../../security/Http';
 import { useForm } from "react-hook-form";
 import url from "../../../Development.json";
 import { errorResponse, successResponse,  isError, configHeaderAxios } from "../../helpers/response";
@@ -22,7 +22,7 @@ const Profile = () => {
     const onSubmit = (data) => {
         setbtnloader(true);
         const config = configHeaderAxios();
-        axios
+       Http
             .post(process.env.REACT_APP_BASE_URL + url.change_password, JSON.stringify(data), config)
             .then((response) => {
                 setbtnloader(false);

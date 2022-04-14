@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 
-import axios from "axios";
+import Http from '../../security/Http';
 import { useForm } from "react-hook-form";
 //  start custome url define
 import url from "../../../Development.json";
@@ -36,7 +36,7 @@ const Create = () => {
     const fetchData = (id) => {
         let idpass = `?id=${id}`;
         const config = configHeaderAxios();
-        axios
+       Http
             .get(process.env.REACT_APP_BASE_URL + url.bank_edit + idpass, config)
             .then((response) => {
                 let data = response.data.data;
@@ -65,7 +65,7 @@ const Create = () => {
         formData.append("type", 3);//bank
         formData.append("avatar", image);
         let urlcall = process.env.REACT_APP_BASE_URL + url.image_upload;
-        axios
+       Http
             .post(urlcall, formData, config)
             .then((res) => {
                 let data = res.data.data;
@@ -84,7 +84,7 @@ const Create = () => {
         data['icon'] = fileName;
         data['id'] = id;
         const config = configHeaderAxios();
-        axios
+       Http
             .post(process.env.REACT_APP_BASE_URL + url.bank_store, JSON.stringify(data), config)
             .then((response) => {
                 setbtnloader(false);

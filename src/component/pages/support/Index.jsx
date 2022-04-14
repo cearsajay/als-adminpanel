@@ -1,6 +1,6 @@
 import DataTable from 'react-data-table-component';
 import React, { useMemo, useState, useEffect } from 'react';
-import axios from "axios";
+import Http from '../../security/Http';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
@@ -22,7 +22,7 @@ const Index = () => {
     const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC') => {
         const config = configHeaderAxios();
         let reqDD = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}`;
-        axios
+       Http
             .get(process.env.REACT_APP_BASE_URL + url.feed_back_get + reqDD, config)
             .then((response) => {
                 setDataTableData(response.data.data.rows);

@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { faDownload, faExchangeAlt, faHistory, faMoneyBill, faUpload, faUser, faWallet } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DataTable from 'react-data-table-component';
-import axios from "axios";
+import Http from '../../security/Http';
 import '../../../custome.css';
 import url from "../../../Development.json";
 import { useHistory } from "react-router-dom";
@@ -44,7 +44,7 @@ const Index = () => {
     const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC', userId = id) => {
         const config = configHeaderAxios();
         let dataSend = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}&id=${userId}`;
-        axios
+       Http
             .get(process.env.REACT_APP_BASE_URL + url.user_transaction + dataSend, config)
             .then((response) => {
                 setDataTableData(response.data.data.data.rows);
