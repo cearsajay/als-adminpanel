@@ -49,7 +49,7 @@ const Sidebar = (props) => {
 
                             <Menu.Item key="3">
                                 <NavLink to={"/logs/list"} className="menu-link">
-                                    <FontAwesomeIcon icon={faUniversity} /> Logs
+                                    <FontAwesomeIcon icon={faUniversity} /> Log List
                                 </NavLink>
                             </Menu.Item>
                             : ''}
