@@ -17,6 +17,7 @@ const Index = () => {
     const [page, setPage] = useState(1);
     const [visible, setVisible] = useState(false);
     const [visiblee, setVisiblee] = useState(false);
+    const [viewVisible, setViewVisible] = useState(false);
     const [modalText, setModalText] = useState();
     const [responseModalText, setResponseModalText] = useState();
     const [viewModalText, setviewModalText] = useState();
@@ -31,7 +32,6 @@ const Index = () => {
         axios
             .get(process.env.REACT_APP_BASE_URL + url.log_get + reqDD, config)
             .then((response) => {
-                console.log(response)
                 setDataTableData(response.data.data.rows);
                 setTotalRows(response.data.data.count);
                 setLoading(false);
@@ -42,7 +42,7 @@ const Index = () => {
                 }
             });
     }
-    const showAddressModal = (row) => {
+    const showRequestModal = (row) => {
         let TableModaldata = (
                     <div>
                         <TableModal striped bordered hover>
@@ -59,7 +59,7 @@ const Index = () => {
         setModalText(TableModaldata);
         setVisible(true);
     };
-    const showModal = (row) => {
+    const showResponseModal = (row) => {
         let data = (
                     <div>
                         <TableModal striped bordered hover className="cr-table" >
@@ -76,8 +76,7 @@ const Index = () => {
         setResponseModalText(data);
         setVisiblee(true);
     };
-    const viewShowModal = (row) => {
-        console.log(row)
+    const viewActionModal = (row) => {
         let data = (
                     <div>
                         <TableModal striped bordered hover className="cr-table" >
@@ -85,10 +84,6 @@ const Index = () => {
                                 <tr>
                                     <th>Client IP</th>
                                     <td>{row.clientIP}</td>
-                                </tr>
-                                <tr>
-                                    <th>Response Data</th>
-                                    <td>{row.response_data}</td>
                                 </tr>
                                 <tr>
                                     <th>Host</th>
@@ -104,11 +99,12 @@ const Index = () => {
                     </div>
         )
         setviewModalText(data);
-        setVisiblee(true);
+        setViewVisible(true);
     };
     const handleCancel = () => {
         setVisible(false);
         setVisiblee(false);
+        setViewVisible(false);
     };
     
     useEffect(() => {
@@ -166,7 +162,7 @@ const Index = () => {
                             {
                                 (row.request_data === null)  ?
                                     <button className="btn btn-secondary ml-2" disabled>
-                                    <FontAwesomeIcon icon={faEye} />  </button> : <button className="btn btn-secondary ml-2" onClick={(e) => showAddressModal(row)}>
+                                    <FontAwesomeIcon icon={faEye} />  </button> : <button className="btn btn-secondary ml-2" onClick={(e) => showRequestModal(row)}>
                                         <FontAwesomeIcon icon={faEye} />
                                     </button>
                             }
@@ -190,7 +186,7 @@ const Index = () => {
                             {
                                 (row.response_data === null)  ?
                                     <button className="btn btn-secondary ml-2" disabled>
-                                    <FontAwesomeIcon icon={faEye} />  </button> : <button className="btn btn-secondary ml-2" onClick={(e) => showModal(row)}>
+                                    <FontAwesomeIcon icon={faEye} />  </button> : <button className="btn btn-secondary ml-2" onClick={(e) => showResponseModal(row)}>
                                         <FontAwesomeIcon icon={faEye} />
                                     </button>
                             }
@@ -212,7 +208,7 @@ const Index = () => {
                             }
                         >
 
-                            <button className="btn btn-primary ml-2" onClick={(e) => { viewShowModal(row) }}>
+                            <button className="btn btn-primary ml-2" onClick={(e) => { viewActionModal(row) }}>
                                 <FontAwesomeIcon icon={faEye} />
                             </button>
                         </OverlayTrigger>
@@ -255,7 +251,7 @@ const Index = () => {
                     {responseModalText}
                 </div>
             </Modal>
-            <Modal title="Log Detail" centered footer={''} visible={visiblee} onCancel={handleCancel}>
+            <Modal title="Log Detail" centered footer={''} visible={viewVisible} onCancel={handleCancel}>
                 <div className='customeraddress-scroll'>
                     {viewModalText}
                 </div>
