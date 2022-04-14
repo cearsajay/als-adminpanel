@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="374" height="432" viewBox="0 0 374 432">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_2" data-name="Rectangle 2" width="374" height="432" transform="translate(1546)" fill="#fff"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff8c90"/>
+      <stop offset="0.486" stop-color="#ffa988"/>
+      <stop offset="1" stop-color="#ffbf74"/>
+    </linearGradient>
+  </defs>
+  <g id="page_3_top_right" data-name="page 3 top right" transform="translate(-1546)" clip-path="url(#clip-path)">
+    <g id="Vector_Smart_Object" data-name="Vector Smart Object" transform="translate(691.706 -164.75)" opacity="0.6">
+      <path id="Path_2" data-name="Path 2" d="M883.595,201.843c39.22,17.452,90.021,1.678,125.285,29.816,90.4,72.121-25.805,184.762-1.475,271.756,24.762,88.424,112.284,99.323,180.33,82.949,54.919-13.195,96.944-53.539,118.955-103.05,41.09-92.469,70.168-204.916,20.213-299.982-42.349-80.546-126.778-91.074-211.368-81.765-32.764,3.621-66.374,15.809-96.962,27.679-28.826,11.216-64.45,10.916-94.7,17.522-16.868,3.692-78.98,9.167-61.519,37.394C867.428,192.375,874.855,197.957,883.595,201.843Z" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

@@ -65,7 +65,7 @@ const Index = () => {
     const customStyles = customStylesDataTable();
     const columns = useMemo(
         () => [
-          
+
             {
                 name: 'User Name',
                 width: '90px',
@@ -113,7 +113,7 @@ const Index = () => {
                 name: 'Action',
                 minWidth: '50px',
                 selector: row =>
-                    <>
+                    <div className='table-action-btn'>
                         <OverlayTrigger
 
                             placement="top"
@@ -129,7 +129,7 @@ const Index = () => {
 
                         </OverlayTrigger>
 
-                    </>,
+                    </div>,
             },
         ],
         [],

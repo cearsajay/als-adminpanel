@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -6,6 +6,8 @@ import url from "../../../Development.json";
 import { errorResponse, successResponse } from "../../helpers/response";
 import { withRouter } from "react-router-dom";
 import Logo from '../../../assets/img/logo.png';
+import { Spinner } from 'react-bootstrap';
+import ReCAPTCHA from "react-google-recaptcha";
 
 import {
     Redirect,
@@ -14,9 +16,15 @@ import {
 
 const Login = () => {
     let history = useHistory();
+    const [btnloader, setbtnloader] = useState(false);
+    const [captcha, setCaptcha] = useState();
+    const [numberOfTry, setNumberOfTry] = useState(0);
+
     const {
         register,
         handleSubmit,
+        setValue,
+        reset,
         formState: { errors }
     } = useForm();
     useEffect(() => {
@@ -27,8 +35,14 @@ const Login = () => {
         }
 
     }, []);
+    function onChangeCaptcha(value) {
+        // console.log("Captcha value:", value);
+        setValue('secure_captcha', 1)
+    }
 
     const onSubmit = (data) => {
+        setNumberOfTry(Number(numberOfTry + 1))
+        setbtnloader(true);
         const config = {
             headers: {
                 "Content-Type": "application/json",
@@ -59,10 +73,15 @@ const Login = () => {
                     "permissions",
                     data.roles.permission_name
                 );
-                history.push("dashboard");
+                setbtnloader(false);
+                history.push("/dashboard");
                 successResponse(response);
             })
             .catch((error) => {
+                if(captcha){
+                    captcha.reset();
+                }
+                setbtnloader(false);
                 if (error.response) {
                     errorResponse(error);
                 }
@@ -86,7 +105,7 @@ const Login = () => {
                     localStorage.removeItem('admin_profile');
                     <Redirect
                         to={{
-                            pathname: "/login",
+                            pathname: "/securitysiteaccess/login",
                         }}
                     />
 
@@ -137,14 +156,45 @@ const Login = () => {
                                             <p className="errorMsg">password is required.</p>
                                         )}
                                     </div>
+                                    {
+                                        (numberOfTry >= 2) ?
+                                            <>
+                                                <ReCAPTCHA
+                                                    sitekey={process.env.REACT_APP_APP_SITEKEY}
+                                                    onChange={onChangeCaptcha}
+                                                    ref={(e) => setCaptcha(e)}
+                                                />
+                                                {errors.secure_captcha && errors.secure_captcha.type === "required" && (
+                                                    <p className="errorMsg">Captcha is required.</p>
+                                                )}
+                                                <input type="hidden"
+                                                    id="secure_captcha"
+                                                    name="secure_captcha"
+                                                    placeholder="secure_captcha"
+                                                    {...register('secure_captcha', { required: true })}
+                                                />
+                                            </>
+                                            : ''}
+
+
+
+
 
                                     <div className="mt-3">
-                                        <button
+                                        <button type="submit" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" disabled={btnloader ? true : false}>
+                                            {btnloader ? <>
+                                                <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" className='mr-2' />
+                                            </>
+                                                : ''
+                                            }
+                                            {btnloader ? 'loading...' : 'SIGN IN'}</button>
+
+                                        {/* <button
                                             type="submit"
                                             className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
                                         >
                                             SIGN IN
-                                        </button>
+                                        </button> */}
                                     </div>
                                 </form>
                             </div>

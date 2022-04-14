@@ -4,7 +4,7 @@ import Logo from '../../../assets/img/logo.png';
 import User from '../../../assets/img/user/profile.jpg';
 import { Dropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faWrench, faToggleOff } from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle, faWrench, faToggleOff, faBars } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 
 const Header = (props) => {
@@ -29,19 +29,17 @@ const Header = (props) => {
             <div id="header" className="app-header">
                 <div className="mobile-toggler">
                     <button type="button" className="menu-toggler" data-toggle="sidebar-minify" onClick={sidebarToggle}>
-                        <span className="bar"></span>
-                        <span className="bar"></span>
+                        <FontAwesomeIcon icon={faBars} />
                     </button>
                 </div>
 
                 <div className="brand">
                     <div className="desktop-toggler">
                         <button type="button" className="menu-toggler" data-toggle="sidebar-minify" onClick={sidebarToggle}>
-                            <span className="bar"></span>
-                            <span className="bar"></span>
+                            <FontAwesomeIcon icon={faBars} />
                         </button>
                     </div>
-                    <Link to={"/"} className="brand-logo">
+                    <Link to={"/dashBoard"} className="brand-logo">
                         <img src={Logo} alt="Logo" />
                     </Link>
                 </div>

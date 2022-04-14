@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // import { useSelector } from "react-redux";
 import { Menu } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHistory, faLaptop, faTags, faUniversity, faUserCog, faUsers, faUserTag, faUserTie } from '@fortawesome/free-solid-svg-icons'
+import { faAddressCard, faHeadset, faHistory, faLaptop, faMoneyBill, faTags, faUniversity, faUserCog, faUsers, faUserTag, faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = (props) => {
@@ -28,7 +28,7 @@ const Sidebar = (props) => {
                     <Menu openKeys={openKeys} onOpenChange={onOpenChange} mode="inline" className={`${sideActive ? 'ant-menu-inline-collapsed' : ''} `}>
                         {localStorage.getItem('permissions').includes('dashboard_view') ?
                             <Menu.Item key="1">
-                                <NavLink exact to={"/"} className="menu-link"><FontAwesomeIcon icon={faLaptop} /> Dashboard</NavLink>
+                                <NavLink exact to={"/dashBoard"} className="menu-link"><FontAwesomeIcon icon={faLaptop} /> Dashboard</NavLink>
                             </Menu.Item>
                             : ''}
                         {localStorage.getItem('permissions').includes('user_view') ?
@@ -55,7 +55,7 @@ const Sidebar = (props) => {
                         {localStorage.getItem('permissions').includes('app-setting_view') ?
                             <Menu.Item key="5">
                                 <NavLink to={"/admin/app-setting"} className="menu-link">
-                                    <FontAwesomeIcon icon={faUserCog} /> Admin fee Settings
+                                    <FontAwesomeIcon icon={faMoneyBill} /> Admin fee Settings
                                 </NavLink>
                             </Menu.Item>
                             : ''}
@@ -76,21 +76,21 @@ const Sidebar = (props) => {
                         {localStorage.getItem('permissions').includes('role_view') ?
                             <Menu.Item key="8">
                                 <NavLink to={"/role/list"} className="menu-link">
-                                    <FontAwesomeIcon icon={faTags} /> Roles
+                                    <FontAwesomeIcon icon={faAddressCard} /> Roles
                                 </NavLink>
                             </Menu.Item>
                             : ''}
                         {localStorage.getItem('permissions').includes('support_view') ?
                             <Menu.Item key="9">
                                 <NavLink to={"/support/list"} className="menu-link">
-                                    <FontAwesomeIcon icon={faTags} /> Support
+                                    <FontAwesomeIcon icon={faHeadset} /> Support
                                 </NavLink>
                             </Menu.Item>
                             : ''}
                         {localStorage.getItem('permissions').includes('feed_back_type_view') ?
                             <Menu.Item key="10">
                                 <NavLink to={"/feed_back_type/list"} className="menu-link">
-                                    <FontAwesomeIcon icon={faTags} /> Feed Back Type
+                                    <FontAwesomeIcon icon={faUserTag} /> Feed Back Type
                                 </NavLink>
                             </Menu.Item>
                             : ''}

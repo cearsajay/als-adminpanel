@@ -100,27 +100,27 @@ const Index = () => {
             },
             {
                 name: 'Amount',
-                selector: row => row.amount,
+                selector: row => Number(row.amount).toFixed(2),
                 sortable: true,
             },
             {
                 name: 'Received Amount',
-                selector: row => row.received_amount,
+                selector: row => Number(row.received_amount).toFixed(2),
                 sortable: true,
             },
             {
                 name: 'Admin Fees',
-                selector: row => row.admin_fees,
+                selector: row => Number(row.admin_fees).toFixed(2),
                 sortable: true,
             },
             {
                 name: 'Payment Process Fee',
-                selector: row => row.payment_process_fee,
+                selector: row => Number(row.payment_process_fee).toFixed(2),
                 sortable: true,
             },
             {
                 name: 'Service Charge',
-                selector: row => row.service_charge,
+                selector: row => Number(row.service_charge).toFixed(2),
                 sortable: true,
             },
             {
@@ -128,7 +128,9 @@ const Index = () => {
                 selector: row => row.transfer_reference_id,
                 sortable: true,
             },         
+           
         ],
+
         [],
     );
 
@@ -154,6 +156,7 @@ const Index = () => {
 
     return (
         <>
+            <div className='transaction-list-table text-overflow-inherit'>
             <DataTable
                 subHeader
                 subHeaderComponent={FilterComponent}
@@ -172,6 +175,7 @@ const Index = () => {
                 onSort={handleSort}
                 responsive
             />
+            </div>
         </>
     );
 }

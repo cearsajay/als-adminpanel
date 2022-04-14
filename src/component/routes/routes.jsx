@@ -9,6 +9,7 @@ import Main from "../pages/layouts/Main";
 
 import Login from "../pages/admin/Login";
 import DashBoard from "../pages/admin/DashBoard";
+import CommingSoon from "../pages/ComingSoon";
 import Logout from "../pages/admin/Logout";
 import Profile from "../pages/admin/Profile";
 import ChangePassword from "../pages/admin/ChangePassword";
@@ -154,7 +155,7 @@ const routes = [
         component: () => <Logout />,
     },
     {
-        path: '/login',
+        path: '/securitysiteaccess/login',
         exact: true,
         auth: false,
         permission: '',
@@ -196,11 +197,9 @@ const routes = [
     },
     {
         path: '/',
-        exact: true,
-        auth: true,
-        permission: 'dashboard_view',
-        component: () => <Main title="Home"><DashBoard /></Main>,
-    },
+        exact: false,
+        component: () => <CommingSoon />,
+    },    
     {
         path: '*',
         exact: true,

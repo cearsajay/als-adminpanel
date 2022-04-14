@@ -3,12 +3,12 @@ import React, { useMemo, useState, useEffect } from 'react';
 import axios from "axios";
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faPencilAlt, faTrashAlt, faToggleOn, faToggleOff, faKey, faStreetView, faList } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faPencilAlt, faTrashAlt, faToggleOn, faToggleOff, faKey, faStreetView, faList, faMoneyBill } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import '../../../custome.css';
 import url from "../../../Development.json";
-import { errorResponse, successResponse, configHeaderAxios , customStylesDataTable } from "../../helpers/response";
+import { errorResponse, successResponse, configHeaderAxios, customStylesDataTable } from "../../helpers/response";
 import { useHistory } from 'react-router';
 import KycDummy from '../../../assets/img/kyc.png';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
@@ -143,6 +143,72 @@ const Index = () => {
                 });
         }
     };
+    const balanceButtonClick = async (data) => {
+
+        const { value: formValues } = await Swal.fire({
+            title: 'Balance',
+            html:
+                `
+                <label>Balance Status</label>
+                <select name="status" id="status" class="form-control">
+                    <option disabled Selected>Select</option>
+                    <option value="1">Add Balance </option>
+                    <option value="2">Deduct Balance </option>
+                </select>
+                <label>Wallet Amount</label>
+                <input id="wallet_amount" type="text" class="form-control"  disabled value=${data.wallet_amount}></ br>
+                <label>Amount</label>
+                <input id="amount" type="number" class="form-control" min=${data.wallet_amount}></ br>
+                `,
+            focusConfirm: false,
+        })
+        if (formValues) {
+            const config = configHeaderAxios();
+            const dataSend = {};
+            var id = data.id;
+            var wallet_amount = document.getElementById('amount').value;
+            var status = document.getElementById('status').value;
+            dataSend['id'] = id;
+            dataSend['wallet_amount'] = wallet_amount;
+            dataSend['status'] = status;
+            if ((Number(status) == 2) && (wallet_amount > data.wallet_amount)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please Enter Valid Deduct Amount',
+                })
+                return false;
+            }
+            if (!wallet_amount) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please Enter Any Reason',
+                })
+                return false;
+            }
+
+            if (!status) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please Select Any Status of Kyc!',
+                })
+                return false;
+            }
+            axios
+                .post(process.env.REACT_APP_BASE_URL + url.user_Balance, JSON.stringify(dataSend), config)
+                .then((response) => {
+                    getData();
+                    successResponse(response);
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        errorResponse(error);
+                    }
+                });
+        }
+    };
     const KycDisplayButtonClick = (id, front, back) => {
         if (back !== '') {
             setBack(back);
@@ -217,7 +283,7 @@ const Index = () => {
 
     const columns = useMemo(
         () => [
-        
+
             {
                 name: 'Name',
                 selector: row => row.name,
@@ -236,6 +302,11 @@ const Index = () => {
             {
                 name: 'Phone No',
                 selector: row => row.phone_no,
+                sortable: true,
+            },
+            {
+                name: 'Balance',
+                selector: row => row.wallet_amount,
                 sortable: true,
             },
             {
@@ -302,9 +373,9 @@ const Index = () => {
                 name: 'Action',
                 minWidth: '300px',
                 selector: row =>
-                    <>
-                        <OverlayTrigger
 
+                    <div className='table-action-btn'>
+                        <OverlayTrigger
                             placement="top"
                             overlay={
                                 <Tooltip id={`tooltip-inner`}>
@@ -315,14 +386,13 @@ const Index = () => {
                             <button className="btn btn-primary ml-2" onClick={(id) => { editButtonClick(row.id) }}>
                                 <FontAwesomeIcon icon={faPencilAlt} />
                             </button>
-
                         </OverlayTrigger>
                         <OverlayTrigger
 
                             placement="top"
                             overlay={
                                 <Tooltip id={`tooltip-inner`}>
-                                    Transaction 
+                                    Transaction
                                 </Tooltip>
                             }
                         >
@@ -331,6 +401,22 @@ const Index = () => {
                             </button>
 
                         </OverlayTrigger>
+                        {(row.kyc_status === 1) ?
+                            <OverlayTrigger
+
+                                placement="top"
+                                overlay={
+                                    <Tooltip id={`tooltip-inner`}>
+                                        Balance
+                                    </Tooltip>
+                                }
+                            >
+                                <button className="btn btn-primary ml-2" onClick={(id) => { balanceButtonClick(row) }}>
+                                    <FontAwesomeIcon icon={faMoneyBill} />
+                                </button>
+
+                            </OverlayTrigger> : ''
+                        }
                         <OverlayTrigger
 
                             placement="top"
@@ -386,7 +472,8 @@ const Index = () => {
                                 }
                             </button>
                         </OverlayTrigger>
-                    </>,
+                    </div>
+                ,
             },
         ],
         [],
@@ -394,7 +481,7 @@ const Index = () => {
 
     const actions = (
         <Link to="/user/create" className="menu-link">
-            <button className="btn btn-success">
+            <button className="btn btn-primary">
                 <FontAwesomeIcon icon={faPlus} /> Add User
             </button>
         </Link>
@@ -429,26 +516,27 @@ const Index = () => {
             </Modal>
                 : null}
 
-
-            <DataTable
-                actions={actions}
-                subHeader
-                subHeaderComponent={FilterComponent}
-                title="User List"
-                columns={columns}
-                customStyles={customStyles}
-                keyField="id"
-                data={dataTableData}
-                progressPending={loading}
-                pagination
-                paginationServer
-                paginationTotalRows={totalRows}
-                onChangeRowsPerPage={handlePerRowsChange}
-                onChangePage={handlePageChange}
-                sortServer
-                onSort={handleSort}
-                responsive
-            />
+            <div className='transaction-list-table text-overflow-inherit'>
+                <DataTable
+                    actions={actions}
+                    subHeader
+                    subHeaderComponent={FilterComponent}
+                    title="User List"
+                    columns={columns}
+                    customStyles={customStyles}
+                    keyField="id"
+                    data={dataTableData}
+                    progressPending={loading}
+                    pagination
+                    paginationServer
+                    paginationTotalRows={totalRows}
+                    onChangeRowsPerPage={handlePerRowsChange}
+                    onChangePage={handlePageChange}
+                    sortServer
+                    onSort={handleSort}
+                    responsive
+                />
+            </div>
         </>
     );
 }

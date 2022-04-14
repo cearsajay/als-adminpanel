@@ -23,6 +23,8 @@ const Index = () => {
     const [totalTransfer, setTotalTransfer] = useState('0');
     const [totalTransaction, setTotalTransaction] = useState('0');
     const [totalWalletAmount, setTotalWalletAmount] = useState('0');
+    const [totalAdminFee, setTotalAdminFee] = useState('0');
+    const [name, setName] = useState('***');
 
     let currentFilterText = '';
     let history = useHistory();
@@ -31,6 +33,7 @@ const Index = () => {
         let query = new URLSearchParams(history.location.search);
         let id = query.get('id')
         if (id) {
+            setId(id);
             getData(1, 10, 'id', 'DESC', id);
         }
         else {
@@ -38,7 +41,7 @@ const Index = () => {
         }
     }, [])
 
-    const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC', userId = null) => {
+    const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC', userId = id) => {
         const config = configHeaderAxios();
         let dataSend = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}&id=${userId}`;
         axios
@@ -51,7 +54,9 @@ const Index = () => {
                 setTotalDeposit(response.data.data.total_deposit);
                 setTotalTransfer(response.data.data.total_transfer);
                 setTotalTransaction(response.data.data.total_transation);
-                setTotalWalletAmount(response.data.data.wallet_amount);
+                setTotalAdminFee(response.data.data.total_admin_fee);
+                setTotalWalletAmount(Number(response.data.data.user.wallet_amount).toFixed(2));
+                setName(response.data.data.user.name);
 
             })
             .catch((error) => {
@@ -177,6 +182,9 @@ const Index = () => {
 
     return (
         <>
+        <h2>
+            User Name :- {name}
+        </h2>
             <div className='transaction-card-part mb-4 pb-0'>
                 <div className="row">
                     <div className="col-md-6 col-lg-4">
@@ -260,6 +268,25 @@ const Index = () => {
                             <div className="card-body">
                                 <div className="d-flex mb-3">
                                     <div className="flex-grow-1">
+                                        <h5 className="mb-1">Admin Fee Amount</h5>
+                                    </div>
+                                </div>
+                                <div className="d-flex">
+                                    <div className="flex-grow-1">
+                                        <h2 className="mb-1">{totalAdminFee}</h2>
+                                    </div>
+                                    <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                        <FontAwesomeIcon icon={faMoneyBill} className='fa-lg text-primary' />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6 col-lg-4">
+                        <div className="card mb-3">
+                            <div className="card-body">
+                                <div className="d-flex mb-3">
+                                    <div className="flex-grow-1">
                                         <h5 className="mb-1">Wallet Amount</h5>
                                     </div>
                                 </div>
@@ -276,7 +303,7 @@ const Index = () => {
                     </div>
                 </div>
             </div>
-            <div className='transaction-list-table'>
+            <div className='transaction-list-table text-overflow-inherit'>
                 <DataTable
                     subHeader
                     subHeaderComponent={FilterComponent}

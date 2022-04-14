@@ -20,7 +20,7 @@ const AuthRoute = (props) => {
     ) : (
         <Redirect
             to={{
-                pathname: "/login",
+                pathname: "/",
             }}
         />
     );

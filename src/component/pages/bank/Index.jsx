@@ -154,7 +154,7 @@ const Index = () => {
                 name: 'Action',
                 minWidth: 200,
                 selector: row =>
-                    <>
+                <div className='table-action-btn'>
                         <OverlayTrigger
                             placement="top"
                             overlay={
@@ -199,7 +199,7 @@ const Index = () => {
                         </OverlayTrigger>
 
 
-                    </>,
+                    </div>,
             },
         ],
         [],

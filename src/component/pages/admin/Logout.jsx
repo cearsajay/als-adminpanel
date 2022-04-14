@@ -22,7 +22,7 @@ const Logout = () => {
                     localStorage.removeItem('admin_profile');
                     localStorage.removeItem('role');
                     localStorage.removeItem('permissions');
-                    history.push("/login");
+                    history.push("/securitysiteaccess/login");
                 }
             })
             .catch((error) => {

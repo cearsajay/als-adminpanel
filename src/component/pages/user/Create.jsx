@@ -56,7 +56,7 @@ const Create = () => {
                 setValue('name', data.name);
                 setValue('email', data.email);
                 setValue('address', data.address);
-                setValue('wallet_amount', data.wallet_amount);
+                // setValue('wallet_amount', data.wallet_amount);
                 setValue('fileName', data.fileName);
                 if (data.profile_pic !== '') {
                     setIcon(data.profile_pic);
@@ -209,7 +209,7 @@ const Create = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="col-md-6">
+                            {/* <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="wallet_amount">Wallet Amount</label>
                                     <input type="text"
@@ -219,7 +219,7 @@ const Create = () => {
                                         {...register('wallet_amount', { required: true })}
                                     />
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="refer_to">Refer To</label>

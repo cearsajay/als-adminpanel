@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import '../../../custome.css';
 import url from "../../../Development.json";
-import { errorResponse, successResponse, configHeaderAxios ,customStylesDataTable  } from "../../helpers/response";
+import { errorResponse, successResponse, configHeaderAxios, customStylesDataTable } from "../../helpers/response";
 import { useHistory } from 'react-router';
 import dummy from '../../../assets/img/dummyImg.png';
 
@@ -114,12 +114,12 @@ const Index = () => {
         getData(page);
     };
 
-    
+
     const customStyles = customStylesDataTable();
 
     const columns = useMemo(
         () => [
-            
+
             {
                 name: 'Name',
                 selector: row => row.name,
@@ -147,7 +147,7 @@ const Index = () => {
             {
                 name: 'Status',
                 selector: row => <>
-                    <span className={`btn-sm  ${row.status === 1 ?  "btn-success" : "btn-danger" }`}>
+                    <span className={`btn-sm  ${row.status === 1 ? "btn-success" : "btn-danger"}`}>
                         {
                             row.status === 1 ? "Active" : "De-Active"
                         }
@@ -160,7 +160,7 @@ const Index = () => {
                 name: 'Action',
                 minWidth: '300px',
                 selector: row =>
-                    <>
+                    <div className='table-action-btn'>
                         <OverlayTrigger
 
                             placement="top"
@@ -203,7 +203,7 @@ const Index = () => {
                                 }
                             </button>
                         </OverlayTrigger>
-                    </>,
+                    </div>,
             },
         ],
         [],
@@ -211,7 +211,7 @@ const Index = () => {
 
     const actions = (
         <Link to="/subadmin/create" className="menu-link">
-            <button className="btn btn-success">
+            <button className="btn btn-primary">
                 <FontAwesomeIcon icon={faPlus} /> Add Sub Admin
             </button>
         </Link>

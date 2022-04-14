@@ -37,10 +37,10 @@ function isLoginResponse(history) {
     const isLogin = localStorage.getItem("access_token") || false;
 
     if (isLogin === null) {
-        history.push("/login");
+        history.push("/securitysiteaccess/login");
     }
     if (isLogin === false) {
-        history.push("/login");
+        history.push("/securitysiteaccess/login");
     }
 }
 function insertAfter(referenceNode, newNode) {
@@ -167,7 +167,7 @@ function errorResponse(error) {
         localStorage.removeItem('admin_profile');
         <Redirect
             to={{
-                pathname: "/login",
+                pathname: "/securitysiteaccess/login",
             }}
         />
         toast.error(errorData);

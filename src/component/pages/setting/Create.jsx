@@ -32,7 +32,7 @@ const Create = () => {
                 let data = response.data.data;
                 data.map((option) => {
                     setValue(option.key, option.value);
-                    if (option.key === 'app_is_under_maintenances') {
+                    if (option.key === 'is_under_maintenance') {
                         setUnderMainte(option.value);
                     }
                 })
@@ -88,7 +88,7 @@ const Create = () => {
             });
     }
     const handleChangeRole = (event) => {
-        setValue('app_is_under_maintenances', event.target.value)
+        setValue('is_under_maintenance', event.target.value)
     }
 
     return (
@@ -131,8 +131,8 @@ const Create = () => {
                                 <div className="col-md-6">
                                     <div className="form-group">
 
-                                        <label className="form-label" htmlFor="app_is_under_maintenances">Under Maintenances</label>
-                                        <select className="form-control" id="app_is_under_maintenances" onChange={handleChangeRole}
+                                        <label className="form-label" htmlFor="is_under_maintenance">Under Maintenances</label>
+                                        <select className="form-control" id="is_under_maintenance" onChange={handleChangeRole}
                                         >
                                             <option value="0" selected={underMainte === '0' ? true : false} >
                                                 OFF
