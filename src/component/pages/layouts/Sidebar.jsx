@@ -45,6 +45,14 @@ const Sidebar = (props) => {
                                 </NavLink>
                             </Menu.Item>
                             : ''} */}
+                        {localStorage.getItem('permissions').includes('bank_view') ?
+
+                            <Menu.Item key="3">
+                                <NavLink to={"/logs/list"} className="menu-link">
+                                    <FontAwesomeIcon icon={faUniversity} /> Logs
+                                </NavLink>
+                            </Menu.Item>
+                            : ''}
                         {localStorage.getItem('permissions').includes('setting_view') ?
                             <Menu.Item key="4">
                                 <NavLink to={"/admin/setting"} className="menu-link">
