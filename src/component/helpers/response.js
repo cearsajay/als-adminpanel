@@ -14,6 +14,8 @@ function customStylesDataTable() {
                 '&:last-child': {
                     justifyContent: "center"
                 },
+                whiteSpace: "normal",
+                textOverflow:"inherit"
             },
         },
         cells:{

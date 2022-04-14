@@ -44,6 +44,7 @@
 
     "user_store": "admin/user/store",
     "user_get": "admin/user/get",
+    "user_transaction": "admin/user/transaction",
     "user_delete": "admin/user/delete",
     "user_edit": "admin/user/edit",
     "user_change_status": "admin/user/change-status",
