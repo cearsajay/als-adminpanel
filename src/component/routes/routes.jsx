@@ -210,12 +210,12 @@ const routes = [
         auth: false,
         component: () => <PermissionsNotAccess />,
     },
-    {
-        path: '/donottouchStupid',
-        exact: true,
-        permission: '',
-        component: () => <CommingSoon />,
-    },    
+    // {
+    //     path: '/donottouchStupid',
+    //     exact: true,
+    //     permission: '',
+    //     component: () => <CommingSoon />,
+    // },    
     {
         path: '/',
         exact: false,
