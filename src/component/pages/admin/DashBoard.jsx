@@ -47,7 +47,7 @@ const Dashboard = () => {
             </h1>
             <div className="row">
                 <div className="col-md-4">
-                    <div className="card-dashboard card mb-3 bg-gradient-1">
+                    <div className="card-dashboard card mb-3 bg-gradient-2">
                         <div className="card-body">
                             <div className="d-flex mb-3">
                                 <div className="flex-grow-1">
@@ -119,7 +119,7 @@ const Dashboard = () => {
                                         <div className="fs-13px">Latest transaction history</div>
                                     </div>
                                     <div className='card-heading-right'>
-                                        <Link to="/transaction">See All</Link>
+                                        <Link to="/transaction" class="btn btn-primary">View More</Link>
                                     </div>
                                 </div>
                                 <div className="table-responsive mb-n2">
@@ -163,7 +163,7 @@ const Dashboard = () => {
                                         <div className="fs-13px">Latest user history</div>
                                     </div>
                                     <div className='card-heading-right'>
-                                        <Link to="/user/list">See All</Link>
+                                        <Link to="/user/list" class="btn btn-primary">View More</Link>
                                     </div>
                                 </div>
                                 <div className="table-responsive mb-n2">

@@ -22085,7 +22085,7 @@ a.text-gray-900:hover {
     }
 
     abbr[title]::after {
-        content: " ("attr(title) ")";
+        content: "attr(title)";
     }
 
     pre {

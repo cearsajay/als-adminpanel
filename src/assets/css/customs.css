@@ -85,6 +85,11 @@ body > iframe {
 .app-header .menu {
     flex: none;
 }
+.app-sidebar-content .ant-menu .ant-menu-item{
+    padding: 0 !important;
+    height: auto;
+    line-height: normal;
+}
 .ant-menu.ant-menu-inline-collapsed {
     width: 100%;
 }
@@ -104,16 +109,24 @@ body > iframe {
     font-weight: 600;
     background: 0 0;
 } */
-.ant-menu-item a {
-    color: #6b7176;
+.app-sidebar-content .ant-menu .ant-menu-item{
+    width: auto;
+    margin-right: 10px !important;
 }
-.ant-menu-item a svg{
+.app-sidebar-content .ant-menu .ant-menu-item a {
+    padding: 15px 8px 15px 24px;
+    color: #6b7176;
+    display: block;
+    border-radius: 0 25px 25px 0;
+    transition: 0.4s;
+}
+.app-sidebar-content .ant-menu .ant-menu-item a svg{
     margin-right: 5px;
 }
-.ant-menu-item a.active {
-    color: #4875FF;
+.app-sidebar-content .ant-menu .ant-menu-item a.active {
+    color: #fff;
     font-weight: 500;
-    background:transparent;
+    background:#4875FF;
     letter-spacing: 0.6px;
 }
 
@@ -124,9 +137,15 @@ body > iframe {
 }
 
 .app-sidebar .menu .menu-item.active:not(.has-sub)>.menu-link {
-    color: #1f6bff;
+    color: #4875FF;
     font-weight: 600;
     background: 0 0;
+}
+.app-sidebar-content .ant-menu .ant-menu-item a:hover {
+    color: #4875FF;
+}
+.app-sidebar-content .ant-menu .ant-menu-item a.active:hover {
+    color: #fff;
 }
 .app-header .menu-toggler{
     font-size: 22px;
@@ -149,6 +168,10 @@ body > iframe {
 }
 .ant-menu.ant-menu-inline-collapsed > .ant-menu-item .ant-menu-item-icon + span, .ant-menu.ant-menu-inline-collapsed > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-item .ant-menu-item-icon + span, .ant-menu.ant-menu-inline-collapsed > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-submenu > .ant-menu-submenu-title .ant-menu-item-icon + span, .ant-menu.ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title .ant-menu-item-icon + span, .ant-menu.ant-menu-inline-collapsed > .ant-menu-item .anticon + span, .ant-menu.ant-menu-inline-collapsed > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-item .anticon + span, .ant-menu.ant-menu-inline-collapsed > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-submenu > .ant-menu-submenu-title .anticon + span, .ant-menu.ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title .anticon + span{
     opacity: 1;
+}
+
+.ant-menu-item:active, .ant-menu-submenu-title:active {
+    background: rgb(72 117 255 / 10%);
 }
 
 .card-dashboard h5{
