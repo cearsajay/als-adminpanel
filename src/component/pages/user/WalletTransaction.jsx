@@ -174,10 +174,7 @@ const Index = () => {
 
     return (
         <>
-            <h2>
-                User Name :- {name}
-            </h2>
-
+            <h2 className='transaction-user-name'>User Name :- <span>{name}</span></h2>
             <div className='transaction-list-table text-overflow-inherit'>
                 <DataTable
                     subHeader

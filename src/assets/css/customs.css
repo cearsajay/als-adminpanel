@@ -385,6 +385,24 @@ input[type="file"].form-control{
 .table-action-btn .btn{
     padding: 4px 6px
 }
+.transaction-user-name{
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.transaction-user-name span {
+    color: #4875ff;
+}
+.page-header{
+    font-size: 24px;
+}
+.balance-modal .swal2-title{
+    text-align: left;
+    font-size: 24px;
+    color: #333;
+}
+.swal2-styled.swal2-confirm{
+    background-color: #4875FF;
+}
 
 @media (min-width: 993px){
     .container-sc{
