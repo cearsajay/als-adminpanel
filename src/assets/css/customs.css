@@ -103,11 +103,6 @@ body > iframe {
 .app-header .menu {
     flex: none;
 }
-.app-sidebar-content .ant-menu .ant-menu-item{
-    padding: 0 !important;
-    height: auto;
-    line-height: normal;
-}
 .ant-menu.ant-menu-inline-collapsed {
     width: 100%;
 }
@@ -122,21 +117,15 @@ body > iframe {
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
     background-color: transparent;
 }
-/* .ant-menu-item-selected {
-    color: #1f6bff;
-    font-weight: 600;
-    background: 0 0;
-} */
-.app-sidebar-content .ant-menu .ant-menu-item{
-    width: auto;
-    margin-right: 10px !important;
-}
 .app-sidebar-content .ant-menu .ant-menu-item a {
-    padding: 15px 8px 15px 24px;
-    color: #6b7176;
+    color: #5c6063;
     display: block;
-    border-radius: 0 25px 25px 0;
     transition: 0.4s;
+}
+.app-sidebar-content .ant-menu .ant-menu-item a::before{
+    border-radius: 0 25px 25px 0;
+    z-index: -1;
+    right: 10px;
 }
 .app-sidebar-content .ant-menu .ant-menu-item a svg{
     margin-right: 5px;
@@ -144,10 +133,11 @@ body > iframe {
 .app-sidebar-content .ant-menu .ant-menu-item a.active {
     color: #fff;
     font-weight: 500;
-    background:#4875FF;
     letter-spacing: 0.6px;
 }
-
+.app-sidebar-content .ant-menu .ant-menu-item a.active::before{
+    background:#4875FF;
+}
 .ant-menu-inline .ant-menu-item,
 .ant-menu-inline .ant-menu-item:not(:last-child),
 .ant-menu-inline .ant-menu-submenu-title{
@@ -294,6 +284,8 @@ input[type="file"].form-control{
     box-shadow: 3px 0px 0px #f6f6f6;
     border: none;
 }
+.rdt_TableHeader,
+.rdt_Pagination{border-radius: 9px;}
 .rdt_TableHeader > .sc-bjUoiL{
     font-weight: 600;
 }
@@ -305,8 +297,13 @@ input[type="file"].form-control{
     white-space: normal;
     text-overflow: inherit;
 }
+.rdt_TableRow .rdt_TableCell div[data-tag="allowRowEvents"]{
+    overflow: visible;
+    white-space: normal;
+    text-overflow: inherit;
+}
 .rdt_TableCell{
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
 }
 .flex-label{
