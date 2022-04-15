@@ -86,18 +86,23 @@ const Index = () => {
 
         const { value: formValues } = await Swal.fire({
             title: 'Kyc ',
+            customClass:{
+                container:'balance-modal',
+            },
             html:
                 `
+                <div class="text-left">
                 <label>kyc Status</label>
-                <select name="status" id="status" class="form-control">
+                <select name="status" id="status" class="form-control mb-4">
                     <option disabled Selected>Select</option>
                     <option value="1">Approve</option>
                     <option value="3">Reject</option>
                 </select>
                 <label>Reason</label>
-                <input id="reason" type="text" class="form-control"></ br>
+                <input id="reason" type="text" class="form-control mb-4"></ br>
                 <label>Pin</label>
                 <input id="pin" type="text" class="form-control"></ br>
+                </div>
                 `,
             focusConfirm: false,
         })

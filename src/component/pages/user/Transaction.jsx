@@ -264,15 +264,15 @@ const Index = () => {
                                     <div className="flex-grow-1">
                                         <h2 className="mb-1">{totalRefer}</h2>
                                     </div>
-                                    <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
-                                        <FontAwesomeIcon icon={faUpload} className='fa-lg text-primary' />
+                                    <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                        <FontAwesomeIcon icon={faUpload} className='fa-lg text-white' />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                        <div className="card mb-3">
+                        <div className="card-dashboard card mb-3 bg-gradient-6">
                             <div className="card-body">
                                 <div className="d-flex mb-3">
                                     <div className="flex-grow-1">
@@ -341,15 +341,15 @@ const Index = () => {
                                     <div className="flex-grow-1">
                                         <h2 className="mb-1">{totalTransaction}</h2>
                                     </div>
-                                    <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
-                                        <FontAwesomeIcon icon={faExchangeAlt} className='fa-lg text-primary' />
+                                    <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                        <FontAwesomeIcon icon={faExchangeAlt} className='fa-lg text-white' />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                        <div className="card mb-3">
+                        <div className="card-dashboard card mb-3 bg-gradient-9">
                             <div className="card-body">
                                 <div className="d-flex mb-3">
                                     <div className="flex-grow-1">
