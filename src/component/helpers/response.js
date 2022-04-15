@@ -20,9 +20,9 @@ function customStylesDataTable() {
         },
         cells:{
             style: {
-                '&:first-child': {
-                    justifyContent: "center"
-                },
+                // '&:first-child': {
+                //     justifyContent: "center"
+                // },
                 '&:last-child': {
                     justifyContent: "center"
                 },

@@ -260,6 +260,8 @@ body > iframe {
 } */
 .rdt_Pagination{
     border-top: 0 !important;
+    font-size: 14px !important;
+    color: #333 !important;
 }
 
 .table-light{
@@ -292,8 +294,16 @@ input[type="file"].form-control{
     box-shadow: 3px 0px 0px #f6f6f6;
     border: none;
 }
+.rdt_TableHeader > .sc-bjUoiL{
+    font-weight: 600;
+}
 .rdt_TableCol, .rdt_TableCell {
     padding: 8px 10px !important;
+}
+.rdt_TableCol .sc-evZas{
+    overflow: visible;
+    white-space: normal;
+    text-overflow: inherit;
 }
 .rdt_TableCell{
     font-size: 16px;
