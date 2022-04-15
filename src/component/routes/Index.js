@@ -27,7 +27,7 @@ const AuthRoute = (props) => {
     return render;
 };
 const Routes = () => (
-    <Router>
+    <Router basename={'/shieldcaptain'}>
         <Switch>
          
             {routes.map((route, i) => {

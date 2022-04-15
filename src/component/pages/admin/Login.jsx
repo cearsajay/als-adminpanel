@@ -12,6 +12,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import {
     Redirect,
 } from "react-router-dom";
+import axios from 'axios';
 
 
 const Login = () => {
@@ -31,7 +32,7 @@ const Login = () => {
         get_setting();
         const isLogin = localStorage.getItem("access_token") || false;
         if (isLogin) {
-            history.push("/");
+            history.push("/dashboard");
         }
 
     }, []);
@@ -48,7 +49,7 @@ const Login = () => {
                 "Accept": 'application/json'
             },
         };
-       Http
+        axios
             .post(process.env.REACT_APP_BASE_URL + url.login, JSON.stringify(data), config)
             .then((response) => {
                 let data = response.data.data;
@@ -93,22 +94,20 @@ const Login = () => {
                 "Accept": 'application/json'
             },
         };
-       Http
+       axios
             .get(process.env.REACT_APP_BASE_URL + url.get_setting, config)
             .then((response) => {
                 successResponse(response);
             })
             .catch((error) => {
                 if (error.response) {
-                    localStorage.removeItem('access_token');
-                    localStorage.removeItem('admin_profile');
-                    <Redirect
-                        to={{
-                            pathname: "/securitysiteaccess/login",
-                        }}
-                    />
-
-
+                    // localStorage.removeItem('access_token');
+                    // localStorage.removeItem('admin_profile');
+                    // <Redirect
+                    //     to={{
+                    //         pathname: "/securitysiteaccess/login",
+                    //     }}
+                    // />
                 }
             });
     }
