@@ -47,52 +47,52 @@ const Dashboard = () => {
             </h1>
             <div className="row">
                 <div className="col-md-4">
-                    <div className="card mb-3">
+                    <div className="card-dashboard card mb-3 bg-gradient-1">
                         <div className="card-body">
                             <div className="d-flex mb-3">
                                 <div className="flex-grow-1">
                                     <h5 className="mb-1">Total Users</h5>
-                                    <div>Store user account registration</div>
+                                    <p>Store user account registration</p>
                                 </div>
                             </div>
                             <div className="d-flex">
                                 <div className="flex-grow-1">
                                     <h2 className="mb-1">{userCount}</h2>
                                 </div>
-                                <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
-                                    <FontAwesomeIcon icon={faUser} className='fa-lg text-primary' />
+                                <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                    <FontAwesomeIcon icon={faUser} className='fa-lg text-white' />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="col-md-4">
-                    <div className="card mb-3">
+                    <div className="card-dashboard card mb-3 bg-gradient-4">
                         <div className="card-body">
                             <div className="d-flex mb-3">
                                 <div className="flex-grow-1">
                                     <h5 className="mb-1">Total Transaction</h5>
-                                    <div>Store Transaction</div>
+                                    <p>Store Transaction</p>
                                 </div>
                             </div>
                             <div className="d-flex">
                                 <div className="flex-grow-1">
                                     <h2 className="mb-1">{transactionCount}</h2>
                                 </div>
-                                <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
-                                    <FontAwesomeIcon icon={faHistory} className='fa-lg text-primary' />
+                                <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                    <FontAwesomeIcon icon={faHistory} className='fa-lg text-white' />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="col-md-4">
-                    <div className="card mb-3">
+                    <div className="card-dashboard card mb-3 bg-gradient-3">
                         <div className="card-body">
                             <div className="d-flex mb-3">
                                 <div className="flex-grow-1">
                                     <h5 className="mb-1">Today Total Users</h5>
-                                    <div>Store user account registration</div>
+                                    <p>Store user account registration</p>
                                 </div>
                                 <a href="#" data-toggle="dropdown" className="text-muted"><i className="fa fa-redo"></i></a>
                             </div>
@@ -100,8 +100,8 @@ const Dashboard = () => {
                                 <div className="flex-grow-1">
                                     <h2 className="mb-1">{todayUserCount}</h2>
                                 </div>
-                                <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
-                                    <FontAwesomeIcon icon={faUser} className='fa-lg text-primary' />
+                                <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                    <FontAwesomeIcon icon={faUser} className='fa-lg text-white' />
                                 </div>
                             </div>
                         </div>
@@ -118,15 +118,15 @@ const Dashboard = () => {
                                         <h5 className="mb-1">Transaction</h5>
                                         <div className="fs-13px">Latest transaction history</div>
                                     </div>
-                                    <Link to="/transaction">
-                                        See All
-                                    </Link>
+                                    <div className='card-heading-right'>
+                                        <Link to="/transaction">See All</Link>
+                                    </div>
                                 </div>
                                 <div className="table-responsive mb-n2">
-                                    <table className="table table-borderless mb-0">
-                                        <thead>
-                                            <tr className="text-dark">
-                                                <th className="pl-0">No</th>
+                                    <table className="table table-borderles mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>No.</th>
                                                 <th>To</th>
                                                 <th>From</th>
                                                 <th>Amount</th>
@@ -162,15 +162,15 @@ const Dashboard = () => {
                                         <h5 className="mb-1">Users</h5>
                                         <div className="fs-13px">Latest user history</div>
                                     </div>
-                                    <Link to="/user/list">
-                                        See All
-                                    </Link>
+                                    <div className='card-heading-right'>
+                                        <Link to="/user/list">See All</Link>
+                                    </div>
                                 </div>
                                 <div className="table-responsive mb-n2">
-                                    <table className="table table-borderless mb-0">
-                                        <thead>
-                                            <tr className="text-dark">
-                                                <th className="pl-0">No</th>
+                                    <table className="table table-borderles mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>No.</th>
                                                 <th>Name</th>
                                                 <th>Email</th>
                                                 <th>Address</th>
