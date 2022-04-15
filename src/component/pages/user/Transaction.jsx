@@ -17,13 +17,16 @@ const Index = () => {
     const [totalRows, setTotalRows] = useState(0);
     const [perPage, setPerPage] = useState(10);
     const [filterText, setFilterText] = useState('');
-    const [userCount, setUserCount] = useState('0');
-    const [totalWithdraw, setTotalWithdraw] = useState('0');
-    const [totalDeposit, setTotalDeposit] = useState('0');
-    const [totalTransfer, setTotalTransfer] = useState('0');
-    const [totalTransaction, setTotalTransaction] = useState('0');
-    const [totalWalletAmount, setTotalWalletAmount] = useState('0');
-    const [totalAdminFee, setTotalAdminFee] = useState('0');
+    const [userCount, setUserCount] = useState('0.00');
+    const [totalWithdraw, setTotalWithdraw] = useState('0.00');
+    const [totalDeposit, setTotalDeposit] = useState('0.00');
+    const [totalTransfer, setTotalTransfer] = useState('0.00');
+    const [totalTransaction, setTotalTransaction] = useState('0.00');
+    const [totalWalletAmount, setTotalWalletAmount] = useState('0.00');
+    const [totalAdminFee, setTotalAdminFee] = useState('0.00');
+    const [totalReceived, setTotalReceivedTransaction] = useState('0.00');
+    const [totalSent, setTotalSentTransaction] = useState('0.00');
+    const [totalRefer, setTotalRefer] = useState('0.00');
     const [name, setName] = useState('***');
 
     let currentFilterText = '';
@@ -54,7 +57,10 @@ const Index = () => {
                 setTotalDeposit(response.data.data.total_deposit);
                 setTotalTransfer(response.data.data.total_transfer);
                 setTotalTransaction(response.data.data.total_transation);
+                setTotalReceivedTransaction(response.data.data.total_received);
+                setTotalSentTransaction(response.data.data.total_sent);
                 setTotalAdminFee(response.data.data.total_admin_fee);
+                setTotalRefer(response.data.data.total_refer);
                 setTotalWalletAmount(Number(response.data.data.user.wallet_amount).toFixed(2));
                 setName(response.data.data.user.name);
 
@@ -253,15 +259,73 @@ const Index = () => {
                             <div className="card-body">
                                 <div className="d-flex mb-3">
                                     <div className="flex-grow-1">
-                                        <h5 className="mb-1">Total Transfer</h5>
+                                        <h5 className="mb-1">Total Refer </h5>
                                     </div>
                                 </div>
                                 <div className="d-flex">
                                     <div className="flex-grow-1">
-                                        <h2 className="mb-1">{totalTransfer}</h2>
+                                        <h2 className="mb-1">{totalRefer}</h2>
+                                    </div>
+                                    <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                        <FontAwesomeIcon icon={faUpload} className='fa-lg text-primary' />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6 col-lg-4">
+                        <div className="card mb-3">
+                            <div className="card-body">
+                                <div className="d-flex mb-3">
+                                    <div className="flex-grow-1">
+                                        <h5 className="mb-1">Total Received</h5>
+                                    </div>
+                                </div>
+                                <div className="d-flex">
+                                    <div className="flex-grow-1">
+                                        <h2 className="mb-1">{totalReceived}</h2>
                                     </div>
                                     <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                         <FontAwesomeIcon icon={faExchangeAlt} className='fa-lg text-primary' />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6 col-lg-4">
+                        <div className="card mb-3">
+                            <div className="card-body">
+                                <div className="d-flex mb-3">
+                                    <div className="flex-grow-1">
+                                        <h5 className="mb-1">Total Sent</h5>
+                                    </div>
+                                </div>
+                                <div className="d-flex">
+                                    <div className="flex-grow-1">
+                                        <h2 className="mb-1">{totalSent}</h2>
+                                    </div>
+                                    <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                        <FontAwesomeIcon icon={faExchangeAlt} className='fa-lg text-primary' />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="col-md-6 col-lg-4">
+                        <div className="card mb-3">
+                            <div className="card-body">
+                                <div className="d-flex mb-3">
+                                    <div className="flex-grow-1">
+                                        <h5 className="mb-1">Admin Fee Amount</h5>
+                                    </div>
+                                </div>
+                                <div className="d-flex">
+                                    <div className="flex-grow-1">
+                                        <h2 className="mb-1">{totalAdminFee}</h2>
+                                    </div>
+                                    <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                        <FontAwesomeIcon icon={faMoneyBill} className='fa-lg text-primary' />
                                     </div>
                                 </div>
                             </div>
@@ -281,25 +345,6 @@ const Index = () => {
                                     </div>
                                     <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                         <FontAwesomeIcon icon={faExchangeAlt} className='fa-lg text-primary' />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-6 col-lg-4">
-                        <div className="card mb-3">
-                            <div className="card-body">
-                                <div className="d-flex mb-3">
-                                    <div className="flex-grow-1">
-                                        <h5 className="mb-1">Admin Fee Amount</h5>
-                                    </div>
-                                </div>
-                                <div className="d-flex">
-                                    <div className="flex-grow-1">
-                                        <h2 className="mb-1">{totalAdminFee}</h2>
-                                    </div>
-                                    <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
-                                        <FontAwesomeIcon icon={faMoneyBill} className='fa-lg text-primary' />
                                     </div>
                                 </div>
                             </div>
