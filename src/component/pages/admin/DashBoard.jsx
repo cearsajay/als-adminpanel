@@ -92,7 +92,7 @@ const Dashboard = () => {
                                     <h5 className="mb-1">Today Total Users</h5>
                                     <p>Store user account registration</p>
                                 </div>
-                                <a href="#" data-toggle="dropdown" className="text-muted"><i className="fa fa-redo"></i></a>
+                                {/* <a href="#" data-toggle="dropdown" className="text-muted"><i className="fa fa-redo"></i></a> */}
                             </div>
                             <div className="d-flex">
                                 <div className="flex-grow-1">
@@ -121,8 +121,8 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                                 <div className="table-responsive mb-n2">
-                                    <table className="table table-borderles mb-0">
-                                        <thead class="table-light">
+                                    <table className="table table-bordered table-striped mb-0">
+                                        <thead>
                                             <tr>
                                                 <th>Type</th>
                                                 <th>To User</th>
@@ -142,15 +142,15 @@ const Dashboard = () => {
                                                     return <tr key={index}>
                                                         <td>
                                                             {
-                                                                <span className={`btn-sm  
-                                                           ${row.type === 0 ? "btn-warning" :
-                                                                        row.type === 1 ? "btn-success" :
-                                                                            row.type === 2 ? "btn-success" :
-                                                                                row.type === 3 ? "btn-success" :
-                                                                                    row.type === 4 ? "btn-success" :
-                                                                                        row.type === 5 ? "btn-success" :
-                                                                                            row.type === 6 ? "btn-primary" :
-                                                                                                row.type === 7 ? "btn-danger" :
+                                                                <span className={`badge text-nowrap 
+                                                                    ${row.type === 0 ? "badge-warning" :
+                                                                        row.type === 1 ? "badge-success" :
+                                                                            row.type === 2 ? "badge-success" :
+                                                                                row.type === 3 ? "badge-success" :
+                                                                                    row.type === 4 ? "badge-success" :
+                                                                                        row.type === 5 ? "badge-success" :
+                                                                                            row.type === 6 ? "badge-primary" :
+                                                                                                row.type === 7 ? "badge-danger" :
 
 
                                                                                                     ""}`}>
@@ -221,8 +221,8 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                                 <div className="table-responsive mb-n2">
-                                    <table className="table table-borderles mb-0">
-                                        <thead class="table-light">
+                                    <table className="table table-bordered table-striped mb-0">
+                                        <thead>
                                             <tr>
                                                 <th>No.</th>
                                                 <th>Name</th>
