@@ -65,15 +65,15 @@ const Index = () => {
                 name: 'Type',
                 selector: row => <>
                 {
-                                                                <span className={`btn-sm  
-                                                           ${row.type === 0 ? "btn-warning" :
-                                                                        row.type === 1 ? "btn-success" :
-                                                                            row.type === 2 ? "btn-success" :
-                                                                                row.type === 3 ? "btn-success" :
-                                                                                    row.type === 4 ? "btn-success" :
-                                                                                        row.type === 5 ? "btn-success" :
-                                                                                            row.type === 6 ? "btn-primary" :
-                                                                                                row.type === 7 ? "btn-danger" :
+                                                                <span className={`badge  
+                                                           ${row.type === 0 ? "badge-warning" :
+                                                                        row.type === 1 ? "badge-success" :
+                                                                            row.type === 2 ? "badge-success" :
+                                                                                row.type === 3 ? "badge-success" :
+                                                                                    row.type === 4 ? "badge-success" :
+                                                                                        row.type === 5 ? "badge-success" :
+                                                                                            row.type === 6 ? "badge-primary" :
+                                                                                                row.type === 7 ? "badge-danger" :
 
 
                                                                                                     ""}`}>
