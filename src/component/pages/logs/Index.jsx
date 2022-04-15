@@ -44,11 +44,11 @@ const Index = () => {
     }
     const showRequestModal = (row) => {
         let TableModaldata = (
-            <div>
-                <TableModal striped bordered hover>
+            <div className='table-responsive'>
+                <TableModal striped bordered className="cr-table">
                     <tbody>
                         <tr>
-                            <th>request_data</th>
+                            <th className='text-nowrap'>request_data</th>
                             <td>{row.request_data}</td>
                         </tr>
                     </tbody>
@@ -61,11 +61,11 @@ const Index = () => {
     };
     const showResponseModal = (row) => {
         let data = (
-            <div>
-                <TableModal striped bordered hover className="cr-table" >
+            <div className='table-responsive'>
+                <TableModal striped bordered className="cr-table" >
                     <tbody>
                         <tr>
-                            <th>response_data</th>
+                            <th className='text-nowrap'>response_data</th>
                             <td>{row.response_data}</td>
                         </tr>
                     </tbody>
@@ -78,19 +78,19 @@ const Index = () => {
     };
     const viewActionModal = (row) => {
         let data = (
-            <div>
-                <TableModal striped bordered hover className="cr-table" >
+            <div className='table-responsive'>
+                <TableModal striped bordered className="cr-table" >
                     <tbody>
                         <tr>
-                            <th>Client IP</th>
+                            <th className='text-nowrap'>Client IP</th>
                             <td>{row.clientIP}</td>
                         </tr>
                         <tr>
-                            <th>Host</th>
+                            <th className='text-nowrap'>Host</th>
                             <td>{row.host}</td>
                         </tr>
                         <tr>
-                            <th>End Point</th>
+                            <th className='text-nowrap'>End Point</th>
                             <td>{row.endpoint}</td>
                         </tr>
                     </tbody>

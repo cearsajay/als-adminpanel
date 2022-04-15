@@ -205,13 +205,11 @@ const Index = () => {
 
     return (
         <>
-            <h2>
-                User Name :- {name}
-            </h2>
+            <h2 className='transaction-user-name'>User Name :- <span>{name}</span></h2>
             <div className='transaction-card-part mb-4 pb-0'>
                 <div className="row">
                     <div className="col-md-6 col-lg-4">
-                        <div className="card mb-3">
+                        <div className="card-dashboard card mb-3 bg-gradient-1">
                             <div className="card-body">
                                 <div className="d-flex mb-3">
                                     <div className="flex-grow-1">
@@ -222,15 +220,15 @@ const Index = () => {
                                     <div className="flex-grow-1">
                                         <h2 className="mb-1">{totalWithdraw}</h2>
                                     </div>
-                                    <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
-                                        <FontAwesomeIcon icon={faDownload} className='fa-lg text-primary' />
+                                    <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                        <FontAwesomeIcon icon={faDownload} className='fa-lg text-white' />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                        <div className="card mb-3">
+                        <div className="card-dashboard card mb-3 bg-gradient-2">
                             <div className="card-body">
                                 <div className="d-flex mb-3">
                                     <div className="flex-grow-1">
@@ -241,15 +239,15 @@ const Index = () => {
                                     <div className="flex-grow-1">
                                         <h2 className="mb-1">{totalDeposit}</h2>
                                     </div>
-                                    <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
-                                        <FontAwesomeIcon icon={faUpload} className='fa-lg text-primary' />
+                                    <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                        <FontAwesomeIcon icon={faUpload} className='fa-lg text-white' />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                        <div className="card mb-3">
+                        <div className="card-dashboard card mb-3 bg-gradient-3">
                             <div className="card-body">
                                 <div className="d-flex mb-3">
                                     <div className="flex-grow-1">
@@ -260,15 +258,15 @@ const Index = () => {
                                     <div className="flex-grow-1">
                                         <h2 className="mb-1">{totalTransfer}</h2>
                                     </div>
-                                    <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
-                                        <FontAwesomeIcon icon={faExchangeAlt} className='fa-lg text-primary' />
+                                    <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                        <FontAwesomeIcon icon={faExchangeAlt} className='fa-lg text-white' />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                        <div className="card mb-3">
+                        <div className="card-dashboard card mb-3 bg-gradient-4">
                             <div className="card-body">
                                 <div className="d-flex mb-3">
                                     <div className="flex-grow-1">
@@ -279,15 +277,15 @@ const Index = () => {
                                     <div className="flex-grow-1">
                                         <h2 className="mb-1">{totalTransaction}</h2>
                                     </div>
-                                    <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
-                                        <FontAwesomeIcon icon={faExchangeAlt} className='fa-lg text-primary' />
+                                    <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                        <FontAwesomeIcon icon={faExchangeAlt} className='fa-lg text-white' />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                        <div className="card mb-3">
+                        <div className="card-dashboard card mb-3 bg-gradient-5">
                             <div className="card-body">
                                 <div className="d-flex mb-3">
                                     <div className="flex-grow-1">
@@ -298,15 +296,15 @@ const Index = () => {
                                     <div className="flex-grow-1">
                                         <h2 className="mb-1">{totalAdminFee}</h2>
                                     </div>
-                                    <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
-                                        <FontAwesomeIcon icon={faMoneyBill} className='fa-lg text-primary' />
+                                    <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                        <FontAwesomeIcon icon={faMoneyBill} className='fa-lg text-white' />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                        <div className="card mb-3">
+                        <div className="card-dashboard card mb-3 bg-gradient-7">
                             <div className="card-body">
                                 <div className="d-flex mb-3">
                                     <div className="flex-grow-1">
@@ -317,8 +315,8 @@ const Index = () => {
                                     <div className="flex-grow-1">
                                         <h2 className="mb-1">{totalWalletAmount}</h2>
                                     </div>
-                                    <div className="width-50 height-50 bg-primary-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
-                                        <FontAwesomeIcon icon={faMoneyBill} className='fa-lg text-primary' />
+                                    <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                        <FontAwesomeIcon icon={faMoneyBill} className='fa-lg text-white' />
                                     </div>
                                 </div>
                             </div>
