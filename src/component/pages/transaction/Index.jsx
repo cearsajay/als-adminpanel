@@ -64,26 +64,49 @@ const Index = () => {
             {
                 name: 'Type',
                 selector: row => <>
-                    <span className={`btn-sm  ${row.type === 0 ? "btn-warning" : row.type === 1 ? "btn-success" : row.type === 2 ? "btn-success" : row.type === 3 ? "btn-success"  : row.type === 4 ? "btn-success"  : "" }`}>
-                        {
-                            row.type === 0 
-                            ? "Default"
-                            :
-                            row.type === 1
-                            ? "Withdraw"
-                            :
-                            row.type === 2
-                            ? "Add Money"
-                            :
-                            row.type === 3
-                            ? "Transfer"
-                            :
-                            row.type === 4
-                            ? "Req-Accpeted"
-                            :
-                            " "
-                        }
-                    </span>
+                {
+                                                                <span className={`btn-sm  
+                                                           ${row.type === 0 ? "btn-warning" :
+                                                                        row.type === 1 ? "btn-success" :
+                                                                            row.type === 2 ? "btn-success" :
+                                                                                row.type === 3 ? "btn-success" :
+                                                                                    row.type === 4 ? "btn-success" :
+                                                                                        row.type === 5 ? "btn-success" :
+                                                                                            row.type === 6 ? "btn-primary" :
+                                                                                                row.type === 7 ? "btn-danger" :
+
+
+                                                                                                    ""}`}>
+                                                                    {
+                                                                        row.type === 0
+                                                                            ? "Default"
+                                                                            :
+                                                                            row.type === 1
+                                                                                ? "Withdraw"
+                                                                                :
+                                                                                row.type === 2
+                                                                                    ? "Add Money"
+                                                                                    :
+                                                                                    row.type === 3
+                                                                                        ? "Transfer"
+                                                                                        :
+                                                                                        row.type === 4
+                                                                                            ? "Req-Accpeted"
+                                                                                            :
+                                                                                            row.type === 5
+                                                                                                ? "=="
+                                                                                                :
+                                                                                                row.type === 6
+                                                                                                    ? "Admin Added"
+                                                                                                    :
+                                                                                                    row.type === 7
+                                                                                                        ? "Admin Deducted"
+                                                                                                        :
+
+                                                                                                        " "
+                                                                    }
+                                                                </span>
+                                                            }
                 </>,
                 sortable: false,
             },

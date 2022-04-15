@@ -44,7 +44,7 @@ const Index = () => {
     const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC', userId = id) => {
         const config = configHeaderAxios();
         let dataSend = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}&id=${userId}`;
-       Http
+        Http
             .get(process.env.REACT_APP_BASE_URL + url.user_transaction + dataSend, config)
             .then((response) => {
                 setDataTableData(response.data.data.data.rows);
@@ -93,26 +93,49 @@ const Index = () => {
             {
                 name: 'Type',
                 selector: row => <>
-                    <span className={`btn-sm  ${row.type === 0 ? "btn-warning" : row.type === 1 ? "btn-success" : row.type === 2 ? "btn-success" : row.type === 3 ? "btn-success" : row.type === 4 ? "btn-success" : ""}`}>
-                        {
-                            row.type === 0
-                                ? "Default"
-                                :
-                                row.type === 1
-                                    ? "Withdraw"
+                    {
+                        <span className={`btn-sm  
+                                                           ${row.type === 0 ? "btn-warning" :
+                                row.type === 1 ? "btn-success" :
+                                    row.type === 2 ? "btn-success" :
+                                        row.type === 3 ? "btn-success" :
+                                            row.type === 4 ? "btn-success" :
+                                                row.type === 5 ? "btn-success" :
+                                                    row.type === 6 ? "btn-primary" :
+                                                        row.type === 7 ? "btn-danger" :
+
+
+                                                            ""}`}>
+                            {
+                                row.type === 0
+                                    ? "Default"
                                     :
-                                    row.type === 2
-                                        ? "Add Money"
+                                    row.type === 1
+                                        ? "Withdraw"
                                         :
-                                        row.type === 3
-                                            ? "Transfer"
+                                        row.type === 2
+                                            ? "Add Money"
                                             :
-                                            row.type === 4
-                                                ? "Req-Accpeted"
+                                            row.type === 3
+                                                ? "Transfer"
                                                 :
-                                                " "
-                        }
-                    </span>
+                                                row.type === 4
+                                                    ? "Req-Accpeted"
+                                                    :
+                                                    row.type === 5
+                                                        ? "=="
+                                                        :
+                                                        row.type === 6
+                                                            ? "Admin Added"
+                                                            :
+                                                            row.type === 7
+                                                                ? "Admin Deducted"
+                                                                :
+
+                                                                " "
+                            }
+                        </span>
+                    }
                 </>,
                 sortable: false,
             },
@@ -182,9 +205,9 @@ const Index = () => {
 
     return (
         <>
-        <h2>
-            User Name :- {name}
-        </h2>
+            <h2>
+                User Name :- {name}
+            </h2>
             <div className='transaction-card-part mb-4 pb-0'>
                 <div className="row">
                     <div className="col-md-6 col-lg-4">

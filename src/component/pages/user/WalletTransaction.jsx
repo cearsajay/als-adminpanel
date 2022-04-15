@@ -110,15 +110,16 @@ const Index = () => {
                                 return (
                                     <span className={`btn-sm  btn-primary `}>
                                         {
-                                            "Add"
+                                            "Admin Added"
                                         }
                                     </span>
                                 )
-                            } else if (row.kyc_status === 1) {
+                            }
+                             else if (row.type === 2) {
                                 return (
                                     <span className={`btn-sm  btn-danger`}>
                                         {
-                                            "Deduct"
+                                            "Admin Deducted"
                                         }
                                     </span>
                                 )
@@ -126,7 +127,7 @@ const Index = () => {
                                 return (
                                     <span className={`btn-sm  btn-danger`}>
                                         {
-                                            "dddd"
+                                            "==="
                                         }
                                     </span>
                                 )

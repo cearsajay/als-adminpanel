@@ -15,15 +15,13 @@ const Dashboard = () => {
     const [transactionList, setTransactionList] = useState([]);
     const [userList, setUserList] = useState([]);
 
-
-
     useEffect(() => {
         getData();
     }, []);
 
     const getData = async () => {
         const config = configHeaderAxios();
-       Http
+        Http
             .get(process.env.REACT_APP_BASE_URL + url.dashboard, config)
             .then((response) => {
                 let data = response.data.data;
@@ -108,7 +106,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            {transactionList.length > 0  ?
+            {transactionList.length > 0 ?
                 <div className="row mb-4">
                     <div className="col-xl-12">
                         <div className="card">
@@ -126,20 +124,76 @@ const Dashboard = () => {
                                     <table className="table table-borderles mb-0">
                                         <thead class="table-light">
                                             <tr>
-                                                <th>No.</th>
-                                                <th>To</th>
-                                                <th>From</th>
+                                                <th>Type</th>
+                                                <th>To User</th>
+                                                <th>From User</th>
                                                 <th>Amount</th>
+                                                <th>Received Amount</th>
+                                                <th>Admin Fees</th>
+                                                <th>Payment Process Fee</th>
+                                                <th>Service Charge</th>
+                                                <th>Transfer Reference Id</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {
-                                                transactionList.map((data, index) => {
+                                                transactionList.map((row, index) => {
+                                                    console.log(row);
                                                     return <tr key={index}>
-                                                        <td>{++index}</td>
-                                                        <td>{data.to_user_name}</td>
-                                                        <td>{data.from_user_name}</td>
-                                                        <td>{data.amount}</td>
+                                                        <td>
+                                                            {
+                                                                <span className={`btn-sm  
+                                                           ${row.type === 0 ? "btn-warning" :
+                                                                        row.type === 1 ? "btn-success" :
+                                                                            row.type === 2 ? "btn-success" :
+                                                                                row.type === 3 ? "btn-success" :
+                                                                                    row.type === 4 ? "btn-success" :
+                                                                                        row.type === 5 ? "btn-success" :
+                                                                                            row.type === 6 ? "btn-primary" :
+                                                                                                row.type === 7 ? "btn-danger" :
+
+
+                                                                                                    ""}`}>
+                                                                    {
+                                                                        row.type === 0
+                                                                            ? "Default"
+                                                                            :
+                                                                            row.type === 1
+                                                                                ? "Withdraw"
+                                                                                :
+                                                                                row.type === 2
+                                                                                    ? "Add Money"
+                                                                                    :
+                                                                                    row.type === 3
+                                                                                        ? "Transfer"
+                                                                                        :
+                                                                                        row.type === 4
+                                                                                            ? "Req-Accpeted"
+                                                                                            :
+                                                                                            row.type === 5
+                                                                                                ? "=="
+                                                                                                :
+                                                                                                row.type === 6
+                                                                                                    ? "Admin Added"
+                                                                                                    :
+                                                                                                    row.type === 7
+                                                                                                        ? "Admin Deducted"
+                                                                                                        :
+
+                                                                                                        " "
+                                                                    }
+                                                                </span>
+                                                            }
+                                                        </td>
+                                                        <td>{row.to_user_name}</td>
+                                                        <td>{row.from_user_name}</td>
+                                                        <td>{Number(row.amount).toFixed(2)}</td>
+                                                        <td>{Number(row.received_amount).toFixed(2)}</td>
+                                                        <td>{Number(row.admin_fees).toFixed(2)}</td>
+                                                        <td>{Number(row.payment_process_fee).toFixed(2)}</td>
+                                                        <td>{Number(row.service_charge).toFixed(2)}</td>
+                                                        <td>{row.transfer_reference_id}</td>
+
                                                     </tr>
                                                 })
                                             }
