@@ -1,13 +1,11 @@
 import DataTable from 'react-data-table-component';
 import React, { useMemo, useState, useEffect } from 'react';
-// import tableDataItems from '../constants/sampleDesserts';
 import Http from '../../security/Http';
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faPencilAlt, faTrashAlt, faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-
 import '../../../custome.css';
 import url from "../../../Development.json";
 import { errorResponse, successResponse, configHeaderAxios, customStylesDataTable } from "../../helpers/response";
@@ -18,19 +16,17 @@ const Index = () => {
     const [dataTableData, setDataTableData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
-
     const [totalRows, setTotalRows] = useState(0);
     const [perPage, setPerPage] = useState(10);
     const [filterText, setFilterText] = useState('');
+
     const history = useHistory();
     let currentFilterText = '';
-
-
     const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC') => {
         const config = configHeaderAxios();
         let reqDD = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}`;
        Http
-            .get(process.env.REACT_APP_BASE_URL + url.role_get + reqDD, config)
+            .get(process.env.REACT_APP_BASE_URL + url.notification_admin_get + reqDD, config)
             .then((response) => {
                 setDataTableData(response.data.data.rows);
                 setTotalRows(response.data.data.count);
@@ -49,55 +45,11 @@ const Index = () => {
 
     const editButtonClick = (id) => {
         history.push({
-            pathname: '/role/create',
+            pathname: '/notification/create',
             search: '?id=' + id
         });
     };
-    const changeStatusButtonClick = (id) => {
-        const obj = {
-            id: id,
-        };
-        const config = configHeaderAxios();
-       Http
-            .post(process.env.REACT_APP_BASE_URL + url.role_change_status, obj, config)
-            .then((response) => {
-                getData();
-                successResponse(response);
-            })
-            .catch((error) => {
-                if (error.response) {
-                    errorResponse(error);
-                }
-            });
-    };
-    const deleteButtonClick = (id) => {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
 
-                let obj = `?id=${id}`;
-                const config = configHeaderAxios();
-               Http
-                    .del(process.env.REACT_APP_BASE_URL + url.role_delete + obj, config)
-                    .then((response) => {
-                        getData();
-                        successResponse(response);
-                    })
-                    .catch((error) => {
-                        if (error.response) {
-                            errorResponse(error);
-                        }
-                    });
-            }
-        })
-    };
     const handlePerRowsChange = async (newPerPage, page) => {
         setPage(page);
         setLoading(true);
@@ -117,62 +69,22 @@ const Index = () => {
         getData(page);
     };
 
+
+    const customStyles = customStylesDataTable();
+
     const columns = useMemo(
-        () => [
-
-            {
-                name: 'Name',
-                selector: row => row.name,
-                width: '200px',
+        () => [{
+                name: 'Title',
+                selector: row => row.title,
                 sortable: true,
-            },
-            {
-                name: 'Action',
-                minWidth: 200,
-                selector: row =>
-                    <div className='table-action-btn'>
-                        <OverlayTrigger
-
-                            placement="top"
-                            overlay={
-                                <Tooltip id={`tooltip-inner`}>
-                                    Edit
-                                </Tooltip>
-                            }
-                        >
-
-                            <button className="btn btn-primary ml-2" onClick={(id) => { editButtonClick(row.id) }}>
-                                <FontAwesomeIcon icon={faPencilAlt} />
-                            </button>
-
-                        </OverlayTrigger>
-                        <OverlayTrigger
-
-                            placement="top"
-                            overlay={
-                                <Tooltip id={`tooltip-inner`}>
-                                    Delete
-                                </Tooltip>
-                            }
-                        >
-
-                            <button className="btn btn-danger ml-2" onClick={(id) => { deleteButtonClick(row.id) }} >
-                                <FontAwesomeIcon icon={faTrashAlt} />
-                            </button>
-                        </OverlayTrigger>
-
-
-
-                    </div>,
-            },
-        ],
+            },],
         [],
     );
 
     const actions = (
-        <Link to="/role/create" className="menu-link">
+        <Link to="/notification/create" className="menu-link">
             <button className="btn btn-primary">
-                <FontAwesomeIcon icon={faPlus} /> Add Role
+                <FontAwesomeIcon icon={faPlus} /> Add Notification
             </button>
         </Link>
     );
@@ -196,18 +108,16 @@ const Index = () => {
         </>
     );
 
-    const customStyles = customStylesDataTable();
-
     return (
         <>
             <DataTable
                 actions={actions}
                 subHeader
                 subHeaderComponent={FilterComponent}
-                title="Roles List"
+                title="Notification List"
                 columns={columns}
-                keyField="id"
                 customStyles={customStyles}
+                keyField="id"
                 data={dataTableData}
                 progressPending={loading}
                 pagination

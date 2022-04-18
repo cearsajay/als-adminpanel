@@ -6,6 +6,7 @@ import Http from '../../security/Http';
 import '../../../custome.css';
 import url from "../../../Development.json";
 import { useHistory } from "react-router-dom";
+import Select from 'react-select'
 
 import { errorResponse, configHeaderAxios, customStylesDataTable } from "../../helpers/response";
 const Index = () => {
@@ -13,7 +14,6 @@ const Index = () => {
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
     const [id, setId] = useState('');
-
     const [totalRows, setTotalRows] = useState(0);
     const [perPage, setPerPage] = useState(10);
     const [filterText, setFilterText] = useState('');
@@ -28,9 +28,15 @@ const Index = () => {
     const [totalSent, setTotalSentTransaction] = useState('0.00');
     const [totalRefer, setTotalRefer] = useState('0.00');
     const [name, setName] = useState('***');
+    const [selectType, setType] = useState(1,2,3);
 
     let currentFilterText = '';
     let history = useHistory();
+    const options = [
+        { value: [3,4], label: 'Sent' },
+        { value:  2 , label: 'Received' },
+        { value: 1, label: 'Withdraw' }
+      ]
 
     useEffect(() => {
         let query = new URLSearchParams(history.location.search);
@@ -44,9 +50,9 @@ const Index = () => {
         }
     }, [])
 
-    const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC', userId = id) => {
+    const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC', userId = id , type = selectType) => {
         const config = configHeaderAxios();
-        let dataSend = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}&id=${userId}`;
+        let dataSend = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}&id=${userId}&type=${type}`;
         Http
             .get(process.env.REACT_APP_BASE_URL + url.user_transaction + dataSend, config)
             .then((response) => {
@@ -85,6 +91,10 @@ const Index = () => {
             getData(page, perPage, column.sortField, sortDirection);
             setLoading(false);
         }, 100);
+    };
+    const selectOptionType = (e) => {
+        setType(e.value);
+        getData(page, perPage, 'id', 'DESC' ,id , e.value);
     };
     const handlePageChange = page => {
         setPage(page);
@@ -205,6 +215,10 @@ const Index = () => {
                     value={filterText}
                     onChange={(event) => handleChange2(event)}
                 />
+            </div>
+            <div className="d-flex">
+            <Select options={options} onChange={selectOptionType} />
+
             </div>
         </>
     );

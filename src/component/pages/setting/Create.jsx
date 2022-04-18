@@ -134,10 +134,10 @@ const Create = () => {
                                         <label className="form-label" htmlFor="is_under_maintenance">Under Maintenances</label>
                                         <select className="form-control" id="is_under_maintenance" onChange={handleChangeRole}
                                         >
-                                            <option value="0" selected={underMainte === '0' ? true : false} >
+                                            <option value="0" defaultChecked={underMainte === '0' ? true : false} >
                                                 OFF
                                             </option>
-                                            <option value="1" selected={underMainte === '1' ? true : false} >
+                                            <option value="1" defaultChecked={underMainte === '1' ? true : false} >
                                                 ON
                                             </option>
 

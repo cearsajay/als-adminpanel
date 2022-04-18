@@ -117,7 +117,7 @@ const Dashboard = () => {
                                         <div className="fs-13px">Latest transaction history</div>
                                     </div>
                                     <div className='card-heading-right'>
-                                        <Link to="/transaction" class="btn btn-primary">View More</Link>
+                                        <Link to="/transaction" className="btn btn-primary">View More</Link>
                                     </div>
                                 </div>
                                 <div className="table-responsive mb-n2">
@@ -138,7 +138,6 @@ const Dashboard = () => {
                                         <tbody>
                                             {
                                                 transactionList.map((row, index) => {
-                                                    console.log(row);
                                                     return <tr key={index}>
                                                         <td>
                                                             {
@@ -217,7 +216,7 @@ const Dashboard = () => {
                                         <div className="fs-13px">Latest user history</div>
                                     </div>
                                     <div className='card-heading-right'>
-                                        <Link to="/user/list" class="btn btn-primary">View More</Link>
+                                        <Link to="/user/list" className="btn btn-primary">View More</Link>
                                     </div>
                                 </div>
                                 <div className="table-responsive mb-n2">

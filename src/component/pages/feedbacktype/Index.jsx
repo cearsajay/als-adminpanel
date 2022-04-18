@@ -83,7 +83,7 @@ const Index = () => {
                 let obj = `?id=${id}`;
                 const config = configHeaderAxios();
                Http
-                    .delete(process.env.REACT_APP_BASE_URL + url.feed_back_type_delete + obj, config)
+                    .del(process.env.REACT_APP_BASE_URL + url.feed_back_type_delete + obj, config)
                     .then((response) => {
                         getData();
                         successResponse(response);

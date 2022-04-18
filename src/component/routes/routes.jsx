@@ -29,6 +29,8 @@ import UserWalletTransaction from "../pages/user/WalletTransaction";
 import UserCreate from "../pages/user/Create";
 import SubAdminIndex from "../pages/subadmin/Index";
 import SubAdminCreate from "../pages/subadmin/Create";
+import NotificationIndex from "../pages/notification/Index";
+import NotificationCreate from "../pages/notification/Create";
 import AdminSetting from "../pages/setting/Create";
 import AppSetting from "../pages/appsetting/Create";
 import Transaction from "../pages/transaction/Index";
@@ -161,6 +163,20 @@ const routes = [
         permission: 'role_store',
 
         component: () => <Main title="Roles Create"><RoleCreate /></Main>,
+    },
+    {
+        path: '/notification/list',
+        exact: true,
+        auth: true,
+        permission: 'role_view',
+        component: () => <Main title="Notification List"><NotificationIndex /></Main>,
+    },
+    {
+        path: '/notification/create',
+        exact: true,
+        auth: true,
+        permission: 'role_store',
+        component: () => <Main title="Notification Create"><NotificationCreate /></Main>,
     },
     {
         path: '/logout',

@@ -57,6 +57,12 @@
     "subadmin_delete": "securitysiteaccessadmin/subadmin/delete",
     "subadmin_edit": "securitysiteaccessadmin/subadmin/edit",
     "subadmin_change_status": "securitysiteaccessadmin/subadmin/change-status",
+
+
+    
+    "notification_admin_store": "securitysiteaccessadmin/notification/store",
+    "notification_admin_get": "securitysiteaccessadmin/notification/get",
+
     "log_get": "securitysiteaccessadmin/api-log/get",
 
     "logoutaaa": "admin-logout_custome"

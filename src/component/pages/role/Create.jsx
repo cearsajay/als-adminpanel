@@ -59,6 +59,7 @@ const Create = () => {
             .then((response) => {
                 let data = response.data.data;
                 setValue("name", data.name);
+                setValue("permission_name", data.permission_name);
                 setSelectPermissions(JSON.parse(data.permission_name));
                 setId(data.id);
             })
@@ -94,6 +95,10 @@ const Create = () => {
                 }
             });
     };
+
+    const handleChangeRole = (e) => {
+        setValue('permission_name', 0);
+    }
 
     return (
         <>
@@ -146,16 +151,15 @@ const Create = () => {
                                                                 type="checkbox"
                                                                 name={`permission_name_` + indx}
                                                                 id={`permission_name_` + indx}
+                                                                onChange={e => handleChangeRole(e)}
                                                                 defaultValue={elem.name}
                                                                 defaultChecked={selectPermissions.includes(elem.name) ? true : false}
-                                                                {...register('permission_name', (!id) ? { required: true } : '')}
-
                                                             />
                                                             <label
                                                                 className="custom-control-label"
                                                                 htmlFor={`permission_name_` + indx}
                                                             >
-                                                                {elem.name}
+                                                                {elem.module}
                                                             </label>
                                                         </div>
                                                     </li>
@@ -176,21 +180,27 @@ const Create = () => {
                                                                 type="checkbox"
                                                                 name={`permission_name_` + indx}
                                                                 id={`permission_name_` + indx}
+                                                                onChange={e => handleChangeRole(e)}
                                                                 defaultValue={elem.name}
-                                                                {...register('permission_name', (!id) ? { required: true } : '')}
-
                                                             />
                                                             <label
                                                                 className="custom-control-label"
                                                                 htmlFor={`permission_name_` + indx}
                                                             >
-                                                                {elem.name}
+                                                                {elem.module}
                                                             </label>
                                                         </div>
                                                     </li>
                                                 );
                                             })
                                         }
+                                           <input
+                                        className="custom-control-input"
+                                        type="hidden"
+                                        name={`permission_name`}
+                                        id={`permission_name`}
+                                        {...register('permission_name', { required: true })}
+                                    />
                                     </ul>
                                 </div>
                                 <ButtonSubmitReset

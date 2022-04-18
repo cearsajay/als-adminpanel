@@ -12,6 +12,7 @@ import { errorResponse, successResponse, configHeaderAxios, customStylesDataTabl
 import { useHistory } from 'react-router';
 import KycDummy from '../../../assets/img/kyc.png';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import Moment from 'moment';
 
 const Index = () => {
     const [dataTableData, setDataTableData] = useState([]);
@@ -86,22 +87,22 @@ const Index = () => {
 
         const { value: formValues } = await Swal.fire({
             title: 'Kyc ',
-            customClass:{
-                container:'balance-modal',
+            customClass: {
+                container: 'balance-modal',
             },
             html:
                 `
                 <div class="text-left">
-                <label>kyc Status</label>
-                <select name="status" id="status" class="form-control mb-4">
-                    <option disabled Selected>Select</option>
-                    <option value="1">Approve</option>
-                    <option value="3">Reject</option>
-                </select>
-                <label>Reason</label>
-                <input id="reason" type="text" class="form-control mb-4"></ br>
-                <label>Pin</label>
-                <input id="pin" type="text" class="form-control"></ br>
+                    <label>kyc Status</label>
+                    <select name="status" id="status" class="form-control mb-4">
+                        <option disabled Selected>Select</option>
+                        <option value="1">Approve</option>
+                        <option value="3">Reject</option>
+                    </select>
+                    <label>Reason</label>
+                    <input id="reason" type="text" class="form-control mb-4"></ br>
+                    <label>Pin</label>
+                    <input id="pin" type="text" class="form-control"></ br>
                 </div>
                 `,
             focusConfirm: false,
@@ -158,8 +159,8 @@ const Index = () => {
 
         const { value: formValues } = await Swal.fire({
             title: 'Balance',
-            customClass:{
-                container:'balance-modal',
+            customClass: {
+                container: 'balance-modal',
             },
             html:
                 `
@@ -195,7 +196,7 @@ const Index = () => {
                 })
                 return false;
             }
-            
+
 
             if ((Number(status) == 2) && (wallet_amount > data.wallet_amount)) {
                 Swal.fire({
@@ -205,8 +206,8 @@ const Index = () => {
                 })
                 return false;
             }
-            
-            if ( isNaN(status) ) {
+
+            if (isNaN(status)) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -252,7 +253,7 @@ const Index = () => {
                 let obj = `?id=${id}`;
                 const config = configHeaderAxios();
                 Http
-                    .delete(process.env.REACT_APP_BASE_URL + url.user_delete + obj, config)
+                    .del(process.env.REACT_APP_BASE_URL + url.user_delete + obj, config)
                     .then((response) => {
                         getData();
                         successResponse(response);
@@ -314,8 +315,8 @@ const Index = () => {
                 sortable: true,
             },
             {
-                name: 'Date Of Birth',
-                selector: row => row.date_of_birth_formed,
+                name: 'Date of Joining',
+                selector: row => Moment(row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
                 sortable: true,
             },
             {
@@ -333,11 +334,10 @@ const Index = () => {
                 width: '110px',
                 selector: row =>
                     <>
-
                         {(() => {
                             if (row.kyc_status === 0) {
                                 return (
-                                    <span className={`btn-sm  btn-warning `}>
+                                    <span className={`btn-sm  btn-success`}>
                                         {
                                             "Pending"
                                         }
@@ -355,7 +355,7 @@ const Index = () => {
                                 return (
                                     <span className={`btn-sm  btn-success`}>
                                         {
-                                            "Pending"
+                                            "Uploaded"
                                         }
                                     </span>
                                 )
@@ -402,7 +402,8 @@ const Index = () => {
                                 </Tooltip>
                             }
                         >
-                            <button className="btn btn-primary ml-2" onClick={(id) => { editButtonClick(row.id) }}>
+                            <button className="btn btn-primary ml-2"
+                                onClick={(id) => { editButtonClick(row.id) }}>
                                 <FontAwesomeIcon icon={faPencilAlt} />
                             </button>
                         </OverlayTrigger>
@@ -415,16 +416,15 @@ const Index = () => {
                                 </Tooltip>
                             }
                         >
-                            <button className="btn btn-primary ml-2" onClick={(id) => { transactionListButtonClick(row.id) }}>
+                            <button className="btn btn-primary ml-2"
+                                onClick={(id) => { transactionListButtonClick(row.id) }}>
                                 <FontAwesomeIcon icon={faList} />
                             </button>
 
                         </OverlayTrigger>
                         {(row.kyc_status === 1) ?
                             <>
-
                                 <OverlayTrigger
-
                                     placement="top"
                                     overlay={
                                         <Tooltip id={`tooltip-inner`}>
@@ -432,14 +432,12 @@ const Index = () => {
                                         </Tooltip>
                                     }
                                 >
-                                    <button className="btn btn-primary ml-2" onClick={(id) => { balanceButtonClick(row) }}>
+                                    <button className="btn btn-primary ml-2"
+                                        onClick={(id) => { balanceButtonClick(row) }}>
                                         <FontAwesomeIcon icon={faMoneyBill} />
                                     </button>
-
                                 </OverlayTrigger>
-
                                 <OverlayTrigger
-
                                     placement="top"
                                     overlay={
                                         <Tooltip id={`tooltip-inner`}>
@@ -447,17 +445,15 @@ const Index = () => {
                                         </Tooltip>
                                     }
                                 >
-                                    <button className="btn btn-primary ml-2" onClick={(id) => { walletHistoryListButtonClick(row.id) }}>
+                                    <button className="btn btn-primary ml-2"
+                                        onClick={(id) => { walletHistoryListButtonClick(row.id) }}>
                                         <FontAwesomeIcon icon={faList} />
                                     </button>
-
                                 </OverlayTrigger>
                             </>
-                             : ''
-
+                            : ''
                         }
                         <OverlayTrigger
-
                             placement="top"
                             overlay={
                                 <Tooltip id={`tooltip-inner`}>
@@ -465,37 +461,41 @@ const Index = () => {
                                 </Tooltip>
                             }
                         >
-                            <button className="btn btn-danger ml-2" onClick={(id) => { deleteButtonClick(row.id) }} >
+                            <button className="btn btn-danger ml-2"
+                                onClick={(id) => { deleteButtonClick(row.id) }} >
                                 <FontAwesomeIcon icon={faTrashAlt} />
                             </button>
                         </OverlayTrigger>
-                        <OverlayTrigger
-                            placement="top"
-                            overlay={
-                                <Tooltip id={`tooltip-inner`}>
-                                    Kyc Status
-                                </Tooltip>
-                            }
-                        >
+                        {row.kyc_status != 0 ? <>
+                            <OverlayTrigger
+                                placement="top"
+                                overlay={
+                                    <Tooltip id={`tooltip-inner`}>
+                                        Kyc Status
+                                    </Tooltip>
+                                }
+                            >
+                                <button className="btn btn-primary ml-2"
+                                    onClick={(id) => { KycButtonClick(row.id) }} >
+                                    <FontAwesomeIcon icon={faKey} />
+                                </button>
+                            </OverlayTrigger>
+                            <OverlayTrigger
+                                placement="top"
+                                overlay={
+                                    <Tooltip id={`tooltip-inner`}>
+                                        Kyc Display
+                                    </Tooltip>
+                                }
+                            >
+                                <button className="btn btn-primary ml-2"
+                                    onClick={(id) => { KycDisplayButtonClick(row.id, row.kyc_front, row.kyc_back) }} >
+                                    <FontAwesomeIcon icon={faStreetView} />
+                                </button>
+                            </OverlayTrigger>
 
-                            <button className="btn btn-primary ml-2" onClick={(id) => { KycButtonClick(row.id) }} >
-                                <FontAwesomeIcon icon={faKey} />
-                            </button>
-                        </OverlayTrigger>
-                        <OverlayTrigger
-                            placement="top"
-                            overlay={
-                                <Tooltip id={`tooltip-inner`}>
-                                    Kyc Display
-                                </Tooltip>
-                            }
-                        >
+                        </> : ''}
 
-
-                            <button className="btn btn-primary ml-2" onClick={(id) => { KycDisplayButtonClick(row.id, row.kyc_front, row.kyc_back) }} >
-                                <FontAwesomeIcon icon={faStreetView} />
-                            </button>
-                        </OverlayTrigger>
                         <OverlayTrigger
                             placement="top"
                             overlay={
@@ -505,7 +505,8 @@ const Index = () => {
                             }
                         >
 
-                            <button className="btn btn-warning ml-2" onClick={(id) => { changeStatusButtonClick(row.id) }} >
+                            <button className="btn btn-warning ml-2"
+                                onClick={(id) => { changeStatusButtonClick(row.id) }} >
                                 {
                                     row.status === 1 ? <FontAwesomeIcon icon={faToggleOff} /> : <FontAwesomeIcon icon={faToggleOn} />
                                 }
