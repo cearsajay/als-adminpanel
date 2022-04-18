@@ -657,6 +657,18 @@ input[type="file"].form-control{
 .rdt_TableRow.btn-sm{
     display: inline-block;
 }
+.table-select-filter{
+    min-width: 250px;
+}
+.form-control{
+    height: calc(1.5em + 0.75rem + 5px);
+}
+.form-select-filter > div{
+    min-height: 38px;
+    border: 1px solid #c9d2e3;
+    color: #3c4e71;
+    border-radius: 6px;
+}
 
 @media (max-width: 991px){
     .message-chat-area {

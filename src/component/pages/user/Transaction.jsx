@@ -209,17 +209,17 @@ const Index = () => {
         <>
             <div className="d-flex">
                 <input type="text"
-                    className="form-control"
+                    className="form-control mr-2"
                     id="search"
                     placeholder="Filter By Name"
                     value={filterText}
                     onChange={(event) => handleChange2(event)}
                 />
+                <div className="table-select-filter">
+                    <Select options={options} onChange={selectOptionType} className="form-select-filter" />
+                </div>
             </div>
-            <div className="d-flex">
-            <Select options={options} onChange={selectOptionType} />
-
-            </div>
+            
         </>
     );
 
