@@ -23,16 +23,16 @@ const Main = ({ component: Component, title, ...rest }) => {
         window.addEventListener('beforeunload', alertUser)
         window.addEventListener('unload', handleTabClosing)
         return () => {
-            window.addEventListener("beforeunload", function (e) {
-                console.log("logout !");
-                localStorage.removeItem('access_token');
-                localStorage.removeItem('admin_profile');
-                localStorage.removeItem('role');
-                localStorage.removeItem('permissions');
+            // window.addEventListener("beforeunload", function (e) {
+            //     console.log("logout !");
+            //     localStorage.removeItem('access_token');
+            //     localStorage.removeItem('admin_profile');
+            //     localStorage.removeItem('role');
+            //     localStorage.removeItem('permissions');
                 
-            //     return 0; //Webkit, Safari, Chrome
+            // //     return 0; //Webkit, Safari, Chrome
 
-            });
+            // });
             window.removeEventListener('beforeunload', alertUser)
             window.removeEventListener('unload', handleTabClosing)
         }
