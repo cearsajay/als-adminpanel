@@ -28,7 +28,7 @@ const Index = () => {
     const [totalSent, setTotalSentTransaction] = useState('0.00');
     const [totalRefer, setTotalRefer] = useState('0.00');
     const [name, setName] = useState('***');
-    const [selectType, setType] = useState(1,2,3);
+    const [selectType, setType] = useState([1,2,3]);
 
     let currentFilterText = '';
     let history = useHistory();
@@ -51,6 +51,9 @@ const Index = () => {
     }, [])
 
     const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC', userId = id , type = selectType) => {
+        
+        console.log(type);
+        console.log(selectType);
         const config = configHeaderAxios();
         let dataSend = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}&id=${userId}&type=${type}`;
         Http
@@ -228,25 +231,7 @@ const Index = () => {
             <h2 className='transaction-user-name'>User Name :- <span>{name}</span></h2>
             <div className='transaction-card-part mb-4 pb-0'>
                 <div className="row">
-                    <div className="col-md-6 col-lg-4">
-                        <div className="card-dashboard card mb-3 bg-gradient-1">
-                            <div className="card-body">
-                                <div className="d-flex mb-3">
-                                    <div className="flex-grow-1">
-                                        <h5 className="mb-1">Total Withdarw</h5>
-                                    </div>
-                                </div>
-                                <div className="d-flex">
-                                    <div className="flex-grow-1">
-                                        <h2 className="mb-1">{totalWithdraw}</h2>
-                                    </div>
-                                    <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
-                                        <FontAwesomeIcon icon={faDownload} className='fa-lg text-white' />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                 
                     <div className="col-md-6 col-lg-4">
                         <div className="card-dashboard card mb-3 bg-gradient-2">
                             <div className="card-body">
@@ -299,6 +284,26 @@ const Index = () => {
                                     </div>
                                     <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                         <FontAwesomeIcon icon={faExchangeAlt} className='fa-lg text-white' />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="col-md-6 col-lg-4">
+                        <div className="card-dashboard card mb-3 bg-gradient-1">
+                            <div className="card-body">
+                                <div className="d-flex mb-3">
+                                    <div className="flex-grow-1">
+                                        <h5 className="mb-1">Total Withdarw</h5>
+                                    </div>
+                                </div>
+                                <div className="d-flex">
+                                    <div className="flex-grow-1">
+                                        <h2 className="mb-1">{totalWithdraw}</h2>
+                                    </div>
+                                    <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                        <FontAwesomeIcon icon={faDownload} className='fa-lg text-white' />
                                     </div>
                                 </div>
                             </div>

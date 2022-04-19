@@ -10,6 +10,7 @@ import FaviconImg from '../../../assets/img/favicon.png';
 const Main = ({ component: Component, title, ...rest }) => {
     const [sideActive, setSideActive] = useState(false);
     const [width, setWidth] = useState(window.innerWidth);
+    const [closeVlaue, setCloseVlaue] = useState('1');
     let history = useHistory();
 
     useEffect(() => {
@@ -19,34 +20,25 @@ const Main = ({ component: Component, title, ...rest }) => {
         window.addEventListener("resize", handleResize);
     }, [width]);
 
-    useEffect(() => {
-        window.addEventListener('beforeunload', alertUser)
-        window.addEventListener('unload', handleTabClosing)
-        return () => {
-            // window.addEventListener("beforeunload", function (e) {
-            //     console.log("logout !");
-            //     localStorage.removeItem('access_token');
-            //     localStorage.removeItem('admin_profile');
-            //     localStorage.removeItem('role');
-            //     localStorage.removeItem('permissions');
-                
-            // //     return 0; //Webkit, Safari, Chrome
+    // const clearStrorage = () => {   
+    //     localStorage.removeItem('access_token');
+    //     localStorage.removeItem('admin_profile');
+    //     localStorage.removeItem('role');
+    //     localStorage.removeItem('permissions');
+    // }
 
-            // });
-            window.removeEventListener('beforeunload', alertUser)
-            window.removeEventListener('unload', handleTabClosing)
-        }
+//     useEffect(() => {
+//         window.onbeforeunload = confirmExit;
+//         function confirmExit()
+//         {
+//             setCloseVlaue(0);
+//             // clearStrorage();
+//             console.log('closeVlaue');
+//             console.log(closeVlaue);
+//           return "show warning";
+//         }
+// }, [])
 
-    });
-
-    const handleTabClosing = () => {
-      console.log('handleTabClosing');
-    }
-    
-    const alertUser = (event) => {
-        event.preventDefault()
-        console.log('alertUser');
-    }
 
     const MINUTE_MS = 6000000;
     useEffect(() => {
@@ -57,7 +49,7 @@ const Main = ({ component: Component, title, ...rest }) => {
 
         return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
     }, [])
-    const  getFaviconEl = () => {
+    const getFaviconEl = () => {
         return document.getElementById("favicon");
     }
 
