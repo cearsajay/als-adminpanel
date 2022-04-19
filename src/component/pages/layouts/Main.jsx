@@ -21,7 +21,7 @@ const Main = ({ component: Component, title, ...rest }) => {
 
 
 
-    const MINUTE_MS = 86400;
+    const MINUTE_MS = 86400000;
     useEffect(() => {
         const interval = setInterval(() => {
             localStorage.removeItem('access_token');
