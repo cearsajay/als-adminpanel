@@ -10,7 +10,6 @@ import FaviconImg from '../../../assets/img/favicon.png';
 const Main = ({ component: Component, title, ...rest }) => {
     const [sideActive, setSideActive] = useState(false);
     const [width, setWidth] = useState(window.innerWidth);
-    const [closeVlaue, setCloseVlaue] = useState('1');
     let history = useHistory();
 
     useEffect(() => {
@@ -20,27 +19,9 @@ const Main = ({ component: Component, title, ...rest }) => {
         window.addEventListener("resize", handleResize);
     }, [width]);
 
-    // const clearStrorage = () => {   
-    //     localStorage.removeItem('access_token');
-    //     localStorage.removeItem('admin_profile');
-    //     localStorage.removeItem('role');
-    //     localStorage.removeItem('permissions');
-    // }
-
-//     useEffect(() => {
-//         window.onbeforeunload = confirmExit;
-//         function confirmExit()
-//         {
-//             setCloseVlaue(0);
-//             // clearStrorage();
-//             console.log('closeVlaue');
-//             console.log(closeVlaue);
-//           return "show warning";
-//         }
-// }, [])
 
 
-    const MINUTE_MS = 6000000;
+    const MINUTE_MS = 86400;
     useEffect(() => {
         const interval = setInterval(() => {
             localStorage.removeItem('access_token');

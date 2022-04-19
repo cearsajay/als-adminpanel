@@ -242,7 +242,7 @@ const Index = () => {
                                 </div>
                                 <div className="d-flex">
                                     <div className="flex-grow-1">
-                                        <h2 className="mb-1">{totalDeposit}</h2>
+                                        <h2 className="mb-1"> $ {totalDeposit}</h2>
                                     </div>
                                     <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                         <FontAwesomeIcon icon={faUpload} className='fa-lg text-white' />
@@ -261,7 +261,7 @@ const Index = () => {
                                 </div>
                                 <div className="d-flex">
                                     <div className="flex-grow-1">
-                                        <h2 className="mb-1">{totalRefer}</h2>
+                                        <h2 className="mb-1"> $ {totalRefer}</h2>
                                     </div>
                                     <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                         <FontAwesomeIcon icon={faUpload} className='fa-lg text-white' />
@@ -280,7 +280,7 @@ const Index = () => {
                                 </div>
                                 <div className="d-flex">
                                     <div className="flex-grow-1">
-                                        <h2 className="mb-1">{totalReceived}</h2>
+                                        <h2 className="mb-1"> $ {totalReceived}</h2>
                                     </div>
                                     <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                         <FontAwesomeIcon icon={faExchangeAlt} className='fa-lg text-white' />
@@ -300,7 +300,7 @@ const Index = () => {
                                 </div>
                                 <div className="d-flex">
                                     <div className="flex-grow-1">
-                                        <h2 className="mb-1">{totalWithdraw}</h2>
+                                        <h2 className="mb-1"> $ {totalWithdraw}</h2>
                                     </div>
                                     <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                         <FontAwesomeIcon icon={faDownload} className='fa-lg text-white' />
@@ -319,7 +319,7 @@ const Index = () => {
                                 </div>
                                 <div className="d-flex">
                                     <div className="flex-grow-1">
-                                        <h2 className="mb-1">{totalSent}</h2>
+                                        <h2 className="mb-1"> $ {totalSent}</h2>
                                     </div>
                                     <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                         <FontAwesomeIcon icon={faExchangeAlt} className='fa-lg text-white' />
@@ -339,7 +339,7 @@ const Index = () => {
                                 </div>
                                 <div className="d-flex">
                                     <div className="flex-grow-1">
-                                        <h2 className="mb-1">{totalAdminFee}</h2>
+                                        <h2 className="mb-1"> $ {totalAdminFee}</h2>
                                     </div>
                                     <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                         <FontAwesomeIcon icon={faMoneyBill} className='fa-lg text-white' />
@@ -358,7 +358,7 @@ const Index = () => {
                                 </div>
                                 <div className="d-flex">
                                     <div className="flex-grow-1">
-                                        <h2 className="mb-1">{totalTransaction}</h2>
+                                        <h2 className="mb-1"> $ {totalTransaction}</h2>
                                     </div>
                                     <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                         <FontAwesomeIcon icon={faExchangeAlt} className='fa-lg text-white' />
@@ -377,7 +377,7 @@ const Index = () => {
                                 </div>
                                 <div className="d-flex">
                                     <div className="flex-grow-1">
-                                        <h2 className="mb-1">{totalWalletAmount}</h2>
+                                        <h2 className="mb-1"> $ {totalWalletAmount}</h2>
                                     </div>
                                     <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                         <FontAwesomeIcon icon={faMoneyBill} className='fa-lg text-white' />
