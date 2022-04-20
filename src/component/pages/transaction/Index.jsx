@@ -181,7 +181,7 @@ const Index = () => {
                 <input type="text"
                     className="form-control mr-2"
                     id="search"
-                    placeholder="Filter By Name"
+                    placeholder="filter by keywords"
                     value={filterText}
                     onChange={(event) => handleChange2(event)}
                 />

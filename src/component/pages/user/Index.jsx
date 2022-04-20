@@ -13,6 +13,7 @@ import { useHistory } from 'react-router';
 import KycDummy from '../../../assets/img/kyc.png';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Moment from 'moment';
+import Select from 'react-select'
 
 const Index = () => {
     const [dataTableData, setDataTableData] = useState([]);
@@ -27,9 +28,23 @@ const Index = () => {
     let currentFilterText = '';
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC') => {
+    const [selectType, setType] = useState([1, 2]);
+    const [kycSelectType, setKycStatus] = useState([0, 1, 2, 3]);
+
+    const statusOptions = [
+        { value: 0, label: 'Blocked' },
+        { value: 1, label: 'Active' },
+    ]
+    const kycStatusOptions = [
+        { value: 0, label: 'Pending' },
+        { value: 2, label: 'Uploaded' },
+        { value: 1, label: 'Verified' },
+        { value: 3, label: 'Rejected' },
+    ]
+
+    const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC', search = filterText , type = selectType, kycStatus = kycSelectType) => {
         const config = configHeaderAxios();
-        let reqDD = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}`;
+        let reqDD = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${search}&type=${type}&kyc_status=${kycStatus}`;
         Http
             .get(process.env.REACT_APP_BASE_URL + url.user_get + reqDD, config)
             .then((response) => {
@@ -276,7 +291,7 @@ const Index = () => {
     const handleSort = (column, sortDirection) => {
         setLoading(true);
         setTimeout(() => {
-            getData(page, perPage, column.sortField, sortDirection);
+            getData(page, perPage, column.sortField, sortDirection , filterText);
             setLoading(false);
         }, 100);
     };
@@ -285,19 +300,36 @@ const Index = () => {
         getData(page);
     };
 
+    const selectKycOptionType = (e) => {
+        setKycStatus(e.value);
+        getData(page, perPage, 'id', 'DESC', filterText , selectType, e.value);
+    };
+    const selectOptionType = (e) => {
+        setType(e.value);
+        getData(page, perPage, 'id', 'DESC', filterText , e.value, kycSelectType);
+    };
+
+
     const customStyles = customStylesDataTable();
 
     const FilterComponent = (
         <>
-            <div className="d-flex">
+            <div className="d-flex mx-2">
                 <input type="text"
                     className="form-control"
                     id="search"
-                    placeholder="Filter By Name"
+                    placeholder="filter by keywords"
                     value={filterText}
                     onChange={(event) => handleChange2(event)}
                 />
             </div>
+            <div className="table-select-filter mx-2">
+                <Select options={kycStatusOptions} onChange={selectKycOptionType} className="form-select-filter" />
+            </div>
+            <div className="table-select-filter mx-2">
+                <Select options={statusOptions} onChange={selectOptionType} className="form-select-filter" />
+            </div>
+
         </>
     );
 
