@@ -27,16 +27,17 @@ const Index = () => {
     const [totalReceived, setTotalReceivedTransaction] = useState('0.00');
     const [totalSent, setTotalSentTransaction] = useState('0.00');
     const [totalRefer, setTotalRefer] = useState('0.00');
+    const [totalReferLockAmount, setTotalReferLockAmount] = useState('0.00');
     const [name, setName] = useState('***');
-    const [selectType, setType] = useState([1,2,3]);
+    const [selectType, setType] = useState([1, 2, 3]);
 
     let currentFilterText = '';
     let history = useHistory();
     const options = [
-        { value: [3,4], label: 'Sent' },
-        { value:  2 , label: 'Received' },
+        { value: [3, 4], label: 'Sent' },
+        { value: 2, label: 'Received' },
         { value: 1, label: 'Withdraw' }
-      ]
+    ]
 
     useEffect(() => {
         let query = new URLSearchParams(history.location.search);
@@ -50,10 +51,7 @@ const Index = () => {
         }
     }, [])
 
-    const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC', userId = id , type = selectType) => {
-        
-        console.log(type);
-        console.log(selectType);
+    const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC', userId = id, type = selectType) => {
         const config = configHeaderAxios();
         let dataSend = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}&id=${userId}&type=${type}`;
         Http
@@ -70,8 +68,10 @@ const Index = () => {
                 setTotalSentTransaction(response.data.data.total_sent);
                 setTotalAdminFee(response.data.data.total_admin_fee);
                 setTotalRefer(response.data.data.total_refer);
-                setTotalWalletAmount(Number(response.data.data.user.wallet_amount).toFixed(2));
+                setTotalWalletAmount(Number(Number(response.data.data.user.wallet_amount) + Number(response.data.data.user.refer_amount_reciver_lock_amount)).toFixed(2));
+               
                 setName(response.data.data.user.name);
+                setTotalReferLockAmount(response.data.data.user.refer_amount_reciver_lock_amount);
 
             })
             .catch((error) => {
@@ -97,7 +97,7 @@ const Index = () => {
     };
     const selectOptionType = (e) => {
         setType(e.value);
-        getData(page, perPage, 'id', 'DESC' ,id , e.value);
+        getData(page, perPage, 'id', 'DESC', id, e.value);
     };
     const handlePageChange = page => {
         setPage(page);
@@ -222,7 +222,7 @@ const Index = () => {
                     <Select options={options} onChange={selectOptionType} className="form-select-filter" />
                 </div>
             </div>
-            
+
         </>
     );
 
@@ -231,7 +231,7 @@ const Index = () => {
             <h2 className='transaction-user-name'>User Name :- <span>{name}</span></h2>
             <div className='transaction-card-part mb-4 pb-0'>
                 <div className="row">
-                 
+
                     <div className="col-md-6 col-lg-4">
                         <div className="card-dashboard card mb-3 bg-gradient-2">
                             <div className="card-body">
@@ -378,6 +378,25 @@ const Index = () => {
                                 <div className="d-flex">
                                     <div className="flex-grow-1">
                                         <h2 className="mb-1"> $ {totalWalletAmount}</h2>
+                                    </div>
+                                    <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                        <FontAwesomeIcon icon={faMoneyBill} className='fa-lg text-white' />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6 col-lg-4">
+                        <div className="card-dashboard card mb-3 bg-gradient-10">
+                            <div className="card-body">
+                                <div className="d-flex mb-3">
+                                    <div className="flex-grow-1">
+                                        <h5 className="mb-1">Reward Lock Amount</h5>
+                                    </div>
+                                </div>
+                                <div className="d-flex">
+                                    <div className="flex-grow-1">
+                                        <h2 className="mb-1"> $ {totalReferLockAmount}</h2>
                                     </div>
                                     <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                         <FontAwesomeIcon icon={faMoneyBill} className='fa-lg text-white' />

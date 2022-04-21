@@ -75,7 +75,7 @@ const Index = () => {
             {
                 name: 'Ticket No',
                 width: '150px',
-                selector: row => "$" + row.ticket_id,
+                selector: row => "#" + row.ticket_id,
                 sortable: true,
             },
             {

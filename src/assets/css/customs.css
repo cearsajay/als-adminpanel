@@ -32,10 +32,10 @@ body > iframe {
     background-image: linear-gradient(to left,#ffbe4e,#e49a51)!important;
 }
 .bg-gradient-5 {
-    background-image: linear-gradient(to right,#673ab7 0,#884af1 100%)!important;
+    background-image: linear-gradient(to right,#673ab7 0,#a475f7 100%)!important;
 }
 .bg-gradient-6{
-    background-image:linear-gradient(to right,#c377e0 0,#c377e0 100%)!important;
+    background-image:linear-gradient(to right,#c377e0 0,#da95f5 100%)!important;
 }
 .bg-gradient-7{
     background-image:linear-gradient(to right,#343a40 0,#6c757d 100%)!important;
@@ -44,7 +44,10 @@ body > iframe {
     background-image: linear-gradient(to right,#0099d2,#55ccf9)!important;
 }
 .bg-gradient-9{
-    background-image: linear-gradient(to right,#fb6b25, #fb6b25)!important;
+    background-image: linear-gradient(to right,#fb6b25, #e7a17e)!important;
+}
+.bg-gradient-10{
+    background-image: linear-gradient(to right,#164377, #76a4d8)!important;
 }
 .text-nowrap{
     white-space: nowrap;
