@@ -1,4 +1,4 @@
-import { faHistory, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faHistory, faMoneyBill, faUpload, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Http from '../../security/Http';
 import url from "../../../Development.json";
@@ -14,7 +14,9 @@ const Dashboard = () => {
     const [transactionCount, setTransactionCount] = useState('0');
     const [transactionList, setTransactionList] = useState([]);
     const [userList, setUserList] = useState([]);
-
+    const [totalWithdraw, setTotalWithdraw] = useState('0.00');
+    const [totalDeposit, setTotalDeposit] = useState('0.00');
+    const [totalWalletAmount, setTotalWalletAmount] = useState('0.00');
     useEffect(() => {
         getData();
     }, []);
@@ -30,6 +32,9 @@ const Dashboard = () => {
                 setTransactionCount(data.transactionCount);
                 setTransactionList(data.transactionList);
                 setUserList(data.userList);
+                setTotalWithdraw(data.totalWithdraw);
+                setTotalDeposit(data.totalDeposit);
+                setTotalWalletAmount(data.totalWalletAmount);
             })
             .catch((error) => {
                 if (error.response) {
@@ -100,6 +105,65 @@ const Dashboard = () => {
                                 </div>
                                 <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
                                     <FontAwesomeIcon icon={faUser} className='fa-lg text-white' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-md-4">
+                    <div className="card-dashboard card mb-3 bg-gradient-5">
+                        <div className="card-body">
+                            <div className="d-flex mb-3">
+                                <div className="flex-grow-1">
+                                    <h5 className="mb-1">Total Deposit</h5>
+                                </div>
+                            </div>
+                            <div className="d-flex">
+                                <div className="flex-grow-1">
+                                    <h2 className="mb-1">{totalDeposit}</h2>
+                                </div>
+                                <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                <FontAwesomeIcon icon={faUpload} className='fa-lg text-white' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-4">
+                    <div className="card-dashboard card mb-3 bg-gradient-9">
+                        <div className="card-body">
+                            <div className="d-flex mb-3">
+                                <div className="flex-grow-1">
+                                    <h5 className="mb-1">Total Withdraw</h5>
+                                </div>
+                            </div>
+                            <div className="d-flex">
+                                <div className="flex-grow-1">
+                                    <h2 className="mb-1">{totalWithdraw}</h2>
+                                </div>
+                                <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                <FontAwesomeIcon icon={faDownload} className='fa-lg text-white' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-4">
+                    <div className="card-dashboard card mb-3 bg-gradient-10">
+                        <div className="card-body">
+                            <div className="d-flex mb-3">
+                                <div className="flex-grow-1">
+                                    <h5 className="mb-1">Total Wallet balance</h5>
+                                </div>
+                            </div>
+                            <div className="d-flex">
+                                <div className="flex-grow-1">
+                                    <h2 className="mb-1">{totalWalletAmount}</h2>
+                                </div>
+                                <div className="width-50 height-50 bg-white-transparent-2 rounded-circle d-flex align-items-center justify-content-center">
+                                <FontAwesomeIcon icon={faMoneyBill} className='fa-lg text-white' />
                                 </div>
                             </div>
                         </div>

@@ -42,7 +42,7 @@ const Index = () => {
         { value: 3, label: 'Rejected' },
     ]
 
-    const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC', search = filterText , type = selectType, kycStatus = kycSelectType) => {
+    const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC', search = filterText, type = selectType, kycStatus = kycSelectType) => {
         const config = configHeaderAxios();
         let reqDD = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${search}&type=${type}&kyc_status=${kycStatus}`;
         Http
@@ -291,7 +291,7 @@ const Index = () => {
     const handleSort = (column, sortDirection) => {
         setLoading(true);
         setTimeout(() => {
-            getData(page, perPage, column.sortField, sortDirection , filterText);
+            getData(page, perPage, column.sortField, sortDirection, filterText);
             setLoading(false);
         }, 100);
     };
@@ -302,11 +302,11 @@ const Index = () => {
 
     const selectKycOptionType = (e) => {
         setKycStatus(e.value);
-        getData(page, perPage, 'id', 'DESC', filterText , selectType, e.value);
+        getData(page, perPage, 'id', 'DESC', filterText, selectType, e.value);
     };
     const selectOptionType = (e) => {
         setType(e.value);
-        getData(page, perPage, 'id', 'DESC', filterText , e.value, kycSelectType);
+        getData(page, perPage, 'id', 'DESC', filterText, e.value, kycSelectType);
     };
 
 
@@ -576,11 +576,15 @@ const Index = () => {
                     <div className='kyc_img_row d-flex'>
                         <div className='kyc_img mr-3'>
                             <label>Kyc Front Image</label>
-                            <img src={front} className='img-fluid' alt='Kyc front' />
+                            <a href={front} target="_blank">
+                                <img src={front} className='img-fluid' alt='Kyc front' />
+                            </a>
                         </div>
                         <div className='kyc_img'>
                             <label>Kyc Back Image</label>
-                            <img src={back} className='img-fluid' alt='Kyc back' />
+                            <a href={back} target="_blank">
+                                <img src={back} className='img-fluid' alt='Kyc back' />
+                            </a>
                         </div>
                     </div>
                 </Modal.Body>
