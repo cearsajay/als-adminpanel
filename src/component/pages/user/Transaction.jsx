@@ -7,6 +7,7 @@ import '../../../custome.css';
 import url from "../../../Development.json";
 import { useHistory } from "react-router-dom";
 import Select from 'react-select'
+import Moment from 'moment';
 
 import { errorResponse, configHeaderAxios, customStylesDataTable } from "../../helpers/response";
 const Index = () => {
@@ -158,7 +159,11 @@ const Index = () => {
                 </>,
                 sortable: false,
             },
-
+            {
+                name: 'Date',
+                selector: row => Moment(row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
+                sortable: true,
+            },
             {
                 name: 'To User',
                 selector: row => row.to_user_name,

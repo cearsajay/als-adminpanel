@@ -10,6 +10,7 @@ import url from "../../../Development.json";
 import { errorResponse, configHeaderAxios, customStylesDataTable } from "../../helpers/response";
 import { useHistory } from 'react-router';
 import { Modal } from 'antd';
+import Moment from 'moment';
 
 const Index = () => {
     const [dataTableData, setDataTableData] = useState([]);
@@ -29,7 +30,7 @@ const Index = () => {
     const getData = async (page = 1, perPage = 10, sortField = 'id', sortDirection = 'DESC') => {
         const config = configHeaderAxios();
         let reqDD = `?page=${page}&per_page=${perPage}&delay=1&sort_direction=${sortDirection}&sort_field=${sortField}&search=${currentFilterText}`;
-       Http
+        Http
             .get(process.env.REACT_APP_BASE_URL + url.log_get + reqDD, config)
             .then((response) => {
                 setDataTableData(response.data.data.rows);
@@ -131,6 +132,11 @@ const Index = () => {
 
     const columns = useMemo(
         () => [
+            {
+                name: 'Date',
+                selector: row => Moment(row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
+                sortable: true,
+            },
             {
                 name: 'Client IP',
                 selector: row => row.clientIP,
