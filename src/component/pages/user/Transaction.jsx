@@ -70,7 +70,7 @@ const Index = () => {
                 setTotalAdminFee(response.data.data.total_admin_fee);
                 setTotalRefer(response.data.data.total_refer);
                 setTotalWalletAmount(Number(Number(response.data.data.user.wallet_amount) + Number(response.data.data.user.refer_amount_reciver_lock_amount)).toFixed(2));
-               
+
                 setName(response.data.data.user.name);
                 setTotalReferLockAmount(response.data.data.user.refer_amount_reciver_lock_amount);
 
@@ -162,6 +162,22 @@ const Index = () => {
             {
                 name: 'Date',
                 selector: row => Moment(row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
+                sortable: true,
+            },
+            {
+                name: 'Status',
+                selector: row => row.status === 0
+                    ? <span className={`btn-sm btn-info`}>Pending</span>
+                    :
+                    row.status === 1
+                        ? <span className={`btn-sm btn-primary`}>Success</span>
+                        :
+                        row.status === 2
+                            ? <span className={`btn-sm btn-danger`}>Failed</span>
+                            : row.status === 4
+                                ? <span className={`btn-sm btn-danger`}>Failed</span>
+                                : '',
+
                 sortable: true,
             },
             {
